@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://cf2y7c10u4cxh"]
+
+[ext_resource type="Script" path="res://scenes/game_container/switch_to_scene.gd" id="1_y2uux"]
+
+[node name="Stage2" type="Node2D"]
+
+[node name="StageOverButton" type="Button" parent="."]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "[StageOver]"
+script = ExtResource("1_y2uux")
+switch_to = "random_stage"
+
+[node name="THIS TEXT IS TEMP" type="Label" parent="."]
+offset_left = 115.0
+offset_top = 121.0
+offset_right = 1074.0
+offset_bottom = 300.0
+text = "Stage 2
+
+for now, this scene will switch to a random stage
+delete the button and trigger the next scene when someone this stage is over
+(use GameContainer.GAME_CONTAINER.switch_to_scene(\"random_stage\")
+(you can call these methods from any script)"
