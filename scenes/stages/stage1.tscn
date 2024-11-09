@@ -1,8 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://brihhvr3e0dtq"]
+[gd_scene load_steps=5 format=3 uid="uid://brihhvr3e0dtq"]
 
 [ext_resource type="Script" path="res://scenes/game_container/switch_to_scene.gd" id="1_g1qqk"]
+[ext_resource type="Script" path="res://scenes/stages/pixel_perfect.gd" id="2_17d2q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wfwqq"]
+size = Vector2(60, 60)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_j84im"]
 
 [node name="Stage1" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="StageOverButton" type="Button" parent="."]
 offset_right = 8.0
@@ -22,3 +30,30 @@ for now, this scene will switch to a random stage
 delete the button and trigger the next scene when someone this stage is over
 (use GameContainer.GAME_CONTAINER.switch_to_scene(\"random_stage\")
 (you can call these methods from any script)"
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+position = Vector2(-9, -311)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(-4, 3)
+shape = SubResource("RectangleShape2D_wfwqq")
+
+[node name="ColorRect" type="ColorRect" parent="RigidBody2D"]
+top_level = true
+offset_left = -40.0
+offset_top = -330.0
+offset_bottom = -290.0
+scale = Vector2(1.4998, 1.49982)
+script = ExtResource("2_17d2q")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("WorldBoundaryShape2D_j84im")
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D"]
+offset_left = -740.0
+offset_right = -700.0
+offset_bottom = 40.0
+scale = Vector2(38.1417, 8.17916)
+color = Color(0.53173, 0.658496, 0.776327, 1)
