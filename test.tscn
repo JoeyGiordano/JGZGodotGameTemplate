@@ -24,6 +24,19 @@ offset_top = 130.0
 offset_right = 128.0
 offset_bottom = 153.0
 
+[node name="Instructions" type="Label" parent="."]
+offset_left = 87.0
+offset_top = 189.0
+offset_right = 230.0
+offset_bottom = 342.0
+text = "Mouse to paint
+Mouse+A to erase
+Mouse+X to clear
+Space to step
+Hold F to play
+Hold G to play fast
+T to set frame to 0"
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_7w23q")
 position = Vector2(540, 302)

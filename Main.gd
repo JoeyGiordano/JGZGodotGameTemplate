@@ -13,7 +13,7 @@ var dims := PackedInt32Array([16,16]) #IMPORTANT NOTE BELOW
 #additionally, dims[0]*dims[1] must be divisible by 16 OR the compute shader workgroups and local_size must be changed
 
 func _ready():
-	prepare_default_starting_vals()
+	set_to_clear_board()
 	
 	#set up the compute shader
 	cs.setup_compute_shader(dims)
@@ -31,7 +31,7 @@ func _ready():
 	label.text = "Frame: 0"
 
 func _process(delta):
-	handle_mouse_input()
+	handle_paint_input()
 	
 	if Input.is_key_pressed(KEY_F) :
 		process_frame += 1
@@ -47,6 +47,10 @@ func _process(delta):
 		
 	if Input.is_action_just_pressed("step") :
 		step_simulation()
+		
+	if Input.is_key_pressed(KEY_T) :
+		frame = 0
+		label.text = "Frame: 0"
 
 func step_simulation() :
 	#get the output from the compute shader
@@ -61,13 +65,13 @@ func step_simulation() :
 	frame += 1
 	label.text = "Frame: " + str(frame)
 
-func prepare_default_starting_vals() :
+func set_to_clear_board() :
 	var temp : Array[int] = []
 	temp.resize(dims[0] * dims[1])
 	temp.fill(0)
 	vals = PackedInt32Array(temp)
 
-func handle_mouse_input() :
+func handle_paint_input() :
 	if Input.is_action_pressed("paint") :
 		var mouse := get_global_mouse_position()
 		var mouse_rel_rect := mouse - rect.topLeft.global_position
@@ -76,10 +80,12 @@ func handle_mouse_input() :
 		if (gol_coords.x < 0 || gol_coords.x >= dims[0] || gol_coords.y < 0 || gol_coords.y >= dims[1]) :
 			return
 		var gol_index = gol_coords.x + gol_coords.y * dims[0]
-		if Input.is_key_pressed(KEY_A) :
+		if Input.is_key_pressed(KEY_A) : #erase
 			vals[gol_index] = 0
-		else :
+		else :      #paint
 			vals[gol_index] = 1
+		if Input.is_key_pressed(KEY_X) : #clear
+			set_to_clear_board()
 		rect.set_vals(vals)
 		#stop the GPU from working so the input can be changed
 		cs.sync_and_get_output()
@@ -88,7 +94,6 @@ func handle_mouse_input() :
 		#resubmit to the GPU when the painting is done
 		cs.set_inputs(vals)
 		cs.submit()
-		
 		
 		
 		
