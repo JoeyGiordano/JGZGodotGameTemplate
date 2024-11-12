@@ -2,23 +2,27 @@
 
 #version 450
 
-layout(local_size_x = 4, local_size_y = 4, local_size_z = 1) in;
+layout(local_size_x = 16, local_size_y = 1, local_size_z = 1) in;
 
-layout(set = 0, binding = 0, std430) restrict buffer Ints1 {
+layout(set = 0, binding = 0, std430) restrict buffer Ints0 {
+	int data[];
+} dims;
+
+layout(set = 0, binding = 1, std430) restrict buffer Ints1 {
 	int data[];
 } ints;
 
-layout(set = 0, binding = 1, std430) restrict buffer Ints2 {
+layout(set = 0, binding = 2, std430) restrict buffer Ints2 {
 	int data[];
 } outs;
 
 void main() {
-	int width = 4;
-	int height = 4;
+	int width = dims.data[0];
+	int height = dims.data[1];
 	int sum = 0;
 	
-	int x = int(gl_LocalInvocationID.x);
-	int y = int(gl_LocalInvocationID.y);
+	int x = int(gl_GlobalInvocationID.x % width);
+	int y = int(gl_GlobalInvocationID.x / width);
 	
 	int c = x + y * width;
 	int l = x-1 + y * width;
@@ -69,6 +73,6 @@ void main() {
 	else if (sum == 2 && is_alive == 1) {
 		new_val = 1;
 	}
-	
+
 	outs.data[c] = new_val;
 }

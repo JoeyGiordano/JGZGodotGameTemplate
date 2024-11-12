@@ -1,26 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://udg7pbf0a2l6"]
+[gd_scene load_steps=7 format=3 uid="uid://udg7pbf0a2l6"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_3wjqk"]
 [ext_resource type="Shader" path="res://gol.gdshader" id="2_gt4ym"]
+[ext_resource type="Texture2D" uid="uid://ctn6ovewy5pat" path="res://White.png" id="3_bpv1h"]
 [ext_resource type="Script" path="res://gol_rect.gd" id="3_rqtp3"]
 [ext_resource type="Script" path="res://ComputeShader.gd" id="4_uegd3"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_oki62"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7w23q"]
 shader = ExtResource("2_gt4ym")
+shader_parameter/width = null
+shader_parameter/height = null
 shader_parameter/vals = null
-shader_parameter/width = 4.0
-shader_parameter/height = 4.0
 
 [node name="Test" type="Node2D"]
 script = ExtResource("1_3wjqk")
-
-[node name="ColorRect" type="ColorRect" parent="."]
-material = SubResource("ShaderMaterial_oki62")
-offset_left = 238.0
-offset_top = 30.0
-offset_right = 818.0
-offset_bottom = 610.0
-script = ExtResource("3_rqtp3")
 
 [node name="ComputeShader" type="Node2D" parent="."]
 script = ExtResource("4_uegd3")
@@ -30,3 +23,16 @@ offset_left = 88.0
 offset_top = 130.0
 offset_right = 128.0
 offset_bottom = 153.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_7w23q")
+position = Vector2(540, 302)
+scale = Vector2(200, 200)
+texture = ExtResource("3_bpv1h")
+script = ExtResource("3_rqtp3")
+
+[node name="TopLeft" type="Node2D" parent="Sprite2D"]
+position = Vector2(-1, -1)
+
+[node name="BottomRight" type="Node2D" parent="Sprite2D"]
+position = Vector2(1, 1)
