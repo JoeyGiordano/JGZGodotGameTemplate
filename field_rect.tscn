@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://dtti7m06poba5"]
+
+[ext_resource type="Shader" path="res://gol.gdshader" id="1_ffafo"]
+[ext_resource type="Texture2D" uid="uid://ctn6ovewy5pat" path="res://White.png" id="2_6kyd2"]
+[ext_resource type="Script" path="res://gol_rect.gd" id="3_6ve7m"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7w23q"]
+resource_local_to_scene = true
+shader = ExtResource("1_ffafo")
+shader_parameter/width = null
+shader_parameter/height = null
+shader_parameter/vals = null
+
+[node name="Field1Rect" type="Sprite2D"]
+material = SubResource("ShaderMaterial_7w23q")
+position = Vector2(476, 302)
+scale = Vector2(200, 200)
+texture = ExtResource("2_6kyd2")
+script = ExtResource("3_6ve7m")
+
+[node name="TopLeft" type="Node2D" parent="."]
+position = Vector2(-1, -1)
+
+[node name="BottomRight" type="Node2D" parent="."]
+position = Vector2(1, 1)

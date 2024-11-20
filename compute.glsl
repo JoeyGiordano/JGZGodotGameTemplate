@@ -8,71 +8,66 @@ layout(set = 0, binding = 0, std430) restrict buffer Ints0 {
 	int data[];
 } dims;
 
-layout(set = 0, binding = 1, std430) restrict buffer Ints1 {
-	int data[];
-} ints;
+layout(set = 0, binding = 1, std430) restrict buffer Field1in {
+	float data[];
+} field1in;
 
-layout(set = 0, binding = 2, std430) restrict buffer Ints2 {
-	int data[];
-} outs;
+layout(set = 0, binding = 2, std430) restrict buffer Field1out {
+	float data[];
+} field1out;
+
+layout(set = 0, binding = 3, std430) restrict buffer Field2in {
+	float data[];
+} field2in;
+
+layout(set = 0, binding = 4, std430) restrict buffer Field2out {
+	float data[];
+} field2out;
 
 void main() {
 	int width = dims.data[0];
 	int height = dims.data[1];
-	int sum = 0;
 	
 	int x = int(gl_GlobalInvocationID.x % width);
 	int y = int(gl_GlobalInvocationID.x / width);
-	
-	int c = x + y * width;
-	int l = x-1 + y * width;
-	int r = x+1 + y * width;
-	int u = x   + (y-1) * width;
-	int d = x   + (y+1) * width;
-	int lu = x-1+ (y-1) * width;
-	int ld = x-1+ (y+1) * width;
-	int ru = x+1+ (y-1) * width;
-	int rd = x+1+ (y+1) * width;
 
 	bool onLeftBorder = x == 0;	
 	bool onRightBorder = x == width - 1;
 	bool onTopBorder = y == 0;
 	bool onBottomBorder = y == height - 1;
 
-	if (!onLeftBorder) {	//left
-		sum += ints.data[l];
-		if (!onTopBorder) {	//left up
-			sum += ints.data[lu];
-		}
-		if (!onBottomBorder) {	//left down
-			sum += ints.data[ld];
-		}
-	}
-	if (!onRightBorder) {	//right
-		sum += ints.data[r];
-		if (!onTopBorder) {	//right up
-			sum += ints.data[ru];
-		}
-		if (!onBottomBorder) {	//right down
-			sum += ints.data[rd];
-		}
-	}
-	if (!onTopBorder) {	//up
-		sum += ints.data[u];
-	}
-	if (!onBottomBorder) {	//down
-		sum += ints.data[d];
-	}
-	int is_alive = ints.data[c];
-
-	int new_val = 0;
+	int c = x + y * width;
 	
-	if (sum == 3) {
-		new_val = 1;
+	if (onLeftBorder || onRightBorder || onTopBorder || onBottomBorder) {
+		field1out.data[c] = 0;
+		field2out.data[c] = 0;
+		return;
 	}
-	else if (sum == 2 && is_alive == 1) {
-		new_val = 1;
-	}
+	
+	int l  = x-1 + y * width;
+	int r  = x+1 + y * width;
+	int u  = x   + (y-1) * width;
+	int d  = x   + (y+1) * width;
+	int lu = x-1 + (y-1) * width;
+	int ld = x-1 + (y+1) * width;
+	int ru = x+1 + (y-1) * width;
+	int rd = x+1 + (y+1) * width;
+	
+	float recieved1 = 0.0;
+	recieved1 += field1in.data[l] + field1in.data[r] + field1in.data[ru] + field1in.data[d];
+	recieved1 += field1in.data[lu] + field1in.data[ld] + field1in.data[rd] + field1in.data[u];
+	recieved1 *= 0.1 / 8;
+	
+	float retained1 = 0.88 * field1in.data[c];
 
-	outs.data[c] = new_val;
+	float recieved2 = 0.0;
+	recieved2 += field2in.data[l] + field2in.data[r] + field2in.data[ru] + field2in.data[d];
+	recieved2 += field2in.data[lu] + field2in.data[ld] + field2in.data[rd] + field2in.data[u];
+	recieved2 *= 0.2 / 8;
+	
+	float retained2 = 0.88 * field2in.data[c];
+	
+
+	field1out.data[c] = retained1 + recieved1 - 0.15*field2in.data[c];
+	field2out.data[c] = retained2 + recieved2 + 0.15*field1in.data[c];
 }
