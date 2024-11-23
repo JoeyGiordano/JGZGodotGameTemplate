@@ -53,21 +53,42 @@ void main() {
 	int ru = x+1 + (y-1) * width;
 	int rd = x+1 + (y+1) * width;
 	
-	float recieved1 = 0.0;
-	recieved1 += field1in.data[l] + field1in.data[r] + field1in.data[ru] + field1in.data[d];
-	recieved1 += field1in.data[lu] + field1in.data[ld] + field1in.data[rd] + field1in.data[u];
-	recieved1 *= 0.1 / 8;
+	float c1 = field1in.data[c];
+	float l1 = field1in.data[l];
+	float r1 = field1in.data[r];
+	float u1 = field1in.data[u];
+	float d1 = field1in.data[d];
+	float lu1 = field1in.data[lu];
+	float ld1 = field1in.data[ld];
+	float ru1 = field1in.data[ru];
+	float rd1 = field1in.data[rd];
 	
-	float retained1 = 0.88 * field1in.data[c];
+	float c2 = field2in.data[c];
+	float l2 = field2in.data[l];
+	float r2 = field2in.data[r];
+	float u2 = field2in.data[u];
+	float d2 = field2in.data[d];
+	float lu2 = field2in.data[lu];
+	float ld2 = field2in.data[ld];
+	float ru2 = field2in.data[ru];
+	float rd2 = field2in.data[rd];
+	
+	float dispersion1 = 0.1;
+	float dispersion2 = 0.1;
+	float loss1 = 0.01;
+	float loss2 = 0.01;
 
-	float recieved2 = 0.0;
-	recieved2 += field2in.data[l] + field2in.data[r] + field2in.data[ru] + field2in.data[d];
-	recieved2 += field2in.data[lu] + field2in.data[ld] + field2in.data[rd] + field2in.data[u];
-	recieved2 *= 0.2 / 8;
+	float recieved1 = l1 + r1 + u1 + d1 + lu1 + ld1 + ru1 + rd1;
+	recieved1 *= dispersion1 / 8;
 	
-	float retained2 = 0.88 * field2in.data[c];
+	float retained1 = (1 - dispersion1 - loss1) * c1;
+
+	float recieved2 = l2 + r2 + u2 + d2 + lu2 + ld2 + ru2 + rd2;
+	recieved2 *= dispersion2 / 8;
+	
+	float retained2 = (1 - dispersion2 - loss2) * c2;
 	
 
-	field1out.data[c] = retained1 + recieved1 - 0.15*field2in.data[c];
-	field2out.data[c] = retained2 + recieved2 + 0.15*field1in.data[c];
+	field1out.data[c] = retained1 + recieved1 - 0.15*c2;
+	field2out.data[c] = retained2 + recieved2 + 0.15*c1;
 }
