@@ -75,8 +75,8 @@ void main() {
 	
 	float dispersion1 = 0.1;
 	float dispersion2 = 0.1;
-	float loss1 = 0.01;
-	float loss2 = 0.01;
+	float loss1 = 0.00;
+	float loss2 = 0.00;
 
 	float recieved1 = l1 + r1 + u1 + d1 + lu1 + ld1 + ru1 + rd1;
 	recieved1 *= dispersion1 / 8;
@@ -87,8 +87,30 @@ void main() {
 	recieved2 *= dispersion2 / 8;
 	
 	float retained2 = (1 - dispersion2 - loss2) * c2;
-	
 
-	field1out.data[c] = retained1 + recieved1 - 0.15*c2;
-	field2out.data[c] = retained2 + recieved2 + 0.15*c1;
+	float chasefact1 = .2;
+	float chase1 = 0;
+	if (c2-l2 > 0 ) chase1 -= min(1,(c2-l2)) * c1 * chasefact1;
+	if (c2-r2 < 0 ) chase1 += min(1,(r2-c2)) * r1 * chasefact1;
+	if (c2-r2 > 0 ) chase1 -= min(1,(c2-r2)) * c1 * chasefact1;
+	if (c2-l2 < 0 ) chase1 += min(1,(l2-c2)) * l1 * chasefact1;
+	if (c2-u2 > 0 ) chase1 -= min(1,(c2-u2)) * c1 * chasefact1;
+	if (c2-d2 < 0 ) chase1 += min(1,(d2-c2)) * d1 * chasefact1;
+	if (c2-d2 > 0 ) chase1 -= min(1,(c2-d2)) * c1 * chasefact1;
+	if (c2-u2 < 0 ) chase1 += min(1,(u2-c2)) * u1 * chasefact1;
+	
+	float chasefact2 = .2;
+	float chase2 = 0;
+	if (c1-l1 > 0 ) chase2 -= min(1,(c1-l1)) * c2 * chasefact2;
+	if (c1-r1 < 0 ) chase2 += min(1,(r1-c1)) * r2 * chasefact2;
+	if (c1-r1 > 0 ) chase2 -= min(1,(c1-r1)) * c2 * chasefact2;
+	if (c1-l1 < 0 ) chase2 += min(1,(l1-c1)) * l2 * chasefact2;
+	if (c1-u1 > 0 ) chase2 -= min(1,(c1-u1)) * c2 * chasefact2;
+	if (c1-d1 < 0 ) chase2 += min(1,(d1-c1)) * d2 * chasefact2;
+	if (c1-d1 > 0 ) chase2 -= min(1,(c1-d1)) * c2 * chasefact2;
+	if (c1-u1 < 0 ) chase2 += min(1,(u1-c1)) * u2 * chasefact2;
+
+	field1out.data[c] = retained1 + recieved1 + chase1;// - 0.15*c2;
+	field2out.data[c] = retained2 + recieved2 + chase2;// + 0.15*c1;//abs(float(x)/float(width) - 0.5) + abs(float(y)/float(height) - 0.5);
+
 }

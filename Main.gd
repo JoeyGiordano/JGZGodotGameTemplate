@@ -88,18 +88,39 @@ func handle_paint_input() :
 		var mouse_rel_rect := mouse - rect1.topLeft.global_position
 		var rect_scale := rect1.bottomRight.global_position - rect1.topLeft.global_position
 		var gol_coords := Vector2(floor(dims[0] * mouse_rel_rect.x / rect_scale.x), floor(dims[1] * mouse_rel_rect.y / rect_scale.y))
-		if (gol_coords.x < 0 || gol_coords.x >= dims[0] || gol_coords.y < 0 || gol_coords.y >= dims[1]) :
-			return
-		var gol_index = gol_coords.x + gol_coords.y * dims[0]
-		if Input.is_key_pressed(KEY_A) : #erase
-			field1[gol_index] = 0
-		else :      #paint
-			field1[gol_index] += 0.05
-		if Input.is_key_pressed(KEY_X) : #clear
-			set_to_clear_board()
-		rect1.set_field(field1)
-		#stop the GPU from working so the input can be changed
-		cs.sync()
+		if !(gol_coords.x < 0 || gol_coords.x >= dims[0] || gol_coords.y < 0 || gol_coords.y >= dims[1]) :
+			var gol_index = gol_coords.x + gol_coords.y * dims[0]
+			if Input.is_key_pressed(KEY_A) : #erase
+				field1[gol_index] = 0
+			elif Input.is_key_pressed(KEY_E) : #paint negative
+				field1[gol_index] -= 0.05
+			else :      #paint
+				field1[gol_index] += 0.05
+			if Input.is_key_pressed(KEY_X) : #clear
+				set_to_clear_board()
+			rect1.set_field(field1)
+			#stop the GPU from working so the input can be changed
+			cs.sync()
+	
+	#for the second square
+	if Input.is_action_pressed("paint") :
+		var mouse := get_global_mouse_position()
+		var mouse_rel_rect := mouse - rect2.topLeft.global_position
+		var rect_scale := rect2.bottomRight.global_position - rect2.topLeft.global_position
+		var gol_coords := Vector2(floor(dims[0] * mouse_rel_rect.x / rect_scale.x), floor(dims[1] * mouse_rel_rect.y / rect_scale.y))
+		if !(gol_coords.x < 0 || gol_coords.x >= dims[0] || gol_coords.y < 0 || gol_coords.y >= dims[1]) :
+			var gol_index = gol_coords.x + gol_coords.y * dims[0]
+			if Input.is_key_pressed(KEY_A) : #erase
+				field2[gol_index] = 0
+			elif Input.is_key_pressed(KEY_E) : #paint negative
+				field2[gol_index] -= 0.05
+			else :      #paint
+				field2[gol_index] += 0.05
+			if Input.is_key_pressed(KEY_X) : #clear
+				set_to_clear_board()
+			rect2.set_field(field2)
+			#stop the GPU from working so the input can be changed
+			cs.sync()
 	
 	if Input.is_action_just_released("paint") :
 		#resubmit to the GPU when the painting is done
