@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://dyo2pfrgutft0"]
+
+[ext_resource type="Script" uid="uid://cxdfw524v3ow5" path="res://scripts/switch_to_scene.gd" id="1_sbm4f"]
+
+[node name="MainTutorial" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "The tutorial starts here."
+
+[node name="Button" type="Button" parent="."]
+offset_left = 84.0
+offset_top = 68.0
+offset_right = 130.0
+offset_bottom = 99.0
+text = "Start"
+script = ExtResource("1_sbm4f")
+switch_to = "uid://cod7m8624uqbg"
