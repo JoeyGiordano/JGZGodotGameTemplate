@@ -12,7 +12,7 @@ offset_bottom = 77.0
 text = "Main Menu
 Welcome."
 
-[node name="Button" type="Button" parent="."]
+[node name="TutorialButton" type="Button" parent="."]
 offset_left = 187.0
 offset_top = 110.0
 offset_right = 298.0
@@ -21,7 +21,7 @@ text = "Start Tutorial"
 script = ExtResource("1_sbm4f")
 switch_to = "uid://cod7m8624uqbg"
 
-[node name="Button2" type="Button" parent="."]
+[node name="GameButton" type="Button" parent="."]
 offset_left = 193.0
 offset_top = 183.0
 offset_right = 293.0

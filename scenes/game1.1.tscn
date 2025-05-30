@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bahxih6tvutal"]
 
-[node name="Game11" type="Node2D"]
+[node name="Game1_1" type="Node2D"]
 
 [node name="Label" type="Label" parent="."]
 offset_left = 42.0
