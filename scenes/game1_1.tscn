@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bahxih6tvutal"]
+
+[node name="Game11" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+offset_left = 42.0
+offset_top = 122.0
+offset_right = 203.0
+offset_bottom = 145.0
+text = "Let the game begin..."

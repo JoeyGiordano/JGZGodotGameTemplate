@@ -27,7 +27,7 @@ func switch_to_scene(scene_path : String) :
 func switch_active_scene(scene : PackedScene) :
 	#replace the scene in the ActiveSceneHolder with a newly instantiated PackedScene scene
 	ActiveSceneHolder.get_child(0).queue_free() #sets the node to be deleted
-	ActiveSceneHolder.remove_child(get_child(0)) #unchilds the node, undisplaying it
+	ActiveSceneHolder.remove_child(ActiveSceneHolder.get_child(0)) #unchilds the node, undisplaying it
 	var s = scene.instantiate() #creates a new instance of the new scene
 	ActiveSceneHolder.add_child(s) #adds the new scene instance as a child, displaying it
 

@@ -8,4 +8,4 @@ func _ready() :
 
 func on_pressed() :
 	#tell the GameContainer to switch the scene to the scene with the name switch_to
-	GameContainer.GC.switch_to_scene(switch_to)
+	GameContainer.GC.call_deferred("switch_to_scene", switch_to)
