@@ -18,6 +18,25 @@ offset_left = 36.0
 offset_top = 58.0
 offset_right = 2004.0
 offset_bottom = 549.0
+text = "I hope your button worked. You now have all of the basic parts you need to be able to start making your text based game. heres a summary.
+5 Panels
+     Scene View: View the scene you have open. Use the tabs to switch between scenes.
+     File System: View all of the files in your game. Keep it organized with folders! Double click on files to open them.
+     Scene Tree: See all of the nodes in the current scene. The top node is the root node.
+     Inspector: Make edits to the node that is currently selected in the scene tree. 
+     Console: Messages from the system show up here. Don't worry about it.
+
+Make a new scene - File System, right click folder, create new>scene
+Open a file - double click on it in the File System
+Make a new node - cmd A, or right click on a node in the Scene Tree, press create new node. Node types below
+     Label - displays text, edit what it says in the Inspector
+     Button - displays a button with text that can be pressed, edit what it says/does in the Inspector (make sure the right script has been added)
+Add a script to a node - find the script file in the File System. Drag the script onto the desired node.
+Use switch_to_scene.gd - add it to a Button node (must be a Button node), choose what scene you want in the Inspector.
+Save - cmd S (save as often as humanly possible)
+
+Github Desktop
+"
 
 [node name="Button2" type="Button" parent="."]
 offset_left = 74.0
