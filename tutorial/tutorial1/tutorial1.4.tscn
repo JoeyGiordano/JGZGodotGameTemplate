@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://crrdqye35eh5u"]
 
-[ext_resource type="Script" uid="uid://cxdfw524v3ow5" path="res://scripts/switch_to_scene.gd" id="1_w6r3i"]
+[ext_resource type="Script" uid="uid://cxdfw524v3ow5" path="res://scripts/switch_to_scene.gd" id="1_d8lu3"]
 
 [node name="Tutorial1_4" type="Node2D"]
 
@@ -10,7 +10,7 @@ offset_top = 13.0
 offset_right = 101.0
 offset_bottom = 44.0
 text = "Back"
-script = ExtResource("1_w6r3i")
+script = ExtResource("1_d8lu3")
 switch_to = "uid://cx7jupm8w15ny"
 
 [node name="Label" type="Label" parent="."]
@@ -33,6 +33,7 @@ Make a new node - cmd A, or right click on a node in the Scene Tree, press creat
 Add a script to a node - find the script file in the File System. Drag the script onto the desired node.
 Use switch_to_scene.gd - add it to a Button node (must be a Button node), choose what scene you want in the Inspector.
 Save - cmd S (save as often as humanly possible)
+Run from start - cmd B or the play button in the top right
 
 Github Desktop
 Github allows you to save snapshots of your project so you know your progress is secure.
@@ -42,12 +43,12 @@ Push - Send all of the snapshots since the last push to the cloud where they wil
 Branch - ask someone who knows what they're doing."
 
 [node name="Button2" type="Button" parent="."]
-offset_left = 74.0
-offset_top = 610.0
-offset_right = 119.0
-offset_bottom = 641.0
-text = "Next"
-script = ExtResource("1_w6r3i")
+offset_left = 814.0
+offset_top = 500.0
+offset_right = 972.0
+offset_bottom = 531.0
+text = "Back to main menu"
+script = ExtResource("1_d8lu3")
 switch_to = "uid://dyo2pfrgutft0"
 
 [node name="Label2" type="Label" parent="."]
@@ -56,3 +57,20 @@ offset_top = 15.0
 offset_right = 225.0
 offset_bottom = 38.0
 text = "Summary"
+
+[node name="Button3" type="Button" parent="."]
+offset_left = 1013.0
+offset_top = 497.0
+offset_right = 1095.0
+offset_bottom = 528.0
+text = "Tutorial 2"
+script = ExtResource("1_d8lu3")
+switch_to = "uid://do81m2oq5jfad"
+
+[node name="Label3" type="Label" parent="."]
+offset_left = 812.0
+offset_top = 437.0
+offset_right = 1118.0
+offset_bottom = 486.0
+text = "Only move onto tutorial 2 when you've
+had some practive with the stuff from 1"

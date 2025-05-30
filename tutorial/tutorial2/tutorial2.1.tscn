@@ -1,0 +1,56 @@
+[gd_scene load_steps=2 format=3 uid="uid://do81m2oq5jfad"]
+
+[ext_resource type="Script" uid="uid://cxdfw524v3ow5" path="res://scripts/switch_to_scene.gd" id="1_h7m37"]
+
+[node name="Tutorial2_1" type="Node2D"]
+
+[node name="Button" type="Button" parent="."]
+offset_left = 56.0
+offset_top = 13.0
+offset_right = 101.0
+offset_bottom = 44.0
+text = "Back"
+script = ExtResource("1_h7m37")
+switch_to = "uid://crrdqye35eh5u"
+
+[node name="Label" type="Label" parent="."]
+offset_left = 36.0
+offset_top = 58.0
+offset_right = 2004.0
+offset_bottom = 549.0
+text = "So you've started building out your text based game and you've quickly come to realize there's something you're unable to do with what you've
+learned so far: conditional storytelling. Beyond immediate decisions (button presses) you have no way of controlling how the story flows (what
+scene to show next). An example: A few scenes ago, as Jerry went along the road, he picked up a revival potion.  Jerry just fought a monster and
+died. This would normally take us to the death screen, but since Jerry has a revival potion we should instead be taken to a screen where Jerry gets
+to keep interacting with the monster. What we are currently unable to do is (a) store the fact that jerry has the revival potion and (b) react to the 
+fact that Jerry has a revival potion later when it should change what scene we show. (a) is memory, (b) is logic.
+
+Scripting is typically how we handle these two. You can do a lot with Godot scripting but this template has restricted that to just a few things to
+make it AS EASY AS POSSIBLE. It will still not be a breeze so don't get discouraged.
+
+Using what you learned in tutorial 1, set up a few scenes for Jerrys situation (1 option to pickup the potion scene, 2 continue walking down the
+road scene, 3 attempt to fight the monster scene, 4 death scene, 5 revived scene - or a related situation). Let's walk through what we need to do
+as we play these scenes. On scene 1, if we choose to pick up the potion we need to STORE that decision, either we picked up the potion or we
+didn't. On scene 2, we don't need to do anything. On scene 3, say we choose the option that leads to death (run at the monster backwards), we
+need to DECIDE what to do based on what we stored. If we picked up the potion, we need to show scene 4, otherwise, we need to show scene 5.
+
+We will revisit this in a second. Find the call_function.gd script in the File System. Go to scene 1, and drag call_function.gd onto the Button that
+allows us to pick up the potion. Look in the Inspector for that Button. We have two new properties to edit: function name - which is an empty
+field - and parameters - which says \"Array (size 0)\". Go to scene 3, and drag call_function.gd onto the Button that results in Jerry dying. This button
+will also gain the two new properties."
+
+[node name="Button2" type="Button" parent="."]
+offset_left = 74.0
+offset_top = 610.0
+offset_right = 119.0
+offset_bottom = 641.0
+text = "Next"
+script = ExtResource("1_h7m37")
+switch_to = "uid://c5rdg8vl3v5j7"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 152.0
+offset_top = 15.0
+offset_right = 448.0
+offset_bottom = 38.0
+text = "A problem has blocked our creativity... (1/3)"

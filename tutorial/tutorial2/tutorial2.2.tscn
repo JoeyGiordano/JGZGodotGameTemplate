@@ -1,0 +1,66 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5rdg8vl3v5j7"]
+
+[ext_resource type="Script" uid="uid://cxdfw524v3ow5" path="res://scripts/switch_to_scene.gd" id="1_i8eao"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_i8eao"]
+font_size = 13
+
+[node name="Tutorial2_2" type="Node2D"]
+
+[node name="Button" type="Button" parent="."]
+offset_left = 56.0
+offset_top = 13.0
+offset_right = 101.0
+offset_bottom = 44.0
+text = "Back"
+script = ExtResource("1_i8eao")
+switch_to = "uid://do81m2oq5jfad"
+
+[node name="Label" type="Label" parent="."]
+offset_left = 25.0
+offset_top = 44.0
+offset_right = 1993.0
+offset_bottom = 717.0
+text = "in the File System, under scripts, find the file manager.gd. This is the ONLY script file you will need to edit. Let's do this. Double click manager.gd.
+The Scene View has changed to show a text editor. To pop the text editor out so we don't have to look at it all the time, find the small button that
+floats the window (two overlapping squares) in the top right corner of the Scene View and press it. This will put the text editor in a new window.
+Maximize the window so we don't have to look at it all the time.
+
+Ok we're here for an in and out. Lines 1-2 don't matter. Neither does anything after 24. The light blue-gray and slightly-lighter-than-background
+gray are comments/notes are just for organization. We needed something to store whether Jerry has picked up the potion of revival. On line 6 we
+see that thing:
+var   is short for variable, which means stored info
+did_jerry_pick_up_the_potion   is what we've named the variable.
+: bool   is short for boolean, it means the info we've stored is true or false info.
+= false   means that we've set the starting value of the variable to false.
+which makes sense because as Jerry is walking down the road (before he has encountered up the potion), he has not picked up the potion.
+
+If Jerry decides to pick up the potion, we need to change the info that is stored so that we can act on it later. View line 14:
+func   short for function, means the following lines are a short set of instructions
+jerry_picked_up_the_potion   the name we've given to the function
+() :   means the instructions begin here then on line 16   pass   means the instructions end here
+On line 15, add the instruction   did_jerry_pick_up_the_potion=true   which means \"change the stored info under the name
+did_jerry_pick_up_the_potion to true\" or \"set did_jerry_pick_up_the_potion to true\". Now all we have to do is go back to scene 1 and connect the
+pick up the potion button to the set of instructions (function) called jerry_picked_up_the_potion. Do this by typing jerry_picked_up_the_potion in
+the function name field.
+
+When the button is pressed, the computer will follow the instructions under jerry_picked_up_the_potion (we say \"the function is called\" like called
+on the phone). Per the instruction you added, the computer will change the info we stored in did_jerry_pick_up_the_potion to indicate that Jerry
+did in fact pick up the potion."
+label_settings = SubResource("LabelSettings_i8eao")
+
+[node name="Button2" type="Button" parent="."]
+offset_left = 74.0
+offset_top = 610.0
+offset_right = 119.0
+offset_bottom = 641.0
+text = "Next"
+script = ExtResource("1_i8eao")
+switch_to = "uid://dyo2pfrgutft0"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 152.0
+offset_top = 15.0
+offset_right = 272.0
+offset_bottom = 38.0
+text = "Scripting Basics (2/3)"

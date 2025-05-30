@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cx7jupm8w15ny"]
 
-[ext_resource type="Script" uid="uid://cxdfw524v3ow5" path="res://scripts/switch_to_scene.gd" id="1_d0sse"]
+[ext_resource type="Script" uid="uid://cxdfw524v3ow5" path="res://scripts/switch_to_scene.gd" id="1_cxfu8"]
 
 [node name="Tutorial1_3" type="Node2D"]
 
@@ -10,7 +10,7 @@ offset_top = 13.0
 offset_right = 101.0
 offset_bottom = 44.0
 text = "Back"
-script = ExtResource("1_d0sse")
+script = ExtResource("1_cxfu8")
 switch_to = "uid://vs3rrm7euj3t"
 
 [node name="Label" type="Label" parent="."]
@@ -19,7 +19,7 @@ offset_top = 47.0
 offset_right = 1983.0
 offset_bottom = 642.0
 text = "I hope your button worked. You've used cmd S to save your progress before, but now your going to learn how to make sure you never lose a
-keystroke of work you do.
+keystroke of work you do. You don't need to understand how this works (no one does), just what to do.
 
 Git is a version control software. That means it stores old versions of your project and a timeline of changes in what the git people call a repository.
 Github (github.com) is a website where you can view your own and other peoples repos (repositories). Just like other... hubs.
@@ -48,7 +48,7 @@ offset_top = 610.0
 offset_right = 119.0
 offset_bottom = 641.0
 text = "Next"
-script = ExtResource("1_d0sse")
+script = ExtResource("1_cxfu8")
 switch_to = "uid://crrdqye35eh5u"
 
 [node name="Label2" type="Label" parent="."]
@@ -56,4 +56,4 @@ offset_left = 152.0
 offset_top = 15.0
 offset_right = 200.0
 offset_bottom = 38.0
-text = "GitHub Desktop and Version Control (Real Saving)"
+text = "GitHub Desktop and Version Control (Real Saving) (3/3)"

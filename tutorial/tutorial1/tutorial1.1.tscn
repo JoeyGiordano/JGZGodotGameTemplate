@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cod7m8624uqbg"]
 
-[ext_resource type="Script" uid="uid://cxdfw524v3ow5" path="res://scripts/switch_to_scene.gd" id="1_xd8wo"]
+[ext_resource type="Script" uid="uid://cxdfw524v3ow5" path="res://scripts/switch_to_scene.gd" id="1_qm2lg"]
 
 [node name="Tutorial1_1" type="Node2D"]
 
@@ -10,7 +10,7 @@ offset_top = 13.0
 offset_right = 101.0
 offset_bottom = 44.0
 text = "Back"
-script = ExtResource("1_xd8wo")
+script = ExtResource("1_qm2lg")
 switch_to = "uid://dyo2pfrgutft0"
 
 [node name="Label" type="Label" parent="."]
@@ -46,7 +46,7 @@ offset_top = 610.0
 offset_right = 119.0
 offset_bottom = 641.0
 text = "Next"
-script = ExtResource("1_xd8wo")
+script = ExtResource("1_qm2lg")
 switch_to = "uid://vs3rrm7euj3t"
 
 [node name="Label2" type="Label" parent="."]
@@ -54,4 +54,4 @@ offset_left = 152.0
 offset_top = 15.0
 offset_right = 200.0
 offset_bottom = 38.0
-text = "Basics"
+text = "Basics (1/3)"
