@@ -56,11 +56,11 @@ offset_right = 119.0
 offset_bottom = 641.0
 text = "Next"
 script = ExtResource("1_i8eao")
-switch_to = "uid://dyo2pfrgutft0"
+switch_to = "uid://c8pj6jou5n55q"
 
 [node name="Label2" type="Label" parent="."]
 offset_left = 152.0
 offset_top = 15.0
 offset_right = 272.0
 offset_bottom = 38.0
-text = "Scripting Basics (2/3)"
+text = "Storing a piece of info (2/3)"

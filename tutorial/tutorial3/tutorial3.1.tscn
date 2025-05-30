@@ -1,0 +1,36 @@
+[gd_scene load_steps=2 format=3 uid="uid://bsdr1hm6d1fiv"]
+
+[ext_resource type="Script" uid="uid://cxdfw524v3ow5" path="res://scripts/switch_to_scene.gd" id="1_b4ejy"]
+
+[node name="Tutorial3_1" type="Node2D"]
+
+[node name="Button" type="Button" parent="."]
+offset_left = 56.0
+offset_top = 13.0
+offset_right = 101.0
+offset_bottom = 44.0
+text = "Back"
+script = ExtResource("1_b4ejy")
+switch_to = "uid://cblppg4f1c213"
+
+[node name="Label" type="Label" parent="."]
+offset_left = 36.0
+offset_top = 58.0
+offset_right = 2004.0
+offset_bottom = 549.0
+
+[node name="Button2" type="Button" parent="."]
+offset_left = 74.0
+offset_top = 610.0
+offset_right = 119.0
+offset_bottom = 641.0
+text = "Next"
+script = ExtResource("1_b4ejy")
+switch_to = "uid://v51r67b826lo"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 152.0
+offset_top = 15.0
+offset_right = 448.0
+offset_bottom = 38.0
+text = "_______ (1/3)"

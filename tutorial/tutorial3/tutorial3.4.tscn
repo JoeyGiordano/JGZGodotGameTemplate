@@ -1,0 +1,44 @@
+[gd_scene load_steps=2 format=3 uid="uid://301ru83jv6c3"]
+
+[ext_resource type="Script" uid="uid://cxdfw524v3ow5" path="res://scripts/switch_to_scene.gd" id="1_3g5df"]
+
+[node name="Tutorial3_4" type="Node2D"]
+
+[node name="Button" type="Button" parent="."]
+offset_left = 56.0
+offset_top = 13.0
+offset_right = 101.0
+offset_bottom = 44.0
+text = "Back"
+script = ExtResource("1_3g5df")
+switch_to = "uid://btnxhj0p4hhh3"
+
+[node name="Label" type="Label" parent="."]
+offset_left = 36.0
+offset_top = 45.0
+offset_right = 2004.0
+offset_bottom = 614.0
+
+[node name="Button2" type="Button" parent="."]
+offset_left = 814.0
+offset_top = 500.0
+offset_right = 972.0
+offset_bottom = 531.0
+text = "Back to main menu"
+script = ExtResource("1_3g5df")
+switch_to = "uid://dyo2pfrgutft0"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 150.0
+offset_top = 15.0
+offset_right = 225.0
+offset_bottom = 38.0
+text = "Summary"
+
+[node name="Label3" type="Label" parent="."]
+offset_left = 812.0
+offset_top = 437.0
+offset_right = 1118.0
+offset_bottom = 486.0
+text = "That's everything you need to know to
+use this template as intended!"
