@@ -14,10 +14,10 @@ script = ExtResource("1_d0sse")
 switch_to = "uid://vs3rrm7euj3t"
 
 [node name="Label" type="Label" parent="."]
-offset_left = 36.0
-offset_top = 58.0
-offset_right = 2004.0
-offset_bottom = 549.0
+offset_left = 15.0
+offset_top = 47.0
+offset_right = 1983.0
+offset_bottom = 642.0
 text = "I hope your button worked. You've used cmd S to save your progress before, but now your going to learn how to make sure you never lose a
 keystroke of work you do.
 
@@ -36,7 +36,11 @@ I typically fetch every time I open the app and just randomly while I have it op
 the last time you \"Commited.\" Commiting means creating a snapshot of the state of all of your files with a little description of what changes
 you've made (its like saving, but with a little more commit-ment ahahahha). In the bottom right, put something in the summary box and
 (optionally) in the description box. Now below the description press commit. But this snapshot is still on your computer. To get this file into the
-Github cloud you have to Push it up there. The Fetch Origin button now says Push"
+Github cloud you have to Push it up there. The Fetch Origin button now says Push Origin (with a little up arrow). Press this button to send the
+snapshot with your changes to the cloud where they will be safe forever. Now you can rest at ease. Commit periodically. Every time before you
+close Godot is ideal. If something goes wrong and you want to access the history, ask someone who knows what they're doing.
+
+                              There's also branching, which allows you to have different versions of you project to test things that might not work. Ask someone."
 
 [node name="Button2" type="Button" parent="."]
 offset_left = 74.0

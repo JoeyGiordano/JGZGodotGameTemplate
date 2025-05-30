@@ -15,9 +15,9 @@ switch_to = "uid://cx7jupm8w15ny"
 
 [node name="Label" type="Label" parent="."]
 offset_left = 36.0
-offset_top = 58.0
+offset_top = 45.0
 offset_right = 2004.0
-offset_bottom = 549.0
+offset_bottom = 614.0
 text = "You now have all of the basic parts you need to be able to start making your text based game. heres a summary.
 5 Panels
      Scene View: View the scene you have open. Use the tabs to switch between scenes.
@@ -25,7 +25,6 @@ text = "You now have all of the basic parts you need to be able to start making 
      Scene Tree: See all of the nodes in the current scene. The top node is the root node.
      Inspector: Make edits to the node that is currently selected in the scene tree. 
      Console: Messages from the system show up here. Don't worry about it.
-
 Make a new scene - File System, right click folder, create new>scene
 Open a file - double click on it in the File System
 Make a new node - cmd A, or right click on a node in the Scene Tree, press create new node. Node types below
@@ -36,7 +35,11 @@ Use switch_to_scene.gd - add it to a Button node (must be a Button node), choose
 Save - cmd S (save as often as humanly possible)
 
 Github Desktop
-"
+Github allows you to save snapshots of your project so you know your progress is secure.
+Fetch Origin - do whenever, syncs with the cloud to make sure things are up to date.
+Commit - Once you've made edits in Godot, write a commit summary and press the blue commit button (bottom left) to save a snapshot.
+Push - Send all of the snapshots since the last push to the cloud where they will be safe forever.
+Branch - ask someone who knows what they're doing."
 
 [node name="Button2" type="Button" parent="."]
 offset_left = 74.0
