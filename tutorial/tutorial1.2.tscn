@@ -47,7 +47,7 @@ offset_right = 119.0
 offset_bottom = 641.0
 text = "Next"
 script = ExtResource("1_jsfkb")
-switch_to = "uid://crrdqye35eh5u"
+switch_to = "uid://cx7jupm8w15ny"
 
 [node name="Label2" type="Label" parent="."]
 offset_left = 152.0

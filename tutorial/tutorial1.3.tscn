@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://crrdqye35eh5u"]
+[gd_scene load_steps=2 format=3 uid="uid://cx7jupm8w15ny"]
 
 [ext_resource type="Script" uid="uid://cxdfw524v3ow5" path="res://scripts/switch_to_scene.gd" id="1_d0sse"]
 
@@ -18,25 +18,25 @@ offset_left = 36.0
 offset_top = 58.0
 offset_right = 2004.0
 offset_bottom = 549.0
-text = "I hope your button worked. You now have all of the basic parts you need to be able to start making your text based game. heres a summary.
-5 Panels
-     Scene View: View the scene you have open. Use the tabs to switch between scenes.
-     File System: View all of the files in your game. Keep it organized with folders! Double click on files to open them.
-     Scene Tree: See all of the nodes in the current scene. The top node is the root node.
-     Inspector: Make edits to the node that is currently selected in the scene tree. 
-     Console: Messages from the system show up here. Don't worry about it.
+text = "I hope your button worked. You've used cmd S to save your progress before, but now your going to learn how to make sure you never lose a
+keystroke of work you do.
 
-Make a new scene - File System, right click folder, create new>scene
-Open a file - double click on it in the File System
-Make a new node - cmd A, or right click on a node in the Scene Tree, press create new node. Node types below
-     Label - displays text, edit what it says in the Inspector
-     Button - displays a button with text that can be pressed, edit what it says/does in the Inspector (make sure the right script has been added)
-Add a script to a node - find the script file in the File System. Drag the script onto the desired node.
-Use switch_to_scene.gd - add it to a Button node (must be a Button node), choose what scene you want in the Inspector.
-Save - cmd S (save as often as humanly possible)
+Git is a version control software. That means it stores old versions of your project and a timeline of changes in what the git people call a repository.
+Github (github.com) is a website where you can view your own and other peoples repos (repositories). Just like other... hubs.
+Github Desktop allows you to connect to the cloud where Github stores your repos and make sure the timeline is up to date.
 
-Github Desktop
-"
+You MUST keep your github up to date to make sure you never loose progress (in case something crashes on your computer).
+
+if you've set it up right, every time you make edits to the files in you project folder (which you do by making edits in the Godot editor), they will
+show up on the Github Desktop app. Open the Github Desktop app. Along the top you can see the name of the repo you're monitoring, the
+\"current branch\" (doesn't matter for now), and one more button on the right that will probably say Fetch Origin.
+
+Fetch Origin means get any updated info about your project from the cloud. You're probably the only person editing your repo so fetch whenever. 
+I typically fetch every time I open the app and just randomly while I have it open. Below those options you will see the edits you've made since
+the last time you \"Commited.\" Commiting means creating a snapshot of the state of all of your files with a little description of what changes
+you've made (its like saving, but with a little more commit-ment ahahahha). In the bottom right, put something in the summary box and
+(optionally) in the description box. Now below the description press commit. But this snapshot is still on your computer. To get this file into the
+Github cloud you have to Push it up there. The Fetch Origin button now says Push"
 
 [node name="Button2" type="Button" parent="."]
 offset_left = 74.0
@@ -45,7 +45,7 @@ offset_right = 119.0
 offset_bottom = 641.0
 text = "Next"
 script = ExtResource("1_d0sse")
-switch_to = "uid://dyo2pfrgutft0"
+switch_to = "uid://crrdqye35eh5u"
 
 [node name="Label2" type="Label" parent="."]
 offset_left = 152.0
