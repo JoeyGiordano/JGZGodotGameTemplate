@@ -18,15 +18,17 @@ offset_left = 36.0
 offset_top = 58.0
 offset_right = 2004.0
 offset_bottom = 549.0
-text = "Now that we've stored a piece of info (whether Jerry has the potion), we can act on it in scene 3. We know we're going to have to connect our button to a function (set of instructions), so this time, let's start by putting the name of the other function we saw in the script jerry_got_killed_by_the_monster   into the function name field on the death button in scene 3. Now we can go edit the instructions.
+text = "Now that we've stored a piece of info (whether Jerry has the potion), we can act on it in scene 3. We know we're going to have to connect our button to a function (set of instructions), so this time, let's start by dragging call_function.gd onto the Button that results in Jerry dying. This
+button will also gain the two new properties. Put the name of the other function we saw in the script    jerry_got_killed_by_the_monster   into the
+function name field on the death button in scene 3. Now we can go edit the instructions.
 
 Gdscript is designed to actually sound like english so this should be easy. Reminder that anything written after a hashtag is not an
 instruction, just a note left in the code. Starting on line 19 we literally just write:           [tab] it means type a tab there
 
-if did_jerry_pick_up_the_potion :       # if jerry picked up the potion, do all indented lines below this
-[tab] switch_to_scene(\"scenes/scene4\")       #switch to the revived scene
-else :                   #otherwise (ie if jerry didn't have the potion)
-[tab] switch_to_scene(\"scenes/scene5\")       #switch to the death scene
+if did_jerry_pick_up_the_potion :                          # if jerry picked up the potion, do all indented lines below this
+[tab] switch_to_scene(\"scenes/scene4\")             #switch to the revived scene
+else :                                                                            #otherwise (ie if jerry didn't have the potion)
+[tab] switch_to_scene(\"scenes/scene5\")             #switch to the death scene
 
 Not exactly english but close. What you put in the quotation marks depends on where you saved the death and revival scenes and what you called
 them. Should be \"folder/subfolder/etc/scenename\".
@@ -48,4 +50,11 @@ offset_left = 152.0
 offset_top = 15.0
 offset_right = 448.0
 offset_bottom = 38.0
-text = "Acting on a piece of info (3/3)"
+text = "Acting on a piece of info"
+
+[node name="Label3" type="Label" parent="."]
+offset_left = 1090.0
+offset_top = 11.0
+offset_right = 1130.0
+offset_bottom = 34.0
+text = "(3/3)"

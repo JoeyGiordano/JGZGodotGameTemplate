@@ -18,7 +18,7 @@ offset_left = 36.0
 offset_top = 45.0
 offset_right = 2004.0
 offset_bottom = 614.0
-text = "You now have all of the basic parts you need to be able to start making your text based game. heres a summary.
+text = "You now have all of the basic parts you need to be able to start making your text based game. Here's a summary.
 5 Panels
      Scene View: View the scene you have open. Use the tabs to switch between scenes.
      File System: View all of the files in your game. Keep it organized with folders! Double click on files to open them.
@@ -27,7 +27,7 @@ text = "You now have all of the basic parts you need to be able to start making 
      Console: Messages from the system show up here. Don't worry about it.
 Make a new scene - File System, right click folder, create new>scene
 Open a file - double click on it in the File System
-Make a new node - cmd A, or right click on a node in the Scene Tree, press create new node. Node types below
+Make a new node - select the parent node, cmd A, or right click on a node in the Scene Tree, press create new node. Node types we covered below
      Label - displays text, edit what it says in the Inspector
      Button - displays a button with text that can be pressed, edit what it says/does in the Inspector (make sure the right script has been added)
 Add a script to a node - find the script file in the File System. Drag the script onto the desired node.

@@ -18,25 +18,25 @@ offset_left = 36.0
 offset_top = 58.0
 offset_right = 2004.0
 offset_bottom = 549.0
-text = "Go back to the editor. There are 5 areas of the screen. 
+text = "Go back to the editor. There are 5 areas (panels) of the screen. 
 
-In the center is the Scene View. This is where you look at the scene you're currently editing. Along the top of the scene view are tabs 
-to change what scene you're looking at. Between the scene view and each of the other areas are borders you can drag to resize the areas.
+In the center is the Scene View. This is where you look at the scene you're currently editing. Along the top of the Scene View are tabs 
+to change what scene you're looking at. Between the Scene View and each of the other areas are borders you can drag to resize the areas.
 
-To the left there are two windows.
+On the left there are two panels.
 
 The lower one is the File System. This shows you all of the files that are in the game. Keep it organized. The main type of file you will be working 
-with are scene files (.tscn). Lets make a new scene. Right click on the scenes folder, click create new, click scene. Choose a name for your scene
-(\"test_scene\" will do), select Node2D and press OK. The Scene View will open a new tab and you will be viewing the new scene. To open other
+with are scene files (.tscn). Lets make a new scene. Right click on the scenes folder, click Create New, click Scene. Choose a name for your scene
+(\"test_scene\" will do), select 2D Scene and press OK. The Scene View will open a new tab and you will be viewing the new scene. To open other
 scenes just double click on them in the File System.
 
-The upper one is the Scene Tree. It shows you all of the Nodes in the scene you're currently viewing. The top node is the \"root node\" (like a \"root
-folder\") and all the nodes below it are its children (like subfolders or files). Different nodes do different things. Lets create a new node. Right
-click on the root node and select add child node (or ctrl a). Search for Label, select Label, and press Create.
+The upper left one is the Scene Tree. It shows you all of the Nodes in the scene you're currently viewing. The top node (it's the only one right now)
+is the \"root node\" (like \"root folder\") and all the nodes below it are its children (like subfolders). Different nodes do different things. Lets create a
+new node. Right click on the root node and select add child node (or cmd a). Search for Label, select Label, and press Create.
 
 The right area of the scene is the Inspector. There you can see and edit details of Nodes (and some files). In the Scene Tree, select the Label you
 just created. In the inspector, the first field is \"Text\". Put what you want the label to say in that field. See it show up in the Scene View. (Scroll to
-pan, zoom to zoom, F to go to the node selected in the Scene Tree). With the label selected in the scene tree, press W, and drag it to move it.
+pan, zoom to zoom, F to pan to the node selected in the Scene Tree). With the label selected in the scene tree, press W, and drag it to move it.
 
 In the bottom is the last area, the Console. There you will see info when you edit or run the game. Warnings and errors will show up here."
 
@@ -50,8 +50,15 @@ script = ExtResource("1_qm2lg")
 switch_to = "uid://vs3rrm7euj3t"
 
 [node name="Label2" type="Label" parent="."]
-offset_left = 152.0
+offset_left = 151.0
 offset_top = 15.0
-offset_right = 200.0
+offset_right = 199.0
 offset_bottom = 38.0
-text = "Basics (1/3)"
+text = "Basics"
+
+[node name="Label3" type="Label" parent="."]
+offset_left = 1090.0
+offset_top = 11.0
+offset_right = 1130.0
+offset_bottom = 34.0
+text = "(1/3)"

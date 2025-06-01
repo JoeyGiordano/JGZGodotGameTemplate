@@ -22,12 +22,12 @@ text = "I hope your button worked. You've used cmd S to save your progress befor
 keystroke of work you do. You don't need to understand how this works (no one does), just what to do.
 
 Git is a version control software. That means it stores old versions of your project and a timeline of changes in what the git people call a repository.
-Github (github.com) is a website where you can view your own and other peoples repos (repositories). Just like other... hubs.
+Github (github.com) is a website where you can view your own and other peoples repos (repositories). Just like other ... hubs.
 Github Desktop allows you to connect to the cloud where Github stores your repos and make sure the timeline is up to date.
 
 You MUST keep your github up to date to make sure you never loose progress (in case something crashes on your computer).
 
-if you've set it up right, every time you make edits to the files in you project folder (which you do by making edits in the Godot editor), they will
+If you've set it up right, every time you make edits to the files in your project folder (which you do by making edits in the Godot editor), they will
 show up on the Github Desktop app. Open the Github Desktop app. Along the top you can see the name of the repo you're monitoring, the
 \"current branch\" (doesn't matter for now), and one more button on the right that will probably say Fetch Origin.
 
@@ -40,7 +40,7 @@ Github cloud you have to Push it up there. The Fetch Origin button now says Push
 snapshot with your changes to the cloud where they will be safe forever. Now you can rest at ease. Commit periodically. Every time before you
 close Godot is ideal. If something goes wrong and you want to access the history, ask someone who knows what they're doing.
 
-                              There's also branching, which allows you to have different versions of you project to test things that might not work. Ask someone."
+                            There's also branching, which allows you to have different versions of your project to test things that might not work. Ask someone."
 
 [node name="Button2" type="Button" parent="."]
 offset_left = 74.0
@@ -56,4 +56,11 @@ offset_left = 152.0
 offset_top = 15.0
 offset_right = 200.0
 offset_bottom = 38.0
-text = "GitHub Desktop and Version Control (Real Saving) (3/3)"
+text = "GitHub Desktop and Version Control (Real Saving)"
+
+[node name="Label3" type="Label" parent="."]
+offset_left = 1090.0
+offset_top = 11.0
+offset_right = 1130.0
+offset_bottom = 34.0
+text = "(3/3)"

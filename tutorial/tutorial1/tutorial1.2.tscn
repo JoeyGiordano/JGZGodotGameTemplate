@@ -25,18 +25,19 @@ you get good and want to strip away the restraints later, you can.
 
 We're going to add a button to go from the main menu straight to your test scene. 
 Open the main menu scene by selecting the appropriate tab at the top of the Scene View or reopening it from the File System.
-Lets create a new node under the root node (its called MainMenu). Select the root node and press cmd A (or right click>add child node). This time
-search for button, select button, and press create. The new button node should appear in the Scene Tree. Click on it again in the Scene Tree so you can edit it in the Inspector. In the Inspector, edit the text field to say Test (or whatever you want). Using the Scene View (press W then drag), move
+Lets create a new node under the root node. Select the root node (MainMenu) and press cmd A (or right click>add child node). This time search
+for button, select button, and press create. The new button node should appear in the Scene Tree. Select the Button in the Scene Tree so you can
+edit it in the Inspector. In the Inspector, edit the text field to say Test (or whatever you want). Using the Scene View (press W then drag), move
 the button to where you want it. (The faint blue outlined box encloses the window view).
 
-Now we're going to add a script to the button. All the scripts you'll need are part of the template already. In the File System, open the scripts folder
-and drag the script switch_to_scene.gd onto the button node in the Scene Tree (.gd is short for gdscript which i guess is short for Godot script). 
-A little script icon will appear next to the node (there is already one next to some of the other nodes). This script allows the node to an additional
-thing (namely, switch to a new scene) and also gives it a new property to edit (namely, what scene to switch to). Select your button node and look
-for the new property in the Inspector. Its called Switch To. Theres a text field like before but this one has a little button next to it. Instead of writing
-out the file path you can just press the button to bring up a window where you can select the file you want. Press it, and navigate the files to find
-your scene (there's a little up button in the top left to get out of a folder). Select your scene and press Open. You can see the field now has the
-path for your scene. Press cmd S to save your changes (you should be pressing this constantly.
+Now we're going to add a script to the button. All the scripts you'll need are part of the template already. In the File System, open the scripts
+folder and drag the script switch_to_scene.gd onto the button node in the Scene Tree (.gd is short for gdscript which i guess is short for Godot
+script).  A little script icon will appear next to the node (there is already one next to some of the other nodes). This script allows the node to do
+an additional thing (namely, switch to a new scene) and also gives it a new property to edit (namely, what scene to switch to). Select your button
+node and look for the new property in the Inspector. Its called Switch To. Theres a text field like before but this one has a little button next to it.
+Instead of writing out the file path you can just press the button to bring up a window where you can select the file you want. Press it, and
+navigate the files to find your scene (there's a little up button in the top left to get out of a folder). Select your scene and press Open. You can
+see the field now has the path for your scene. Press cmd S to save your changes (you should be saving constantly).
 
 We've got everything hooked up! Lets test it. Close this Window, use cmd B to run from the Main Menu and try out your button!"
 
@@ -50,8 +51,15 @@ script = ExtResource("1_dw43j")
 switch_to = "uid://cx7jupm8w15ny"
 
 [node name="Label2" type="Label" parent="."]
-offset_left = 152.0
+offset_left = 150.0
 offset_top = 15.0
-offset_right = 200.0
+offset_right = 379.0
 offset_bottom = 38.0
-text = "Buttons and Changing Scenes (2/3)"
+text = "Buttons and Changing Scenes"
+
+[node name="Label3" type="Label" parent="."]
+offset_left = 1090.0
+offset_top = 11.0
+offset_right = 1130.0
+offset_bottom = 34.0
+text = "(2/3)"

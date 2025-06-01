@@ -18,6 +18,31 @@ offset_left = 34.0
 offset_top = 60.0
 offset_right = 2002.0
 offset_bottom = 551.0
+text = "We just learned how to use create conditional storytelling. Here's a summary.
+
+Scripts to put on Buttons and what they do.
+switch_to_scene.gd - when the button is pressed, it switches to the scene selected in the inspector
+call_function.gd - when the button is pressed, it calls the function specified in the inspector (if it is written in manager).
+call_and_switch.gd - when the button is pressed, switches the scene then calls the function (order might matter!).
+
+IF USING call_and_switch.gd, the function should NOT also switch the scene (unless you want weird behavior).
+
+Basic Scripting
+# To leave a comment put a hashtag at the beginning of the line (this line is a comment)
+# Declare a boolean (true/false) variable and set its starting value
+var is_refridgerator_running : bool = false
+# Do something different based on a boolean variable
+if is_refridgerator_running :
+[tab] print(\"you better go get it\")
+else :
+[tab] print(\"oh, then your milk is bad\")
+
+Other scripting tip:
+You can do more complex conditions using \"and\", \"or\" and \"not\". eg:      if a or b: #do something        if a and not b : #do something
+Sometimes you should use parenthesis with more that two variables    if a and b and c : #do smth       if (a and b) or c : #do smth
+
+
+"
 
 [node name="Label2" type="Label" parent="."]
 offset_left = 152.0

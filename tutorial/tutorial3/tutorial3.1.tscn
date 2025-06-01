@@ -33,4 +33,11 @@ offset_left = 152.0
 offset_top = 15.0
 offset_right = 448.0
 offset_bottom = 38.0
-text = "_______ (1/3)"
+text = "_______"
+
+[node name="Label3" type="Label" parent="."]
+offset_left = 1090.0
+offset_top = 11.0
+offset_right = 1130.0
+offset_bottom = 34.0
+text = "(1/3)"

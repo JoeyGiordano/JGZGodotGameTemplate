@@ -14,10 +14,10 @@ script = ExtResource("1_h7m37")
 switch_to = "uid://crrdqye35eh5u"
 
 [node name="Label" type="Label" parent="."]
-offset_left = 36.0
-offset_top = 58.0
-offset_right = 2004.0
-offset_bottom = 549.0
+offset_left = 14.0
+offset_top = 42.0
+offset_right = 1140.0
+offset_bottom = 637.0
 text = "So you've started building out your text based game and you've quickly come to realize there's something you're unable to do with what you've
 learned so far: conditional storytelling. Beyond immediate decisions (button presses) you have no way of controlling how the story flows (what
 scene to show next). An example: A few scenes ago, as Jerry went along the road, he picked up a revival potion.  Jerry just fought a monster and
@@ -34,10 +34,9 @@ as we play these scenes. On scene 1, if we choose to pick up the potion we need 
 didn't. On scene 2, we don't need to do anything. On scene 3, say we choose the option that leads to death (run at the monster backwards), we
 need to DECIDE what to do based on what we stored. If we picked up the potion, we need to show scene 4, otherwise, we need to show scene 5.
 
-We will revisit this in a second. Find the call_function.gd script in the File System. Go to scene 1, and drag call_function.gd onto the Button that
-allows us to pick up the potion. Look in the Inspector for that Button. We have two new properties to edit: function name - which is an empty
-field - and parameters - which says \"Array (size 0)\". Go to scene 3, and drag call_function.gd onto the Button that results in Jerry dying. This button
-will also gain the two new properties."
+We will revisit this in a second. Find the call_and_switch.gd script in the File System. Go to scene 1, and drag call_and_switch.gd onto the Button
+that allows us to pick up the potion. Look in the Inspector for that Button. In addition to switch to, we have two new properties to edit: function
+name - which is an empty field - and parameters - which says \"Array (size 0)\". Set the switch to like you normally would with switch_to_scene.gd."
 
 [node name="Button2" type="Button" parent="."]
 offset_left = 74.0
@@ -53,4 +52,11 @@ offset_left = 152.0
 offset_top = 15.0
 offset_right = 448.0
 offset_bottom = 38.0
-text = "A problem has blocked our creativity... (1/3)"
+text = "A problem has blocked our creativity..."
+
+[node name="Label3" type="Label" parent="."]
+offset_left = 1090.0
+offset_top = 11.0
+offset_right = 1130.0
+offset_bottom = 34.0
+text = "(1/3)"

@@ -40,13 +40,13 @@ func   short for function, means the following lines are a short set of instruct
 jerry_picked_up_the_potion   the name we've given to the function
 () :   means the instructions begin here then on line 16   pass   means the instructions end here
 On line 15, add the instruction   did_jerry_pick_up_the_potion=true   which means \"change the stored info under the name
-did_jerry_pick_up_the_potion to true\" or \"set did_jerry_pick_up_the_potion to true\". Now all we have to do is go back to scene 1 and connect the
-pick up the potion button to the set of instructions (function) called jerry_picked_up_the_potion. Do this by typing jerry_picked_up_the_potion in
-the function name field.
+did_jerry_pick_up_the_potion to true\" aka \"set did_jerry_pick_up_the_potion to true\". Below that line, type   print(\"He picked it up\")   . Now all we
+have to do is go back to scene 1 and connect the pick up the potion button to the set of instructions (function) called jerry_picked_up_the_potion.
+Do this by typing jerry_picked_up_the_potion in the function name field.
 
-When the button is pressed, the computer will follow the instructions under jerry_picked_up_the_potion (we say \"the function is called\" like called
+When the button is pressed, the computer will follow the instructions under jerry_picked_up_the_potion (we say \"the function is called\" (like called
 on the phone). Per the instruction you added, the computer will change the info we stored in did_jerry_pick_up_the_potion to indicate that Jerry
-did in fact pick up the potion."
+did in fact pick up the potion. To confirm, check in the console 's output tab for the print statement!"
 label_settings = SubResource("LabelSettings_i8eao")
 
 [node name="Button2" type="Button" parent="."]
@@ -63,4 +63,11 @@ offset_left = 152.0
 offset_top = 15.0
 offset_right = 272.0
 offset_bottom = 38.0
-text = "Storing a piece of info (2/3)"
+text = "Storing a piece of info"
+
+[node name="Label3" type="Label" parent="."]
+offset_left = 1090.0
+offset_top = 11.0
+offset_right = 1130.0
+offset_bottom = 34.0
+text = "(2/3)"

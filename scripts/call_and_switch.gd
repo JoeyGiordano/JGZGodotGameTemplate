@@ -1,5 +1,6 @@
 extends Button
 
+@export_file("*.tscn*") var switch_to : String #path of the scene that this button will switch to
 @export var function_name : String
 @export var parameters : Array
 
@@ -16,3 +17,6 @@ func on_pressed() :
 	
 	#had to do it this way because call_deferred doesn't take an array as a substitute for a variable number of parameters
 	Callable(GameContainer.GC.manager, function_name).callv(parameters)
+	
+	#tell the GameContainer to switch the scene to the scene with the name switch_to
+	GameContainer.GC.call_deferred("switch_to_scene", switch_to)
