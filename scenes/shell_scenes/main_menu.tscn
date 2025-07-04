@@ -9,7 +9,7 @@ offset_right = 8.0
 offset_bottom = 8.0
 text = "Play"
 script = ExtResource("1_hccbo")
-switch_to = "cutscene1"
+switch_to = "connect"
 
 [node name="CreditsButton" type="Button" parent="."]
 offset_top = 115.0

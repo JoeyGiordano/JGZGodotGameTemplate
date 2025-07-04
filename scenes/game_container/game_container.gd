@@ -12,23 +12,18 @@ static var GAME_CONTAINER : GameContainer
 @onready var Players = $Players
 
 #Scenes
-@onready var main_menu : PackedScene = preload("res://scenes/statics/main_menu.tscn")
-@onready var credits : PackedScene = preload("res://scenes/statics/credits.tscn")
-@onready var instructions : PackedScene = preload("res://scenes/statics/instructions.tscn")
-@onready var cutscene1 : PackedScene = preload("res://scenes/cutscenes/cutscene1.tscn")
-@onready var game_over : PackedScene = preload("res://scenes/statics/game_over.tscn")
-@onready var stage1 : PackedScene = preload("res://scenes/stages/stage1.tscn")
-@onready var stage2 : PackedScene = preload("res://scenes/stages/stage2.tscn")
-@onready var stage3 : PackedScene = preload("res://scenes/stages/stage3.tscn")
+@onready var main_menu : PackedScene = preload("res://scenes/shell_scenes/main_menu.tscn")
+@onready var credits : PackedScene = preload("res://scenes/shell_scenes/credits.tscn")
+@onready var instructions : PackedScene = preload("res://scenes/shell_scenes/instructions.tscn")
+@onready var connect : PackedScene = preload("res://scenes/shell_scenes/connect.tscn")
+@onready var game : PackedScene = preload("res://scenes/stages/game.tscn")
+
 @onready var scene_dict = {
 	"main_menu" : main_menu,
 	"credits" : credits,
 	"instructions" : instructions,
-	"cutscene1" : cutscene1,
-	"game_over" : game_over,
-	"stage1" : stage1,
-	"stage2" : stage2,
-	"stage3" : stage3
+	"connect" : connect,
+	"game" : game,
 }
 
 
@@ -56,17 +51,8 @@ func switch_active_scene(scene : PackedScene) :
 	ActiveSceneHolder.add_child(s)
 
 func get_scene(scene_name : String) -> PackedScene:
-	#return the PackedScene with the name scene_name, or return a random stage
-	if scene_name == "random_stage" :
-		return get_random_stage()
+	#return the PackedScene with the name scene_name
 	if !scene_dict.has(scene_name) : 
 		print("Scene " + scene_name + " is not in scene dict.")
 		return main_menu
 	return scene_dict[scene_name]
-
-func get_random_stage() -> PackedScene:
-	#return a random stage
-	var r = int(randf() * 4)
-	if r == 0 : return stage1
-	if r == 1 : return stage2
-	else : return stage3
