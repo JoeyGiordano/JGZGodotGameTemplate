@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bcjh6kjk36hj0"]
+
+[node name="OpponentField" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+offset_left = 464.0
+offset_top = 188.0
+offset_right = 666.0
+offset_bottom = 211.0
+text = "Opponent Text"
