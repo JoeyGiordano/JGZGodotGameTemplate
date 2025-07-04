@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dydnt3eq7h3wx"]
 
-[ext_resource type="Script" path="res://scenes/game_container/switch_to_scene.gd" id="1_cb363"]
+[ext_resource type="Script" uid="uid://xqxyy6g1qtfk" path="res://scenes/game_container/switch_to_scene.gd" id="1_cb363"]
 
 [node name="Stage3" type="Node2D"]
 
