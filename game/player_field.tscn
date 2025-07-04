@@ -1,6 +1,9 @@
-[gd_scene format=3 uid="uid://brihhvr3e0dtq"]
+[gd_scene load_steps=2 format=3 uid="uid://brihhvr3e0dtq"]
+
+[ext_resource type="Script" uid="uid://dkhyyxjothkkv" path="res://game/player_field_1.gd" id="1_arifm"]
 
 [node name="PlayerField" type="Node2D"]
+script = ExtResource("1_arifm")
 
 [node name="Label" type="Label" parent="."]
 offset_left = 466.0
@@ -8,3 +11,28 @@ offset_top = 470.0
 offset_right = 550.0
 offset_bottom = 493.0
 text = "Player text"
+
+[node name="Button" type="Button" parent="."]
+offset_left = 346.0
+offset_top = 544.0
+offset_right = 463.0
+offset_bottom = 575.0
+text = "Do Something 1"
+
+[node name="Button2" type="Button" parent="."]
+offset_left = 540.0
+offset_top = 542.0
+offset_right = 671.0
+offset_bottom = 573.0
+text = "Do Something 2"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = 876.0
+offset_top = 296.0
+offset_right = 916.0
+offset_bottom = 336.0
+
+[node name="IDLabel" type="Label" parent="."]
+offset_top = 623.0
+offset_right = 40.0
+offset_bottom = 646.0

@@ -4,7 +4,7 @@ class_name Multiplayer
 # Port that server is listening for communications on
 const PORT = 123
 # The IP address of the server
-const SERVER_ADDRESS = "loaclhost"
+const SERVER_ADDRESS = "localhost"
 
 # Create peer object using ENet networking library
 var peer = ENetMultiplayerPeer.new()
@@ -25,6 +25,8 @@ func setup_as_client() :
 	multiplayer.multiplayer_peer = peer
 	# Switch to the player game scene
 	GameContainer.GC.switch_to_scene("player_field_1")
+	GameContainer.GC.switch_to_opponent_scene("opponent_field_1")
 
 func on_peer_connected(peer_id) :
-	print("Player joined")
+	GameContainer.GC.switch_to_opponent_scene("opponent_field_1")
+	

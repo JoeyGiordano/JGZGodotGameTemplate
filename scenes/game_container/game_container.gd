@@ -39,7 +39,6 @@ func _process(_delta):
 	#quit if Q pressed - DEBUG
 	if Input.is_key_pressed(KEY_Q) :
 		get_tree().quit()
-	pass
 
 func switch_to_scene(scene_name : String) :
 	#switch to a scene with the name scene_name
@@ -57,7 +56,8 @@ func switch_to_opponent_scene(scene_name : String) :
 
 func _switch_opponent_scene(scene : PackedScene) :
 	#replace the scene in the ActiveSceneHolder with a newly instantiated PackedScene scene
-	OpponentSceneHolder.get_child(0).queue_free()
+	if OpponentSceneHolder.get_child_count() != 0 :
+		OpponentSceneHolder.get_child(0).queue_free()
 	var s = scene.instantiate()
 	OpponentSceneHolder.add_child(s)
 
