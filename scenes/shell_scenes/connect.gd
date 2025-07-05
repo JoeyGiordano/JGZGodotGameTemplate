@@ -12,15 +12,23 @@ func _ready():
 func host_button_pressed() :
 	disable_buttons()
 	message_label.text = "Setting up server..."
-	MultiplayerManager.setup_as_host()
+	var success = await MultiplayerManager.setup_as_host()
+	if !success :
+		message_label.text = ""
+		enable_buttons()
 
 func connect_button_pressed() :
 	disable_buttons()
 	message_label.text = "Trying to connect..."
-	MultiplayerManager.setup_as_client()
+	var success = await MultiplayerManager.setup_as_client()
+	if !success :
+		message_label.text = ""
+		enable_buttons()
 
 func disable_buttons() :
 	host_button.disabled = true
-	host_button.visible = false
 	connect_botton.disabled = true
-	connect_botton.visible = false
+
+func enable_buttons() :
+	host_button.disabled = false
+	connect_botton.disabled = false

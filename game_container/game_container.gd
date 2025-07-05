@@ -60,7 +60,8 @@ func _switch_opponent_scene(scene : PackedScene) :
 	OpponentSceneHolder.add_child(s)
 
 func destroy_opponent_scene() :
-	OpponentSceneHolder.get_child(0).queue_free()
+	if OpponentSceneHolder.get_child_count() != 0 :
+		OpponentSceneHolder.get_child(0).queue_free()
 
 func get_scene(scene_name : String) -> PackedScene:
 	#return the PackedScene with the name scene_name

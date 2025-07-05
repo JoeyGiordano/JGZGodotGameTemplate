@@ -20,11 +20,11 @@ offset_bottom = 328.0
 text = "Connect"
 
 [node name="Label" type="Label" parent="."]
-offset_left = 468.0
+offset_left = 459.0
 offset_top = 219.0
-offset_right = 775.0
+offset_right = 802.0
 offset_bottom = 242.0
-text = "Set up a game by hosting of connecting."
+text = "Host a game or connect to an existing game."
 
 [node name="MessageLabel" type="Label" parent="."]
 offset_left = 617.0
