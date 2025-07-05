@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cbvw2p105b25e"]
 
-[ext_resource type="Script" uid="uid://dvcdc4txfqb3y" path="res://multiplayer/connect.gd" id="1_0ndui"]
+[ext_resource type="Script" uid="uid://dvcdc4txfqb3y" path="res://scenes/shell_scenes/connect.gd" id="1_0ndui"]
 
 [node name="Connect" type="Node"]
 script = ExtResource("1_0ndui")

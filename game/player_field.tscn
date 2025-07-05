@@ -36,3 +36,20 @@ offset_bottom = 336.0
 offset_top = 623.0
 offset_right = 40.0
 offset_bottom = 646.0
+
+[node name="LeaveButton" type="Button" parent="."]
+offset_left = 1071.0
+offset_top = 584.0
+offset_right = 1124.0
+offset_bottom = 615.0
+text = "Leave"
+
+[node name="MessageLabel" type="Label" parent="."]
+offset_left = 439.0
+offset_top = 608.0
+offset_right = 479.0
+offset_bottom = 631.0
+
+[node name="Timer" type="Timer" parent="MessageLabel"]
+wait_time = 1.2
+one_shot = true

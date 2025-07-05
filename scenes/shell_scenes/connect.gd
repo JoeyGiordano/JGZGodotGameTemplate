@@ -12,12 +12,12 @@ func _ready():
 func host_button_pressed() :
 	disable_buttons()
 	message_label.text = "Setting up server..."
-	GameContainer.GC.mult.setup_as_host()
+	MultiplayerManager.setup_as_host()
 
 func connect_button_pressed() :
 	disable_buttons()
 	message_label.text = "Trying to connect..."
-	GameContainer.GC.mult.setup_as_client()
+	MultiplayerManager.setup_as_client()
 
 func disable_buttons() :
 	host_button.disabled = true

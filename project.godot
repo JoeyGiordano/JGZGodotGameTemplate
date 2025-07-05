@@ -11,13 +11,19 @@ config_version=5
 [application]
 
 config/name="JGZGodotGameTemplate"
-run/main_scene="res://scenes/game_container/game_container.tscn"
+run/main_scene="res://game_container/game_container.tscn"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+MultiplayerManager="*res://multiplayer/multiplayer.gd"
+PopupDialouge="*res://multiplayer/popup_dialouge.gd"
 
 [display]
 
 window/size/mode=2
+window/subwindows/embed_subwindows=false
 window/stretch/mode="canvas_items"
 
 [rendering]

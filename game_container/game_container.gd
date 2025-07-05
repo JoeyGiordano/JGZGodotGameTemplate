@@ -7,7 +7,6 @@ static var GC : GameContainer
 #There should only ever be one active scene (menu or stage) and it will be the only child of the ActiveSceneHolder node
 @onready var ActiveSceneHolder = $ActiveSceneHolder
 #For easy access from other scenes
-@onready var mult : Multiplayer = $Multiplayer
 @onready var OpponentSceneHolder = $OpponentSceneHolder
 
 #Scenes
@@ -26,7 +25,6 @@ static var GC : GameContainer
 	"player_field_1" : player_field_1,
 	"opponent_field_1" : opponent_field_1,
 }
-
 
 #### METHODS ####
 
@@ -60,6 +58,9 @@ func _switch_opponent_scene(scene : PackedScene) :
 		OpponentSceneHolder.get_child(0).queue_free()
 	var s = scene.instantiate()
 	OpponentSceneHolder.add_child(s)
+
+func destroy_opponent_scene() :
+	OpponentSceneHolder.get_child(0).queue_free()
 
 func get_scene(scene_name : String) -> PackedScene:
 	#return the PackedScene with the name scene_name

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cltaghkxnswjy"]
 
-[ext_resource type="Script" uid="uid://xqxyy6g1qtfk" path="res://scenes/game_container/switch_to_scene.gd" id="1_4nwng"]
+[ext_resource type="Script" uid="uid://xqxyy6g1qtfk" path="res://game_container/switch_to_scene.gd" id="1_4nwng"]
 
 [node name="Instructions" type="Node"]
 

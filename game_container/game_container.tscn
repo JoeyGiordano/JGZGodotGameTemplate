@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dajeyyd76x0vu"]
+[gd_scene load_steps=3 format=3 uid="uid://dajeyyd76x0vu"]
 
-[ext_resource type="Script" uid="uid://gj6s4jjigw13" path="res://scenes/game_container/game_container.gd" id="1_nfc83"]
+[ext_resource type="Script" uid="uid://gj6s4jjigw13" path="res://game_container/game_container.gd" id="1_nfc83"]
 [ext_resource type="PackedScene" uid="uid://dd71ltua8vpqj" path="res://scenes/shell_scenes/main_menu.tscn" id="1_ojqp2"]
-[ext_resource type="Script" uid="uid://bng1yal6q6jmf" path="res://scenes/game_container/multiplayer.gd" id="3_ghd8x"]
 
 [node name="GameContainer" type="Node"]
 script = ExtResource("1_nfc83")
@@ -10,8 +9,5 @@ script = ExtResource("1_nfc83")
 [node name="ActiveSceneHolder" type="Node" parent="."]
 
 [node name="MainMenu" parent="ActiveSceneHolder" instance=ExtResource("1_ojqp2")]
-
-[node name="Multiplayer" type="Node" parent="."]
-script = ExtResource("3_ghd8x")
 
 [node name="OpponentSceneHolder" type="Node" parent="."]
