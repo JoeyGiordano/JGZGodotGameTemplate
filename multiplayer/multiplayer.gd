@@ -2,9 +2,7 @@ extends Node
 class_name Multiplayer
 
 # Port that server is listening for communications on
-const PORT = 123
-# The IP address of the server
-const SERVER_ADDRESS = "localhost"
+const PORT = 14134
 # Max clients, not including host (doesn't work for local clients)
 const MAX_CLIENTS = 1 #this is a two player game
 
@@ -18,7 +16,7 @@ func _ready():
 	multiplayer.connected_to_server.connect(_on_connected)
 	multiplayer.server_disconnected.connect(_on_server_disconnected)
 
-func setup_as_host() :
+func setup_as_host(local : bool) :
 	# Create a server (set peer to listen on PORT)
 	var result = peer.create_server(PORT, MAX_CLIENTS)
 	if result : #if it didn't work
@@ -32,9 +30,13 @@ func setup_as_host() :
 	
 	multiplayer.peer_connected.connect(_on_peer_connected)
 	multiplayer.peer_disconnected.connect(_on_peer_disconnected)
+	
+	#set up upnp to enable connection through the internet!
+	if !local : upnp_setup()
 
-func setup_as_client() -> bool :
-	var result = peer.create_client(SERVER_ADDRESS, PORT)
+func setup_as_client(join_code : String) -> bool :
+	if join_code == "" : join_code = "localhost"
+	var result = peer.create_client(join_code, PORT)
 	if result : #if it didn't work
 		PopupDialouge.create_popup("Error", 300,400, "Could not connect to server")
 		return false
@@ -45,7 +47,7 @@ func setup_as_client() -> bool :
 	#await to confirm successful connection
 	var success = await connection_outcome_determined
 	if !success :
-		PopupDialouge.create_popup("Error", 300,400, "Error: Server does not exist")
+		PopupDialouge.create_popup("Error", 300,400, "Server does not exist!")
 		multiplayer.multiplayer_peer.close()
 		multiplayer.multiplayer_peer = null
 		return false
@@ -55,7 +57,22 @@ func setup_as_client() -> bool :
 	GameContainer.GC.switch_to_opponent_scene("opponent_field_1")
 	return true
 
-func _on_peer_connected(peer_id) :
+func upnp_setup() :
+	var upnp = UPNP.new()
+	
+	var discover_result = upnp.discover()
+	assert(discover_result == UPNP.UPNP_RESULT_SUCCESS, "UPNP discover failed! Error %s" % discover_result)
+	assert(upnp.get_gateway() and upnp.get_gateway().is_valid_gateway(), "UPNP invalid gateway!")
+	
+	var map_result = upnp.add_port_mapping(PORT)
+	assert(map_result == UPNP.UPNP_RESULT_SUCCESS, "UPNP port mapping failed! Error %s" % map_result)
+	
+	PopupDialouge.create_popup("UPNP Success", 300, 400, "Success! Join address: %s" % upnp.query_external_address())
+	
+
+## Signal Responses
+
+func _on_peer_connected(_peer_id) :
 	GameContainer.GC.switch_to_opponent_scene("opponent_field_1")
 
 func _on_peer_disconnected(peer_id) :

@@ -6,29 +6,42 @@
 script = ExtResource("1_0ndui")
 
 [node name="HostButton" type="Button" parent="."]
-offset_left = 455.0
-offset_top = 292.0
-offset_right = 539.0
-offset_bottom = 323.0
+offset_left = 387.0
+offset_top = 337.0
+offset_right = 471.0
+offset_bottom = 368.0
 text = "Host"
 
 [node name="ConnectButton" type="Button" parent="."]
-offset_left = 718.0
-offset_top = 297.0
-offset_right = 790.0
-offset_bottom = 328.0
-text = "Connect"
+offset_left = 645.0
+offset_top = 337.0
+offset_right = 717.0
+offset_bottom = 368.0
+text = "Join"
 
 [node name="Label" type="Label" parent="."]
-offset_left = 459.0
-offset_top = 219.0
-offset_right = 802.0
-offset_bottom = 242.0
-text = "Host a game or connect to an existing game."
+offset_left = 423.0
+offset_top = 216.0
+offset_right = 766.0
+offset_bottom = 239.0
+text = "Host a game or join an existing game."
 
 [node name="MessageLabel" type="Label" parent="."]
-offset_left = 617.0
-offset_top = 391.0
-offset_right = 657.0
-offset_bottom = 414.0
-text = "..."
+offset_left = 544.0
+offset_top = 386.0
+offset_right = 584.0
+offset_bottom = 409.0
+
+[node name="JoinCodeTextBox" type="TextEdit" parent="."]
+offset_left = 591.0
+offset_top = 281.0
+offset_right = 777.0
+offset_bottom = 318.0
+placeholder_text = "Enter join code"
+
+[node name="HostLocalButton" type="Button" parent="."]
+offset_left = 384.0
+offset_top = 283.0
+offset_right = 473.0
+offset_bottom = 314.0
+text = "Host Local"
