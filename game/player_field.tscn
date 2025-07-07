@@ -53,3 +53,17 @@ offset_bottom = 631.0
 [node name="Timer" type="Timer" parent="MessageLabel"]
 wait_time = 1.2
 one_shot = true
+
+[node name="EndTurnButton" type="Button" parent="."]
+offset_left = 732.0
+offset_top = 542.0
+offset_right = 810.0
+offset_bottom = 573.0
+text = "End Turn"
+
+[node name="CountLabel" type="Label" parent="."]
+offset_left = 879.0
+offset_top = 306.0
+offset_right = 912.0
+offset_bottom = 329.0
+text = "0"
