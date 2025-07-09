@@ -5,31 +5,35 @@
 [node name="MainMenu" type="Node"]
 
 [node name="PlayButton" type="Button" parent="."]
-offset_right = 8.0
-offset_bottom = 8.0
+offset_left = 360.0
+offset_top = 160.0
+offset_right = 718.0
+offset_bottom = 239.0
 text = "Play"
 script = ExtResource("1_hccbo")
 switch_to = "connect"
 
 [node name="CreditsButton" type="Button" parent="."]
-offset_top = 115.0
-offset_right = 63.0
-offset_bottom = 146.0
+offset_left = 500.0
+offset_top = 415.0
+offset_right = 563.0
+offset_bottom = 446.0
 text = "Credits"
 script = ExtResource("1_hccbo")
 switch_to = "credits"
 
 [node name="InstructionsButton" type="Button" parent="."]
-offset_top = 57.0
-offset_right = 101.0
-offset_bottom = 88.0
+offset_left = 492.0
+offset_top = 323.0
+offset_right = 593.0
+offset_bottom = 354.0
 text = "Instructions"
 script = ExtResource("1_hccbo")
 switch_to = "instructions"
 
 [node name="TEMP" type="Label" parent="."]
-offset_left = 144.0
-offset_top = 130.0
-offset_right = 308.0
-offset_bottom = 179.0
+offset_left = 485.0
+offset_top = 70.0
+offset_right = 649.0
+offset_bottom = 119.0
 text = "Main Menu"
