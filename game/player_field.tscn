@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://brihhvr3e0dtq"]
+[gd_scene load_steps=4 format=3 uid="uid://brihhvr3e0dtq"]
 
 [ext_resource type="Script" uid="uid://dkhyyxjothkkv" path="res://game/player_field_1.gd" id="1_arifm"]
 [ext_resource type="PackedScene" uid="uid://tdqkg32ia5t7" path="res://game/player.tscn" id="2_u3k4h"]
+[ext_resource type="PackedScene" uid="uid://dmsxbcrsrvqkv" path="res://game/enemy.tscn" id="3_jrlup"]
 
 [node name="PlayerField" type="Node2D"]
 script = ExtResource("1_arifm")
@@ -11,7 +12,7 @@ offset_left = 466.0
 offset_top = 470.0
 offset_right = 550.0
 offset_bottom = 493.0
-text = "Player text"
+text = "Not Ready"
 
 [node name="Button" type="Button" parent="."]
 offset_left = 346.0
@@ -60,3 +61,6 @@ position = Vector2(188, 458)
 
 [node name="Player2" parent="." instance=ExtResource("2_u3k4h")]
 position = Vector2(852, 175)
+
+[node name="Enemy" parent="." instance=ExtResource("3_jrlup")]
+position = Vector2(473, 270)
