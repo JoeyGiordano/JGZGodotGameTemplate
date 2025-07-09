@@ -5,31 +5,35 @@
 [node name="MainMenu" type="Node"]
 
 [node name="PlayButton" type="Button" parent="."]
-offset_right = 8.0
-offset_bottom = 8.0
+offset_left = 529.0
+offset_top = 227.0
+offset_right = 725.0
+offset_bottom = 299.0
 text = "Play"
 script = ExtResource("1_hccbo")
 switch_to = "connect"
 
 [node name="CreditsButton" type="Button" parent="."]
-offset_top = 115.0
-offset_right = 63.0
-offset_bottom = 146.0
+offset_left = 592.0
+offset_top = 465.0
+offset_right = 655.0
+offset_bottom = 496.0
 text = "Credits"
 script = ExtResource("1_hccbo")
 switch_to = "credits"
 
 [node name="InstructionsButton" type="Button" parent="."]
-offset_top = 57.0
-offset_right = 101.0
-offset_bottom = 88.0
+offset_left = 576.0
+offset_top = 350.0
+offset_right = 677.0
+offset_bottom = 381.0
 text = "Instructions"
 script = ExtResource("1_hccbo")
 switch_to = "instructions"
 
-[node name="TEMP" type="Label" parent="."]
-offset_left = 144.0
-offset_top = 130.0
-offset_right = 308.0
-offset_bottom = 179.0
-text = "Main Menu"
+[node name="Title" type="Label" parent="."]
+offset_left = 540.0
+offset_top = 102.0
+offset_right = 704.0
+offset_bottom = 151.0
+text = "Rock Paper Scissors Race!"

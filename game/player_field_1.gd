@@ -15,17 +15,46 @@ func _ready():
 	$IDLabel.text = str(multiplayer.get_unique_id())
 	if multiplayer.get_unique_id() == 1 : leave_button.text = "End"
 
+# Signal response
+
 func _on_button1_pressed() :
 	if waiting_for_opponent() : return
 	if label.modulate == Color.BLUE : label.modulate = Color.WHITE
 	else : label.modulate = Color.BLUE
+	label.text = "Ready"
+	button1.disabled = true
+	button1.visible = false
 	rpc("_on_button1_pressed_for_peer")
+	var labelx : Label = GameContainer.GC.OpponentSceneHolder.get_child(0).get_child(0)
+	if labelx.text == "Ready" :
+		start_game()
 
 @rpc("any_peer")
 func _on_button1_pressed_for_peer() :
 	var labelx : Label = GameContainer.GC.OpponentSceneHolder.get_child(0).get_child(0)
 	if labelx.modulate == Color.RED : labelx.modulate = Color.WHITE
 	else : labelx.modulate = Color.RED
+	labelx.text = "Ready"
+	if label.text == "Ready" :
+		start_game()
+
+func start_game() :
+	var labelx : Label = GameContainer.GC.OpponentSceneHolder.get_child(0).get_child(0)
+	$Player1.set_multiplayer_authority(1)
+	$Player1.visible = true
+	$Player1.in_play = true
+	if multiplayer.get_unique_id() == 1 :
+		$Player2.set_multiplayer_authority(multiplayer.get_peers()[0])
+	else : $Player2.set_multiplayer_authority(multiplayer.get_unique_id())
+	$Player2.visible = true
+	$Player2.in_play = true
+	label.visible = false
+	labelx.visible = false
+	button1.disabled = true
+	button1.visible = false
+	button2.disabled = true
+	button2.visible = false
+	rect.visible = false
 
 func _on_button2_pressed() :
 	if waiting_for_opponent() : return
@@ -46,6 +75,8 @@ func _on_leave_button_pressed() :
 	
 	GameContainer.GC.destroy_opponent_scene()
 	GameContainer.GC.switch_to_scene("main_menu")
+
+# Resource
 
 func get_random_color() -> Color:
 	var hue = randf_range(0.0, 1.0)

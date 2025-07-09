@@ -1,10 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://dajeyyd76x0vu"]
+[gd_scene load_steps=5 format=3 uid="uid://dajeyyd76x0vu"]
 
 [ext_resource type="Script" uid="uid://gj6s4jjigw13" path="res://game_container/game_container.gd" id="1_nfc83"]
 [ext_resource type="PackedScene" uid="uid://dd71ltua8vpqj" path="res://scenes/shell_scenes/main_menu.tscn" id="1_ojqp2"]
+[ext_resource type="Script" uid="uid://b2dcxijj0mc8y" path="res://game_container/background.gd" id="3_kh4ga"]
+[ext_resource type="Texture2D" uid="uid://dxe5rsvu84bgc" path="res://icon.svg" id="3_ukxy1"]
 
 [node name="GameContainer" type="Node"]
 script = ExtResource("1_nfc83")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.682353, 0.776471, 0.729412, 1)
+position = Vector2(3485, 3084)
+scale = Vector2(170, 170)
+texture = ExtResource("3_ukxy1")
+region_rect = Rect2(75, 61, 6, 5)
+script = ExtResource("3_kh4ga")
 
 [node name="ActiveSceneHolder" type="Node" parent="."]
 
