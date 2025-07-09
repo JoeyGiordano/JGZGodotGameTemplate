@@ -4,15 +4,24 @@
 [ext_resource type="Script" uid="uid://dgp7keim8xecd" path="res://game/player.gd" id="2_du4nq"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_w5y0b"]
-properties/0/path = NodePath(".:position")
+properties/0/path = NodePath(".:state")
 properties/0/spawn = true
 properties/0/replication_mode = 1
-properties/1/path = NodePath(".:state")
+properties/1/path = NodePath(".:switch_ready")
 properties/1/spawn = true
-properties/1/replication_mode = 2
-properties/2/path = NodePath(".:switch_ready")
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:position")
 properties/2/spawn = true
-properties/2/replication_mode = 2
+properties/2/replication_mode = 1
+properties/3/path = NodePath(".:speed")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+properties/4/path = NodePath("Sprite2D:modulate")
+properties/4/spawn = true
+properties/4/replication_mode = 1
+properties/5/path = NodePath(".:modulate")
+properties/5/spawn = true
+properties/5/replication_mode = 1
 
 [node name="Player" type="Node2D"]
 script = ExtResource("2_du4nq")

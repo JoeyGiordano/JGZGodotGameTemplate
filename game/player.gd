@@ -3,14 +3,11 @@ extends Node2D
 @onready var sprite : Sprite2D = $Sprite2D
 
 var speed : float = 200
-var cooldown : float = 1.2
+var cooldown : float = 1.3
 
 var in_play : bool = false
 @export var state : int = 0 #0 rock, 1 paper, 2 siscors
 @export var switch_ready : bool = true
-
-func _enter_tree():
-	set_multiplayer_authority(int(name))
 
 func _ready():
 	update_color()
@@ -27,9 +24,9 @@ func _process(delta):
 	position += movement * speed * delta
 	
 	if switch_ready && Input.is_action_just_pressed("switch") :
-		state = randi()%3 #gives 0,1,2
 		switch_ready = false
 		await get_tree().create_timer(cooldown).timeout
+		state = (state+(randi()%2)+1)%3 #gives rand between two other states
 		switch_ready = true
 
 func update_color() :
