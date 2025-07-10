@@ -53,6 +53,7 @@ func start_game() :
 	smth_button.visible = false
 	rect.visible = false
 	spawn_players()
+	$EnemySpawner.start_game()
 
 func _on_smth_button_pressed() :
 	var rand_color = get_random_color()

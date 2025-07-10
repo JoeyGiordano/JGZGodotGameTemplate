@@ -4,10 +4,10 @@ class_name Player
 @onready var sprite : Sprite2D = $Sprite2D
 
 var speed : float = 200
-var cooldown : float = 1.3
+var cooldown : float = 1.1
 
 var in_play : bool = false
-@export var state : int = 0 #0 rock, 1 paper, 2 siscors
+@export var state : int = 0 #0 red, 1 green, 2 blue
 @export var switch_ready : bool = true
 @export var dead : bool = false
 var game_over : bool = false

@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://brihhvr3e0dtq"]
+[gd_scene load_steps=4 format=3 uid="uid://brihhvr3e0dtq"]
 
 [ext_resource type="Script" uid="uid://dkhyyxjothkkv" path="res://game/player_field_1.gd" id="1_arifm"]
+[ext_resource type="Script" uid="uid://bnj0qqw0ycl0y" path="res://game/enemy_spawner.gd" id="3_61d65"]
 [ext_resource type="PackedScene" uid="uid://dmsxbcrsrvqkv" path="res://game/enemy.tscn" id="3_jrlup"]
 
 [node name="PlayerField" type="Node2D"]
@@ -57,3 +58,13 @@ one_shot = true
 
 [node name="Enemy" parent="." instance=ExtResource("3_jrlup")]
 position = Vector2(503, 270)
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="EnemySpawner" type="Node2D" parent="." node_paths=PackedStringArray("enemies")]
+script = ExtResource("3_61d65")
+enemies = NodePath("../Enemies")
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="EnemySpawner"]
+_spawnable_scenes = PackedStringArray("uid://dmsxbcrsrvqkv")
+spawn_path = NodePath("../../Enemies")
