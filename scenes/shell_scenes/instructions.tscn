@@ -5,15 +5,30 @@
 [node name="Instructions" type="Node"]
 
 [node name="BackButton" type="Button" parent="."]
-offset_right = 8.0
-offset_bottom = 8.0
+offset_left = 556.0
+offset_top = 530.0
+offset_right = 601.0
+offset_bottom = 561.0
 text = "Back"
 script = ExtResource("1_4nwng")
 switch_to = "main_menu"
 
-[node name="TEMP" type="Label" parent="."]
-offset_left = 144.0
-offset_top = 130.0
-offset_right = 308.0
-offset_bottom = 179.0
+[node name="Title" type="Label" parent="."]
+offset_left = 534.0
+offset_top = 100.0
+offset_right = 698.0
+offset_bottom = 149.0
 text = "Instructions"
+
+[node name="Label" type="Label" parent="."]
+offset_left = 316.0
+offset_top = 252.0
+offset_right = 829.0
+offset_bottom = 405.0
+text = "A two player collaborative game
+Hosting a game will give you a code you  distribute to your freinds
+They can enter the code to join the game
+Arrow keys to move
+Red kills green kills blue kills red
+Get the highest score!"
+horizontal_alignment = 1

@@ -5,15 +5,29 @@
 [node name="Credits" type="Node"]
 
 [node name="BackButton" type="Button" parent="."]
-offset_right = 8.0
-offset_bottom = 8.0
+offset_left = 602.0
+offset_top = 530.0
+offset_right = 647.0
+offset_bottom = 561.0
 text = "Back"
 script = ExtResource("1_lxpdn")
 switch_to = "main_menu"
 
-[node name="TEMP" type="Label" parent="."]
-offset_left = 144.0
+[node name="Label" type="Label" parent="."]
+offset_left = 428.0
+offset_top = 258.0
+offset_right = 817.0
+offset_bottom = 385.0
+text = "By Joey G
+
+For Finley. Love u
+
+Big thanks to godot community!"
+horizontal_alignment = 1
+
+[node name="Title" type="Label" parent="."]
+offset_left = 590.0
 offset_top = 130.0
-offset_right = 308.0
+offset_right = 754.0
 offset_bottom = 179.0
 text = "Credits"

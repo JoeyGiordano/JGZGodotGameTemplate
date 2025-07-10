@@ -1,4 +1,5 @@
 extends Node2D
+class_name Enemy
 
 @onready var sprite : Sprite2D = $Sprite2D
 
@@ -11,7 +12,7 @@ func _process(delta):
 func die() :
 	rpc("_die")
 
-@rpc("call_local")
+@rpc("any_peer", "call_local")
 func _die() :
 	sprite.modulate = Color.BLACK
 	state = 3 #so no death
