@@ -8,12 +8,25 @@ class_name Enemy
 func _enter_tree():
 	set_multiplayer_authority(1)
 
+func _ready():
+	$Area2D.area_entered.connect(_on_area_entered)
+
 func _process(delta):
 	update_color()
 	
 	if !is_multiplayer_authority() : return
 	rotation += -7 * delta
 	position -= (position - Vector2(550,300)) * delta * 0.8
+
+
+func _on_area_entered(area : Area2D) :
+	if !is_multiplayer_authority() : return
+	
+	if area.get_parent() is Player : return #if we fought a player, the player will handle it
+	
+	var result = Player.resolve_interaction(state, area.get_parent().state)
+	if result == "Uwin" : #if we won, the other one will kill itself
+		die()
 
 func die() :
 	rpc("_die")

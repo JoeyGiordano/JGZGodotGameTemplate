@@ -9,6 +9,9 @@ const MAX_CLIENTS = 1 #this is a two player game
 # Create peer object using ENet networking library
 var peer = ENetMultiplayerPeer.new()
 
+var local : bool
+var game_code : String
+
 signal connection_outcome_determined(success : bool)
 
 func _ready():
@@ -16,7 +19,8 @@ func _ready():
 	multiplayer.connected_to_server.connect(_on_connected)
 	multiplayer.server_disconnected.connect(_on_server_disconnected)
 
-func setup_as_host(local : bool) :
+func setup_as_host(local_ : bool) :
+	local = local_
 	# Create a server (set peer to listen on PORT)
 	var result = peer.create_server(PORT, MAX_CLIENTS)
 	if result : #if it didn't work
@@ -25,14 +29,19 @@ func setup_as_host(local : bool) :
 	
 	# Set the godot internal peer
 	multiplayer.multiplayer_peer = peer
-	# Switch to the player game scene
-	GameContainer.GC.switch_to_scene("player_field_1")
 	
 	multiplayer.peer_connected.connect(_on_peer_connected)
 	multiplayer.peer_disconnected.connect(_on_peer_disconnected)
 	
 	#set up upnp to enable connection through the internet!
-	if !local : upnp_setup()
+	if !local : 
+		upnp_setup()
+	else :
+		game_code = "localhost"
+	
+	# once set up, switch to the player game scene
+	GameContainer.GC.switch_to_scene("player_field_1")
+	
 
 func setup_as_client(join_code : String) -> bool :
 	if join_code == "" : join_code = "localhost"
@@ -67,7 +76,8 @@ func upnp_setup() :
 	var map_result = upnp.add_port_mapping(PORT)
 	assert(map_result == UPNP.UPNP_RESULT_SUCCESS, "UPNP port mapping failed! Error %s" % map_result)
 	
-	PopupDialouge.create_popup("UPNP Success", 300, 400, "Success! Join address: %s" % upnp.query_external_address())
+	game_code = upnp.query_external_address()
+	PopupDialouge.create_popup("UPNP Success", 300, 400, "Success! Join address: %s" % game_code)
 	
 
 ## Signal Responses

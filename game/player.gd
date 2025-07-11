@@ -75,7 +75,7 @@ func restart() :
 
 func _on_area_entered(area : Area2D) :
 	if !is_multiplayer_authority() : return
-	var result = resolve_interaction(area.get_parent().state)
+	var result = resolve_interaction(state, area.get_parent().state)
 	
 	if area.get_parent() is Player : #if we fought a player, the other player is checking if it won and both outcomes will be taken care of and then properly synced later
 		if result == "Uwin" : die()
@@ -86,16 +86,16 @@ func _on_area_entered(area : Area2D) :
 			die()
 	
 	
-func resolve_interaction(statex : int) -> String :
+static func resolve_interaction(state_ : int, statex : int) -> String :
 	#statex is the other part of the interactions state
 	#returns "Iwin" "Uwin" "Tie" or "error"
-	if state == 0 :
+	if state_ == 0 :
 		if statex == 1 : return "Iwin"
 		if statex == 2 : return "Uwin"
-	elif state == 1 :
+	elif state_ == 1 :
 		if statex == 0 : return "Uwin"
 		if statex == 2 : return "Iwin"
-	elif state == 2 :
+	elif state_ == 2 :
 		if statex == 0 : return "Iwin"
 		if statex == 1 : return "Uwin"
 	return "error or post death"

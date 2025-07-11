@@ -10,6 +10,9 @@ class_name PlayerField1
 @onready var smth_button : Button = $SmthButton
 @onready var leave_button : Button = $LeaveButton
 
+#players
+var players : Array[Player]
+
 func _enter_tree():
 	set_multiplayer_authority(multiplayer.get_unique_id())
 
@@ -18,7 +21,9 @@ func _ready():
 	smth_button.connect("button_down", _on_smth_button_pressed)
 	leave_button.connect("button_down", _on_leave_button_pressed)
 	$IDLabel.text = str(multiplayer.get_unique_id())
-	if multiplayer.get_unique_id() == 1 : leave_button.text = "End"
+	if multiplayer.get_unique_id() == 1 :
+		leave_button.text = "End"
+		$IDLabel.text = "Host: " + str(MultiplayerManager.game_code)
 
 # Signal response
 
@@ -99,10 +104,12 @@ func spawn_players() :
 	var player1 : Player = player_scene.instantiate()
 	player1.name = str(multiplayer.get_unique_id()) #set the name to the id of the game instance creating these nodes
 	add_child(player1)
+	players.append(player1)
 	#player 2 (opponent)
 	var player2 : Player = player_scene.instantiate()
 	player2.name = str(multiplayer.get_peers()[0]) #two player game so get_peers()[0] is the only peer (bc it doesn't include self)
 	add_child(player2)
+	players.append(player2)
 	#positioning
 	if multiplayer.get_unique_id() == 1 :
 		player1.position = Vector2(400,300)
