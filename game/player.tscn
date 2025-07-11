@@ -41,3 +41,10 @@ shape = SubResource("RectangleShape2D_w5y0b")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_w5y0b")
+
+[node name="BlackDot" type="Sprite2D" parent="."]
+modulate = Color(0.196078, 0.196078, 0.196078, 0.729412)
+scale = Vector2(10, 10)
+texture = ExtResource("1_w5y0b")
+region_enabled = true
+region_rect = Rect2(40, 57, 1, 1)

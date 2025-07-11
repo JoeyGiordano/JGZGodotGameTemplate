@@ -57,6 +57,7 @@ func start_game() :
 	smth_button.disabled = true
 	smth_button.visible = false
 	rect.visible = false
+	$Enemy.in_game = true #for the one enemy of the ready scene
 	spawn_players()
 	$EnemySpawner.start_game()
 
