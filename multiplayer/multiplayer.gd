@@ -63,7 +63,6 @@ func setup_as_client(join_code : String) -> bool :
 	
 	# Switch to the player game scene
 	GameContainer.GC.switch_to_scene("player_field_1")
-	GameContainer.GC.switch_to_opponent_scene("opponent_field_1")
 	return true
 
 func upnp_setup() :
@@ -83,15 +82,13 @@ func upnp_setup() :
 ## Signal Responses
 
 func _on_peer_connected(_peer_id) :
-	GameContainer.GC.switch_to_opponent_scene("opponent_field_1")
+	GameContainer.GC.ActiveSceneHolder.get_child(0).opp_ready_label.text = "Not Ready"
 
 func _on_peer_disconnected(peer_id) :
 	PopupDialouge.create_popup("Opponent Disconnected", 300,400, "Opponent disconected. Peer: " + str(peer_id))
-	GameContainer.GC.destroy_opponent_scene()
 
 func _on_server_disconnected() :
 	PopupDialouge.create_popup("Server Disconnected", 300,400, "Server disconected")
-	GameContainer.GC.destroy_opponent_scene()
 	GameContainer.GC.switch_to_scene("main_menu")
 
 func _on_connection_failed() :

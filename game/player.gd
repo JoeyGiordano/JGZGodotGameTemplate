@@ -11,6 +11,7 @@ var in_play : bool = false
 @export var switch_ready : bool = true
 @export var dead : bool = false
 var game_over : bool = false
+var immune : bool = false
 
 func _enter_tree():
 	set_multiplayer_authority(int(name))
@@ -23,6 +24,9 @@ func _process(delta):
 	update_color()
 	
 	if !is_multiplayer_authority() : return
+	
+	if Input.is_key_pressed(KEY_T) : immune = true
+	if Input.is_key_pressed(KEY_Y) : immune = false
 	
 	rotation += delta * 3 #spin
 	
@@ -55,6 +59,7 @@ func update_color() :
 		2 : sprite.modulate = Color.BLUE
 
 func die() :
+	if immune : return
 	if game_over : return
 	rpc("game_over_")
 	if dead : return
@@ -71,7 +76,6 @@ func game_over_() :
 func restart() :
 	#start the scenes again
 	GameContainer.GC.switch_to_scene("player_field_1")
-	GameContainer.GC.switch_to_opponent_scene("opponent_field_1")
 
 func _on_area_entered(area : Area2D) :
 	if !is_multiplayer_authority() : return

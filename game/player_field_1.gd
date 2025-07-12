@@ -3,7 +3,8 @@ class_name PlayerField1
 
 @onready var player_scene : PackedScene = preload("res://game/player.tscn")
 
-@onready var label : Label = $Label
+@onready var ready_label : Label = $ReadyLabel
+@onready var opp_ready_label : Label = $OppReadyLabel
 @onready var message : Label = $MessageLabel
 @onready var rect : ColorRect = $ColorRect
 @onready var ready_button : Button = $ReadyButton
@@ -24,34 +25,32 @@ func _ready():
 	if multiplayer.get_unique_id() == 1 :
 		leave_button.text = "End"
 		$IDLabel.text = "Host: " + str(MultiplayerManager.game_code)
+		if multiplayer.get_peers().size() == 0 : opp_ready_label.text = "Waiting for player 2 to join..."
 
 # Signal response
 
 func _on_ready_button_pressed() :
 	if waiting_for_opponent() : return
-	if label.modulate == Color.BLUE : label.modulate = Color.WHITE
-	else : label.modulate = Color.BLUE
-	label.text = "Ready"
+	if ready_label.modulate == Color.BLUE : ready_label.modulate = Color.WHITE
+	else : ready_label.modulate = Color.BLUE
+	ready_label.text = "Ready"
 	ready_button.disabled = true
 	ready_button.visible = false
 	rpc("_on_ready_button_pressed_for_peer")
-	var labelx : Label = GameContainer.GC.OpponentSceneHolder.get_child(0).get_child(0)
-	if labelx.text == "Ready" :
+	if opp_ready_label.text == "Ready" :
 		start_game()
 
 @rpc("any_peer")
 func _on_ready_button_pressed_for_peer() :
-	var labelx : Label = GameContainer.GC.OpponentSceneHolder.get_child(0).get_child(0)
-	if labelx.modulate == Color.RED : labelx.modulate = Color.WHITE
-	else : labelx.modulate = Color.RED
-	labelx.text = "Ready"
-	if label.text == "Ready" :
+	if opp_ready_label.modulate == Color.RED : opp_ready_label.modulate = Color.WHITE
+	else : opp_ready_label.modulate = Color.RED
+	opp_ready_label.text = "Ready"
+	if ready_label.text == "Ready" :
 		start_game()
 
 func start_game() :
-	var labelx : Label = GameContainer.GC.OpponentSceneHolder.get_child(0).get_child(0)
-	label.visible = false
-	labelx.visible = false
+	ready_label.visible = false
+	opp_ready_label.visible = false
 	ready_button.disabled = true
 	ready_button.visible = false
 	smth_button.disabled = true
@@ -113,11 +112,11 @@ func spawn_players() :
 	players.append(player2)
 	#positioning
 	if multiplayer.get_unique_id() == 1 :
-		player1.position = Vector2(400,300)
-		player2.position = Vector2(600,300)
+		player1.position = Vector2(-100,0)
+		player2.position = Vector2(100,0)
 	else :
-		player1.position = Vector2(600,300)
-		player2.position = Vector2(400,300)
+		player1.position = Vector2(100,0)
+		player2.position = Vector2(-100,0)
 	#other setup
 	player1.in_play = true
 	player2.in_play = true

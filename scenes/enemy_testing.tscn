@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8nsss2t8npin"]
+
+[ext_resource type="Texture2D" uid="uid://dxe5rsvu84bgc" path="res://icon.svg" id="1_5bm8d"]
+
+[node name="EnemyTesting" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1.99988, 0)
+scale = Vector2(1151, 645)
+texture = ExtResource("1_5bm8d")
+region_enabled = true
+region_rect = Rect2(63.567, 71.257, 1, 1)
+
+[node name="Camera2D" type="Camera2D" parent="."]

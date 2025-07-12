@@ -24,9 +24,11 @@ func spawn_enemy() :
 	enemies.add_child(e,true)
 	e.state = randi()%3 #0,1,2
 	e.position = position
+	e.in_game = true
 
 func new_position() :
-	position = 600 * Vector2(2*randf()-1,2*randf()-1)
+	var v = Vector2(2*randf()-1,2*randf()-1)
+	position = 500 * v + 50 * randf() * v
 
 func get_next_wait_time() -> float: 
 	return randf_range(3,4)
