@@ -1,14 +1,23 @@
-[gd_scene load_steps=2 format=3 uid="uid://c8nsss2t8npin"]
+[gd_scene load_steps=3 format=3 uid="uid://c8nsss2t8npin"]
 
 [ext_resource type="Texture2D" uid="uid://dxe5rsvu84bgc" path="res://icon.svg" id="1_5bm8d"]
+[ext_resource type="PackedScene" uid="uid://dmsxbcrsrvqkv" path="res://game/enemy.tscn" id="2_rmsvs"]
 
 [node name="EnemyTesting" type="Node2D"]
 
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.152941)
 position = Vector2(-1.99988, 0)
 scale = Vector2(1151, 645)
 texture = ExtResource("1_5bm8d")
 region_enabled = true
 region_rect = Rect2(63.567, 71.257, 1, 1)
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Enemy" parent="." instance=ExtResource("2_rmsvs")]
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0

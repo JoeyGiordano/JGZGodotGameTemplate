@@ -10,6 +10,9 @@ class_name PlayerField1
 @onready var ready_button : Button = $ReadyButton
 @onready var smth_button : Button = $SmthButton
 @onready var leave_button : Button = $LeaveButton
+@onready var scoare_label : Label = $ScoreLabel
+
+var in_game : bool = false 
 
 #players
 var players : Array[Player]
@@ -26,6 +29,21 @@ func _ready():
 		leave_button.text = "End"
 		$IDLabel.text = "Host: " + str(MultiplayerManager.game_code)
 		if multiplayer.get_peers().size() == 0 : opp_ready_label.text = "Waiting for player 2 to join..."
+
+func _process(_delta):
+	scoare_label.text = "Score: " + str(GameContainer.GC.score) + "0"
+	if multiplayer.get_unique_id() != 1 : return
+	if in_game :
+		var score_changed = GameContainer.GC.score != int(GameContainer.GC.T / 3)
+		GameContainer.GC.score = GameContainer.GC.T / 3
+		if score_changed :
+			rpc("on_score_increased_for_host", GameContainer.GC.score)
+
+@rpc("call_remote", "any_peer")
+func on_score_increased_for_host(score : int) :
+	scoare_label.text = "Score: " + str(score) + "0"
+	GameContainer.GC.score = score
+	
 
 # Signal response
 
@@ -59,6 +77,8 @@ func start_game() :
 	$Enemy.in_game = true #for the one enemy of the ready scene
 	spawn_players()
 	$EnemySpawner.start_game()
+	GameContainer.GC.start_game_T()
+	in_game = true
 
 func _on_smth_button_pressed() :
 	var rand_color = get_random_color()
@@ -74,7 +94,6 @@ func _on_leave_button_pressed() :
 		multiplayer.multiplayer_peer.close()
 	multiplayer.multiplayer_peer = null
 	
-	GameContainer.GC.destroy_opponent_scene()
 	GameContainer.GC.switch_to_scene("main_menu")
 
 # Resource
@@ -87,7 +106,7 @@ func get_random_color() -> Color:
 
 func waiting_for_opponent() -> bool :
 	if multiplayer.get_peers().size() < 1 :
-		display_message("Waiting for opponent to join")
+		display_message("Waiting for player 2 to join")
 		return true
 	return false
 

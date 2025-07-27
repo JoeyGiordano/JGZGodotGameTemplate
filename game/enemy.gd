@@ -11,17 +11,27 @@ var behaviors : Array[String]
 var behavior_frame : int = -1
 var new_behavior_queued : bool = false
 
-var waiting : bool = false
-var changing_state : bool = false
+@export var waiting : bool = false
 
-func _enter_tree():
+var spawn_T : float = 1 # GC.T when this enemy was created
+var difficulty : float = 1
+
+var behaviors_increase : float = 0.2 #behaviors per difficulty
+
+var time_alive : float = 0
+
+func _enter_tree() :
 	set_multiplayer_authority(1)
 
-func _ready():
+func _ready() :
 	$Area2D.area_entered.connect(_on_area_entered)
+	change_state()
+	spawn_T = GameContainer.GC.T
+	difficulty = sqrt(spawn_T)/10
 
 func _process(delta):
 	update_color()
+	time_alive += delta
 	
 	if waiting : rotation += -2 * delta
 	else : rotation += -7 * delta
@@ -43,38 +53,33 @@ func _process(delta):
 
 func behavior_loop() :
 	clear_behaviors()
-	modulate.a = 0.5
 	waiting = true
-	await get_tree().create_timer(randf_range(1,2)).timeout
+	await get_tree().create_timer(randf_range(1,2)).timeout #time waiting between behaviors 
 	waiting = false
 	behavior_frame = 0
-	modulate.a = 1
 	queue_new_random_behaviors()
-	await get_tree().create_timer(randf_range(4,15)).timeout
+	await get_tree().create_timer(randf_range(4,15)).timeout #time doing behavior
 	behavior_loop()
 
 func queue_new_random_behaviors() :
 	new_behavior_queued = true
 
 func new_random_behaviors() :
-	var points = 15
-	while points > 5 :
-		var rand = randf() * 100
-		if rand < 30 : 
-			points = try_add_behavior("go_to_center", points, 6)
-		if rand < 60 :
-			points = try_add_behavior("go_to_random", points, 6)
-		elif rand < 95 :
-			points = try_add_behavior("change_state_behavior", points, 3)
-		elif rand < 100 :
-			points = try_add_behavior("change_state_constantly", points, 10)
-		points *= 0.8 #so that the while can't run forever, could use subtract but points could get big
-
-func try_add_behavior(behavior : String, points_remaining : float, point_cost : float) -> float :
-	if point_cost < points_remaining : return points_remaining
-	add_behavior(behavior)
-	return points_remaining - point_cost
-
+	for i in range(0,int(difficulty/behaviors_increase) + 1) :
+		add_random_behavior()
+	
+func add_random_behavior() :
+	var rand = randf() * 100
+	if rand < 5 : 
+		add_behavior("go_to_center")
+	elif rand < 32 :
+		add_behavior("wiggle")
+	elif rand < 50 :
+		add_behavior("wiggle")
+	elif rand < 92 :
+		add_behavior("go_to_random")
+	else :
+		add_behavior("change_state_constantly")
 
 func _on_area_entered(area : Area2D) :
 	if !is_multiplayer_authority() : return
@@ -86,11 +91,11 @@ func _on_area_entered(area : Area2D) :
 		die()
 
 func die() :
+	sprite.modulate = Color.BLACK
 	rpc("_die")
 
 @rpc("any_peer", "call_local")
 func _die() :
-	sprite.modulate = Color.BLACK
 	state = 3 #so no death
 	in_game = false
 	clear_behaviors()
@@ -98,10 +103,16 @@ func _die() :
 	queue_free()
 
 func update_color() :
+	if waiting : modulate.a = 0.45
+	else : modulate.a = 1.0
+	
 	match(state) :
 		0 : sprite.modulate = Color.RED
 		1 : sprite.modulate = Color.GREEN
 		2 : sprite.modulate = Color.BLUE
+		3 : sprite.modulate = Color.BLACK
+		
+	visible = true
 
 func clear_behaviors() :
 	behaviors.clear()
@@ -109,35 +120,40 @@ func clear_behaviors() :
 func add_behavior(b : String) :
 	behaviors.append(b)
 
-func start_state_change(time : float) :
-	if changing_state : return
-	changing_state = true
-	modulate.a = 0.5
-	if time == -1 : time = 1.1
-	await get_tree().create_timer(time).timeout
-	change_state()
-	changing_state = false
-	modulate.a = 1
-	
 func change_state() :
 	state = (state+randi()%2+1)%3 #gives one of other two states
 
 ## Behaviors
 
 func go_to_center(_delta : float) :
-	position -= position * _delta * 0.8 #center is 0,0
+	position -= position.normalized() * speed * difficulty * _delta #center is 0,0
 
 var target_pos : Vector2
+var speed : float = 50
 func go_to_random(_delta : float) :
 	if behavior_frame == 0 :
 		target_pos = 600*Vector2(randf()*2-1, randf()*2-1)
-	position -= (position + target_pos) * _delta * 0.5
-
-func change_state_behavior(_delta : float) :
-	if behavior_frame == 0 :
-		start_state_change(-1)
-	position += 3*Vector2(randf()-0.5,randf()-0.5)
+	position -= (position + target_pos).normalized() * speed * difficulty * _delta
 
 func change_state_constantly(_delta : float) :
 	if behavior_frame%10 == 0 :
 		change_state()
+
+var wiggle_dir : Vector2
+var t : float
+func wiggle(_delta : float) :
+	if behavior_frame == 0 :
+		var rand = randf_range(0,2*PI)
+		wiggle_dir = Vector2(cos(rand), sin(rand))
+	position += wiggle_dir * sin(t) * 120 * _delta
+	t += 0.09
+
+var wobble_dir : Vector2
+var t2 : float
+func wobble(_delta : float) :
+	if behavior_frame == 0 :
+		var rand = randf_range(0,2*PI)
+		wobble_dir = Vector2(cos(rand), sin(rand))
+	position += wobble_dir * sin(t2) * 200 * _delta
+	t2 += 0.03
+	

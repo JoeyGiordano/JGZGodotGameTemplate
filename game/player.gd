@@ -25,9 +25,6 @@ func _process(delta):
 	
 	if !is_multiplayer_authority() : return
 	
-	if Input.is_key_pressed(KEY_T) : immune = true
-	if Input.is_key_pressed(KEY_Y) : immune = false
-	
 	rotation += delta * 3 #spin
 	
 	if !in_play : return
@@ -87,6 +84,7 @@ func _on_area_entered(area : Area2D) :
 		if result == "Iwin" :
 			area.get_parent().die()
 		if result == "Uwin" :
+			if area.get_parent().time_alive < 1.2 : return
 			die()
 	
 	

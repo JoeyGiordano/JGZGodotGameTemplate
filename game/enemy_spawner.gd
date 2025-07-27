@@ -20,15 +20,17 @@ func spawn_loop() :
 
 func spawn_enemy() :
 	var e : Enemy = enemy_scene.instantiate()
+	e.visible = false
 	e.set_multiplayer_authority(1)
 	enemies.add_child(e,true)
 	e.state = randi()%3 #0,1,2
 	e.position = position
 	e.in_game = true
+	e.visible = true
 
 func new_position() :
 	var v = Vector2(2*randf()-1,2*randf()-1)
 	position = 500 * v + 50 * randf() * v
 
 func get_next_wait_time() -> float: 
-	return randf_range(3,4)
+	return randf_range(3,4) * (10 / sqrt(GameContainer.GC.T) + 1)

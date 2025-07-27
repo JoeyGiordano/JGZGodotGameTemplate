@@ -70,6 +70,7 @@ wait_time = 1.2
 one_shot = true
 
 [node name="Enemy" parent="." instance=ExtResource("3_jrlup")]
+visible = true
 
 [node name="Enemies" type="Node2D" parent="."]
 
@@ -80,3 +81,10 @@ enemies = NodePath("../Enemies")
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="EnemySpawner"]
 _spawnable_scenes = PackedStringArray("uid://dmsxbcrsrvqkv")
 spawn_path = NodePath("../../Enemies")
+
+[node name="ScoreLabel" type="Label" parent="."]
+offset_left = -556.0
+offset_top = -308.0
+offset_right = -516.0
+offset_bottom = -285.0
+text = "Score: 0"

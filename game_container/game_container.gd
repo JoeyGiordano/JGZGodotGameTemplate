@@ -24,6 +24,10 @@ static var GC : GameContainer
 	"player_field_1" : player_field_1
 }
 
+var start_T : float = 0
+var T : float = 0 # time since the round started in seconds
+var score : int = 0
+
 #### METHODS ####
 
 func _ready():
@@ -35,6 +39,8 @@ func _process(_delta):
 	#quit if Q pressed - DEBUG
 	if Input.is_key_pressed(KEY_Q) :
 		get_tree().quit()
+	
+	T = Time.get_ticks_msec()/1000. - start_T
 
 func switch_to_scene(scene_name : String) :
 	#switch to a scene with the name scene_name
@@ -52,3 +58,6 @@ func get_scene(scene_name : String) -> PackedScene:
 		print("Scene " + scene_name + " is not in scene dict.")
 		return main_menu
 	return scene_dict[scene_name]
+
+func start_game_T() :
+	start_T = Time.get_ticks_msec()/1000
