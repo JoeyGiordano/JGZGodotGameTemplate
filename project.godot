@@ -1,11 +1,31 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
 config_version=5
 
 [application]
 
 config/name="JGZGodotGameTemplate"
 run/main_scene="res://scenes/game_container/game_container.tscn"
-config/features=PackedStringArray("4.3", "GL Compatibility")
+config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+AudioManager="*res://autoloads/AudioManager.gd"
+Debug="*res://autoloads/Debug.gd"
+GameInfo="*res://autoloads/GameInfo.gd"
+GameManager="*res://autoloads/GameManager.gd"
+Global="*res://autoloads/Global.gd"
+LevelLoader="*res://autoloads/LevelLoader.gd"
+ShellSceneManager="*res://autoloads/ShellSceneManager.gd"
+Utility="*res://autoloads/Utility.gd"
+Ref="*res://autoloads/Reference/Reference.gd"
 
 [display]
 

@@ -1,0 +1,78 @@
+[gd_scene load_steps=38 format=3 uid="uid://dimsdmfqcpvlg"]
+
+[ext_resource type="Script" uid="uid://ciyveyuo2ihr0" path="res://autoloads/Reference/Reference.gd" id="1_pmmna"]
+[ext_resource type="PackedScene" uid="uid://d176ir76ayfrc" path="res://shell_scenes/startup.tscn" id="2_qlxkd"]
+[ext_resource type="PackedScene" uid="uid://dd71ltua8vpqj" path="res://shell_scenes/main_menu.tscn" id="3_lrfi7"]
+[ext_resource type="PackedScene" uid="uid://cvt88un11f5iw" path="res://shell_scenes/startup2.tscn" id="3_xkbsy"]
+[ext_resource type="PackedScene" uid="uid://cltaghkxnswjy" path="res://shell_scenes/instructions.tscn" id="4_5tl84"]
+[ext_resource type="PackedScene" uid="uid://bhuom4ivjp0be" path="res://shell_scenes/credits.tscn" id="5_6y62y"]
+[ext_resource type="PackedScene" uid="uid://cxa1svc5qgg5b" path="res://shell_scenes/player_settings/player_settings.tscn" id="6_7h4v1"]
+[ext_resource type="PackedScene" uid="uid://ddstyon1os41f" path="res://shell_scenes/ready_up/ready_up.tscn" id="6_yjp2r"]
+[ext_resource type="PackedScene" uid="uid://cjn6ovy0vud68" path="res://shell_scenes/loading.tscn" id="7_xedrw"]
+[ext_resource type="PackedScene" uid="uid://cyhkbbhd03a2w" path="res://shell_scenes/game_shell_scene.tscn" id="8_evbjy"]
+[ext_resource type="PackedScene" uid="uid://cby3remb66qik" path="res://shell_scenes/victory.tscn" id="8_tqnje"]
+[ext_resource type="PackedScene" uid="uid://dsd7gwwl4lle0" path="res://levels/test_level_0.tscn" id="9_6y62y"]
+[ext_resource type="PackedScene" uid="uid://bodgu2jrmx8ps" path="res://levels/test_level_1.tscn" id="10_yjp2r"]
+[ext_resource type="PackedScene" uid="uid://dtefbfue0nrjs" path="res://levels/test_level_2.tscn" id="11_xedrw"]
+[ext_resource type="PackedScene" uid="uid://cwdtdg5xj5phs" path="res://game/bullets/basic_bullet/basic_bullet.tscn" id="12_vdkhk"]
+[ext_resource type="PackedScene" uid="uid://ddq1u3wwk2bwj" path="res://tank/tank.tscn" id="13_acwhr"]
+[ext_resource type="PackedScene" uid="uid://rigrosaete8h" path="res://levels/test_level_3.tscn" id="14_0nf36"]
+[ext_resource type="PackedScene" uid="uid://nnt58oni83nl" path="res://levels/test_level_gen_level.tscn" id="15_323l5"]
+[ext_resource type="Resource" uid="uid://c3hg6budcbmhm" path="res://tank/stats/base_tank_stats.tres" id="15_axg78"]
+[ext_resource type="PackedScene" uid="uid://ckef6glp3htbr" path="res://levels/test_level_active_map.tscn" id="15_hiq1x"]
+[ext_resource type="PackedScene" uid="uid://dq0y0r8qtbtw2" path="res://levels/custom_level_1.tscn" id="16_323l5"]
+[ext_resource type="PackedScene" uid="uid://duji7i7tnorqk" path="res://game/bullets/multi_bullet/multi_bullet.tscn" id="17_323l5"]
+[ext_resource type="PackedScene" uid="uid://bd3yrfsuc246j" path="res://tank/loadouts/empty_tankloadout.tscn" id="17_j6ump"]
+[ext_resource type="PackedScene" uid="uid://bvx6y0y353jnt" path="res://levels/custom_level_2.tscn" id="17_k55fg"]
+[ext_resource type="PackedScene" uid="uid://2su3htx11obo" path="res://tank/loadouts/basic/basic_tankloadout.tscn" id="18_d3fos"]
+[ext_resource type="PackedScene" uid="uid://4xfrxxpiguq" path="res://tank/loadouts/multibullet/multibullet_tankloadout.tscn" id="19_d3fos"]
+[ext_resource type="PackedScene" uid="uid://caaogrsopcbsa" path="res://levels/rng_level_1.tscn" id="19_jt88h"]
+[ext_resource type="PackedScene" uid="uid://vywhnte21c8" path="res://levels/rng_level_2.tscn" id="20_6i4fw"]
+[ext_resource type="PackedScene" uid="uid://cicha7ncwv202" path="res://levels/rng_level_3.tscn" id="21_jubfu"]
+[ext_resource type="PackedScene" uid="uid://dwe3cijftd4x5" path="res://game/bullets/land_mine/land_mine.tscn" id="22_831b3"]
+[ext_resource type="PackedScene" uid="uid://bojycccxpxfms" path="res://game/item/item.tscn" id="22_k55fg"]
+[ext_resource type="PackedScene" uid="uid://dwgdjpfsltjy3" path="res://animations/Explosion.tscn" id="23_3kg4t"]
+[ext_resource type="PackedScene" uid="uid://bwre1ac5bcq4v" path="res://levels/rng_level_4.tscn" id="23_jubfu"]
+[ext_resource type="PackedScene" uid="uid://bd58u8e01gyf6" path="res://game/bullets/nuke.tscn" id="23_nlf2g"]
+[ext_resource type="PackedScene" uid="uid://1s3gq0f5ag1a" path="res://tank/loadouts/landmine/landmine_tankloadout.tscn" id="27_pxxx1"]
+[ext_resource type="PackedScene" uid="uid://crsr7ik4jallv" path="res://tank/loadouts/nuke_loadout/nuke_tankloadout.tscn" id="29_pijn0"]
+[ext_resource type="Resource" uid="uid://cradvt8ln8q40" path="res://levels/level_gen/parts/tilesets/tileset_lib.tres" id="31_pijn0"]
+
+[node name="Reference" type="Node"]
+script = ExtResource("1_pmmna")
+startup = ExtResource("2_qlxkd")
+icon = ExtResource("3_xkbsy")
+main_menu = ExtResource("3_lrfi7")
+instructions = ExtResource("4_5tl84")
+credits = ExtResource("5_6y62y")
+player_settings = ExtResource("6_7h4v1")
+ready_up = ExtResource("6_yjp2r")
+loading = ExtResource("7_xedrw")
+game_shell_scene = ExtResource("8_evbjy")
+victory = ExtResource("8_tqnje")
+test_level_0 = ExtResource("9_6y62y")
+test_level_1 = ExtResource("10_yjp2r")
+test_level_2 = ExtResource("11_xedrw")
+test_level_3 = ExtResource("14_0nf36")
+test_level_gen_level = ExtResource("15_323l5")
+test_level_active_map = ExtResource("15_hiq1x")
+custom_level_1 = ExtResource("16_323l5")
+custom_level_2 = ExtResource("17_k55fg")
+rng_level_1 = ExtResource("19_jt88h")
+rng_level_2 = ExtResource("20_6i4fw")
+rng_level_3 = ExtResource("21_jubfu")
+rng_level_4 = ExtResource("23_jubfu")
+tank_scene = ExtResource("13_acwhr")
+basic_bullet = ExtResource("12_vdkhk")
+multi_bullet = ExtResource("17_323l5")
+land_mine = ExtResource("22_831b3")
+nuke = ExtResource("23_nlf2g")
+item_scene = ExtResource("22_k55fg")
+explosion_anim = ExtResource("23_3kg4t")
+empty_loadout = ExtResource("17_j6ump")
+basic_loadout = ExtResource("18_d3fos")
+multi_loadout = ExtResource("19_d3fos")
+landmine_loadout = ExtResource("27_pxxx1")
+nuke_loadout = ExtResource("29_pijn0")
+base_tank_stats = ExtResource("15_axg78")
+tileset_library = ExtResource("31_pijn0")
