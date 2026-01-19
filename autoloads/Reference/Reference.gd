@@ -17,6 +17,12 @@ class_name _Reference
 ## Tip: If you have the string name of a property you can get its value using the get() function.
 ##   For example, Ref.get("level_0") is the same thing as Ref.level_0
 
+var idea
+
 @export_category("Scenes")
 @export_group("Shell Scenes")
 @export var x : PackedScene
+
+
+
+#temp

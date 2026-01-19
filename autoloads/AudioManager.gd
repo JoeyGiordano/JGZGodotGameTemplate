@@ -22,14 +22,19 @@ func _on_stream_finished(stream):
 	available.append(stream)
 
 
-func play(sound_path):
+func play_from_path(sound_path : String):
 	if queue.size() > 30 : return
 	queue.append(sound_path)
-	
+
+func play(stream : AudioStream):
+	if queue.size() > 30 : return
+	queue.append(stream)
+
 
 func _process(_delta):
 	# Play a queued sound if any players are available.
 	if queue.size() != 0 and available.size() != 0 :
-		available[0].stream = load(queue.pop_front())
+		if queue.front() is String : available[0].stream = load(queue.pop_front())
+		else : available[0].stream = queue.pop_front()
 		available[0].play()
 		available.pop_front()

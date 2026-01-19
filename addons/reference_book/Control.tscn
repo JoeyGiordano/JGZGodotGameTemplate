@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://coej43ns660jy"]
+[gd_scene load_steps=4 format=3 uid="uid://coej43ns660jy"]
 
 [ext_resource type="PackedScene" uid="uid://bdtnblxdje0fq" path="res://addons/reference_book/resource_loader_ui.tscn" id="1_7qxgl"]
 [ext_resource type="Script" uid="uid://bvhng1cypqtt5" path="res://addons/reference_book/reference_book_ui.gd" id="1_b1jp1"]
+[ext_resource type="Script" uid="uid://deo2r0nb7nbfs" path="res://addons/reference_book/res_entry_settings.gd" id="3_ne4bt"]
 
 [node name="ReferenceBookUI" type="Control"]
 layout_mode = 3
@@ -27,6 +28,60 @@ size_flags_horizontal = 3
 [node name="HSeparator2" type="HSeparator" parent="HBox"]
 layout_mode = 2
 
-[node name="Panel2" type="Panel" parent="HBox"]
+[node name="ResourceEntrySettings" type="VBoxContainer" parent="HBox"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.5
+script = ExtResource("3_ne4bt")
+
+[node name="Grid" type="GridContainer" parent="HBox/ResourceEntrySettings"]
+layout_mode = 2
+size_flags_horizontal = 3
+columns = 2
+
+[node name="Label" type="Label" parent="HBox/ResourceEntrySettings/Grid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+text = "Export?"
+
+[node name="ExportCheckBox" type="CheckBox" parent="HBox/ResourceEntrySettings/Grid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+
+[node name="Label2" type="Label" parent="HBox/ResourceEntrySettings/Grid"]
+layout_mode = 2
+text = "Name"
+
+[node name="NameLineEdit" type="LineEdit" parent="HBox/ResourceEntrySettings/Grid"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="HBox/ResourceEntrySettings/Grid"]
+layout_mode = 2
+text = "Preload?"
+
+[node name="PreloadCheckBox" type="CheckBox" parent="HBox/ResourceEntrySettings/Grid"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBox/ResourceEntrySettings"]
+layout_mode = 2
+text = "Preview:"
+horizontal_alignment = 1
+
+[node name="Preview" type="LineEdit" parent="HBox/ResourceEntrySettings"]
+layout_mode = 2
+alignment = 1
+editable = false
+
+[node name="AddButton" type="Button" parent="HBox/ResourceEntrySettings"]
+custom_minimum_size = Vector2(400, 150)
+layout_mode = 2
+size_flags_horizontal = 4
+disabled = true
+text = "Add to Resource Book"
+
+[node name="Message" type="Label" parent="HBox/ResourceEntrySettings"]
+layout_mode = 2
+horizontal_alignment = 1
