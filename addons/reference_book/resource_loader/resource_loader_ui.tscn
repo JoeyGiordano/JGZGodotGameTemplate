@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://bdtnblxdje0fq"]
 
-[ext_resource type="Texture2D" uid="uid://c1pjgpmaiy43m" path="res://addons/reference_book/Reload.svg" id="1_86on2"]
-[ext_resource type="Script" uid="uid://cqrymwntlikwq" path="res://addons/reference_book/resource_loader_ui.gd" id="1_tvsta"]
-[ext_resource type="Texture2D" uid="uid://b6n7jyqcya7q2" path="res://addons/reference_book/Load.svg" id="2_tvsta"]
-[ext_resource type="Script" uid="uid://cthjn8s1fdr8x" path="res://addons/reference_book/drop_panel.gd" id="3_0vliq"]
+[ext_resource type="Texture2D" uid="uid://c1pjgpmaiy43m" path="res://addons/reference_book/icons/Reload.svg" id="1_86on2"]
+[ext_resource type="Script" uid="uid://cqrymwntlikwq" path="res://addons/reference_book/resource_loader/resource_loader_ui.gd" id="1_tvsta"]
+[ext_resource type="Texture2D" uid="uid://b6n7jyqcya7q2" path="res://addons/reference_book/icons/Load.svg" id="2_tvsta"]
+[ext_resource type="Script" uid="uid://cthjn8s1fdr8x" path="res://addons/reference_book/resource_loader/drop_panel.gd" id="3_0vliq"]
 
 [node name="ResourceLoaderUI" type="HBoxContainer"]
 anchors_preset = 15
