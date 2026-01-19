@@ -6,17 +6,25 @@ extends Control
 
 var undo : EditorUndoRedoManager
 
+var script_path : String = "res://autoloads/Reference/Reference.gd"
+
 @onready var loader = $HBox/ResourceLoaderUI
 @onready var settings = $HBox/ResourceEntrySettings
+@onready var groups_menu = $HBox/ResourceEntrySettings/Grid/Button/GroupMenu
 
 func _ready() -> void:
 	# signal connections
 	loader.resource_loaded.connect(_on_resource_loaded)
 	loader.resource_cleared.connect(_on_resource_cleared)
 	settings.add_pressed.connect(_on_add_pressed)
+	groups_menu.about_to_popup.connect(_on_groups_menu_about_to_popup)
+	groups_menu.get_popup().index_pressed.connect(_on_group_selected)
 	
 	# undo redo
 	undo = EditorPlugin.new().get_undo_redo()
+	
+	# setup popup menu
+	_on_groups_menu_about_to_popup()
 
 func _on_resource_loaded(res : Resource) :
 	settings._on_resource_loaded(res)
@@ -25,28 +33,43 @@ func _on_resource_cleared() :
 	settings._on_resource_cleared()
 
 func _on_add_pressed(line : String) :
-	var path := "res://autoloads/Reference/Reference.gd"
 	var lines_to_insert := [ line ]
-	var result = insert_lines(path, "@export_group(\"Shell Scenes\")", lines_to_insert)
+	var group = groups_menu.text if groups_menu.text != "Select..." else groups_menu.get_popup().get_item_text(0)
+	print(group)
+	var insert_at = "@export_group(\"" + group + "\")"
+	var result = insert_lines(script_path, insert_at, lines_to_insert)
 	if result :
 		settings.send_message("Resource " + settings.target_res.resource_name + " added!", 5)
 		settings.reset()
 		loader._reset_resource()
-	
 
-#region Backend
+func _on_groups_menu_about_to_popup() :
+	#remove all items in menu
+	for i in range(0, groups_menu.get_popup().item_count) :
+		groups_menu.get_popup().remove_item(0)
+	#add all group names to the menu
+	var groups = scan_script_for_groups()
+	for group_name in groups :
+		groups_menu.get_popup().add_item(group_name)
+
+func _on_group_selected(index : int) :
+	groups_menu.text = groups_menu.get_popup().get_item_text(index)
 
 func insert_lines(path : String, line_to_insert_at : String, lines_to_insert := []) -> bool :
 	# example lines_to_insert: lines_to_insert = [ "var x : int = 0", "var y : String = \"test\"", "var z : int = 10" ]
 	
-	# access the script file text
-	if not FileAccess.file_exists(path):
-		push_error("Script not found: " + path)
-		return false
+	#get text from file
+	var text = get_file_text(path)
+	if text == "ERROR" : return false
 	
-	var file := FileAccess.open(path, FileAccess.READ)
-	var text := file.get_as_text()
-	file.close()
+	## access the script file text
+	#if not FileAccess.file_exists(path):
+		#push_error("Script not found: " + path)
+		#return false
+	#
+	#var file := FileAccess.open(path, FileAccess.READ)
+	#var text := file.get_as_text()
+	#file.close()
 	
 	# prevent vars that already exist in the script from being duplicated
 	for line in lines_to_insert:
@@ -58,13 +81,25 @@ func insert_lines(path : String, line_to_insert_at : String, lines_to_insert := 
 	# parse the script file text and insert the lines at the desired position
 	var insert_index = -1
 	var lines := text.split("\n")
+	var group_found = false
+	#find the insertion index
 	for i in range(lines.size()) :
-		if lines[i] == line_to_insert_at :
-			insert_index = i+1
+		if group_found :
+			#find first empty line at end of group
+			if lines[i].strip_edges() == "" : #is the line just whitespace
+				insert_index = i
+				break
+		else :
+			#find beginning of group
+			if lines[i] == line_to_insert_at :
+				insert_index = i+1
+				group_found = true
 	if insert_index == -1 :
 		push_error("Insertion line not found: " + line_to_insert_at)
 		insert_index = 0
+	insert_index = min(insert_index, lines.size()-1) #bounds
 	
+	#insert the new lines
 	var new_lines := lines.duplicate()
 	for i in range(lines_to_insert.size()):
 		new_lines.insert(insert_index + i, lines_to_insert[i])
@@ -160,5 +195,32 @@ func _write_script(path: String, text: String):
 	
 	#endregion
 
+func scan_script_for_groups() -> Array[String] :
+	#get script file text
+	var text = get_file_text(script_path)
+	if text == "ERROR" : return []
+	
+	
+	# parse the script file text for group headers
+	var groups : Array[String] = []
+	var lines := text.split("\n")
+	for line in lines :
+		if line.strip_edges().begins_with("@export_group(\"") :
+			var group_name = line.substr(15)
+			var quote_pos = group_name.find("\"")
+			group_name = group_name.substr(0, quote_pos)
+			groups.append(group_name)
+	
+	return groups
 
-#endregion
+func get_file_text(path : String) -> String :
+	# access the script file text
+	if not FileAccess.file_exists(path):
+		push_error("Script not found: " + path)
+		return "ERROR"
+	
+	var file := FileAccess.open(path, FileAccess.READ)
+	var text := file.get_as_text()
+	file.close()
+	
+	return text

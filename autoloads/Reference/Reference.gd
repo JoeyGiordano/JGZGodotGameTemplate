@@ -17,12 +17,51 @@ class_name _Reference
 ## Tip: If you have the string name of a property you can get its value using the get() function.
 ##   For example, Ref.get("level_0") is the same thing as Ref.level_0
 
-var idea
 
 @export_category("Scenes")
 @export_group("Shell Scenes")
-@export var x : PackedScene
+var fs : String = "uid://cby3remb66qik"
+var dafs : String = "uid://cby3remb66qik"
+var asdfadsfasdafs : String = "uid://cby3remb66qik"
+var sdfa : String = "uid://cby3remb66qik"
+var adsfas : PackedScene = preload("uid://cby3remb66qik")
 
 
 
-#temp
+
+
+@export_group("Testq")
+
+
+
+
+
+@export_group("Blasrh")
+
+
+
+
+
+@export_group("asdfa")
+
+
+
+
+
+@export_group("dfasdfas")
+@export var main_menu : PackedScene = preload("uid://dd71ltua8vpqj")
+@export var instructions : PackedScene = preload("uid://cltaghkxnswjy")
+@export var game_over : PackedScene = preload("uid://cby3remb66qik")
+
+
+
+
+
+@export_group("sdfasdf")
+@export var fsdg : String = "uid://bhuom4ivjp0be"
+
+
+
+
+
+@export_group("dasasdfasdf")

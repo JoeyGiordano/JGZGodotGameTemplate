@@ -61,6 +61,7 @@ func _reset_resource() :
 	$ResetButton.hide()
 	$ResDrop/AspRatioBox/PreviewTextRect.texture = null
 	resource_cleared.emit()
+	$ResDrop/Button/TextureName.text = ""
 
 func _set_res_from_path(path: String) :
 	var res := ResourceLoader.load(path)
@@ -73,4 +74,7 @@ func _set_res_from_path(path: String) :
 		resource_loaded.emit(res)
 
 func _on_preview_ready(path, preview_texture, preview_thumbnail_texture, userdata):
-	$ResDrop/AspRatioBox/PreviewTextRect.texture = preview_texture
+	if preview_texture :
+		$ResDrop/AspRatioBox/PreviewTextRect.texture = preview_texture
+	else :
+		$ResDrop/Button/TextureName.text = target_res.resource_name

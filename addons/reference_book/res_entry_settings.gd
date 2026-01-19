@@ -46,6 +46,7 @@ func _update_preview() :
 	$Preview.text = _convert_to_line()
 
 func _convert_to_line() -> String :
+	if !target_res : return ""
 	var _export = "@export " if export else ""
 	var _name = override_name if override_name else target_res.resource_name
 	var line = "%svar %s : " % [_export,_name]
@@ -84,6 +85,7 @@ func send_message(text : String, time : float) :
 
 func reset() :
 	$Grid/NameLineEdit.placeholder_text = ""
+	$Grid/NameLineEdit.text = ""
 	$Preview.text = ""
 	target_res = null
 	target_res_uid = ""
