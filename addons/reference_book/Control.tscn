@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://coej43ns660jy"]
+
+[ext_resource type="PackedScene" uid="uid://bdtnblxdje0fq" path="res://addons/reference_book/resource_loader_ui.tscn" id="1_7qxgl"]
+[ext_resource type="Script" uid="uid://bvhng1cypqtt5" path="res://addons/reference_book/reference_book_ui.gd" id="1_b1jp1"]
+
+[node name="ReferenceBookUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_b1jp1")
+
+[node name="HBox" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ResourceLoaderUI" parent="HBox" instance=ExtResource("1_7qxgl")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HSeparator2" type="HSeparator" parent="HBox"]
+layout_mode = 2
+
+[node name="Panel2" type="Panel" parent="HBox"]
+layout_mode = 2
+size_flags_horizontal = 3

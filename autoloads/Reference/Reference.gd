@@ -19,3 +19,4 @@ class_name _Reference
 
 @export_category("Scenes")
 @export_group("Shell Scenes")
+@export var x : PackedScene

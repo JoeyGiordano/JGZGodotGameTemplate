@@ -39,12 +39,6 @@ func _ready():
 	GAME_CONTAINER = self
 	pass
 
-func _process(delta):
-	#quit if Q pressed - DEBUG
-	if Input.is_key_pressed(KEY_Q) :
-		get_tree().quit()
-	pass
-
 func switch_to_scene(scene_name : String) :
 	#switch to a scene with the name scene_name
 	switch_active_scene(get_scene(scene_name))
