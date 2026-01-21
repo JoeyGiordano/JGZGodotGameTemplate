@@ -1,8 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dimsdmfqcpvlg"]
+[gd_scene load_steps=2 format=3 uid="uid://dimsdmfqcpvlg"]
 
 [ext_resource type="Script" uid="uid://ciyveyuo2ihr0" path="res://autoloads/Reference/Reference.gd" id="1_pmmna"]
-[ext_resource type="PackedScene" uid="uid://dd71ltua8vpqj" path="res://scenes/statics/main_menu.tscn" id="2_ak40a"]
 
 [node name="Reference" type="Node"]
 script = ExtResource("1_pmmna")
-x = ExtResource("2_ak40a")

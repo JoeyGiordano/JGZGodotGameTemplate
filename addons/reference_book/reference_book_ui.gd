@@ -6,13 +6,12 @@ extends Control
 
 var undo : EditorUndoRedoManager
 
-var script_path : String = "res://autoloads/Reference/Reference.gd"
+@onready var loader = $HBox/VBox/MarginBox/ResourceLoaderUI
+@onready var settings = $HBox/MarginBox/ResourceEntrySettings
+@onready var groups_menu = $HBox/MarginBox/ResourceEntrySettings/Grid/Button/GroupMenu
+@onready var path_option = $HBox/VBox/MarginBox2/OptionButton
 
-@onready var loader = $HBox/ResourceLoaderUI
-@onready var settings = $HBox/ResourceEntrySettings
-@onready var groups_menu = $HBox/ResourceEntrySettings/Grid/Button/GroupMenu
-
-func _ready() -> void:
+func _ready() -> void :
 	# signal connections
 	loader.resource_loaded.connect(_on_resource_loaded)
 	loader.resource_cleared.connect(_on_resource_cleared)
@@ -37,6 +36,7 @@ func _on_add_pressed(line : String) :
 	var group = groups_menu.text if groups_menu.text != "Select..." else groups_menu.get_popup().get_item_text(0)
 	print(group)
 	var insert_at = "@export_group(\"" + group + "\")"
+	var script_path = path_option.text
 	var result = insert_lines(script_path, insert_at, lines_to_insert)
 	if result :
 		settings.send_message("Resource " + settings.target_res.resource_name + " added!", 5)
@@ -61,15 +61,6 @@ func insert_lines(path : String, line_to_insert_at : String, lines_to_insert := 
 	#get text from file
 	var text = get_file_text(path)
 	if text == "ERROR" : return false
-	
-	## access the script file text
-	#if not FileAccess.file_exists(path):
-		#push_error("Script not found: " + path)
-		#return false
-	#
-	#var file := FileAccess.open(path, FileAccess.READ)
-	#var text := file.get_as_text()
-	#file.close()
 	
 	# prevent vars that already exist in the script from being duplicated
 	for line in lines_to_insert:
@@ -197,7 +188,7 @@ func _write_script(path: String, text: String):
 
 func scan_script_for_groups() -> Array[String] :
 	#get script file text
-	var text = get_file_text(script_path)
+	var text = get_file_text(path_option.text)
 	if text == "ERROR" : return []
 	
 	

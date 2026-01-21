@@ -21,61 +21,107 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ResourceLoaderUI" parent="HBox" instance=ExtResource("1_7qxgl")]
+[node name="VBox" type="VBoxContainer" parent="HBox"]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="HBox/VBox"]
+layout_mode = 2
+size_flags_vertical = 10
+text = "Choose a resource."
+
+[node name="MarginBox" type="MarginContainer" parent="HBox/VBox"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="ResourceLoaderUI" parent="HBox/VBox/MarginBox" instance=ExtResource("1_7qxgl")]
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="Label2" type="Label" parent="HBox/VBox"]
+layout_mode = 2
+size_flags_vertical = 10
+text = "Choose a reference book file.
+(To add paths, go to Project>Tools>ReferenceBook)"
+
+[node name="MarginBox2" type="MarginContainer" parent="HBox/VBox"]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="OptionButton" type="OptionButton" parent="HBox/VBox/MarginBox2"]
+layout_mode = 2
+selected = 0
+item_count = 1
+popup/item_0/text = "res://autoloads/Reference/Reference.gd"
+popup/item_0/id = 0
 
 [node name="VSeparator" type="VSeparator" parent="HBox"]
 layout_mode = 2
 
-[node name="ResourceEntrySettings" type="VBoxContainer" parent="HBox"]
+[node name="MarginBox" type="MarginContainer" parent="HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.5
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="ResourceEntrySettings" type="VBoxContainer" parent="HBox/MarginBox"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 1.5
 script = ExtResource("3_ne4bt")
 
-[node name="Grid" type="GridContainer" parent="HBox/ResourceEntrySettings"]
+[node name="Grid" type="GridContainer" parent="HBox/MarginBox/ResourceEntrySettings"]
 layout_mode = 2
 size_flags_horizontal = 3
 columns = 2
 
-[node name="Label" type="Label" parent="HBox/ResourceEntrySettings/Grid"]
+[node name="Label" type="Label" parent="HBox/MarginBox/ResourceEntrySettings/Grid"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 8
 text = "Export?"
 
-[node name="ExportCheckBox" type="CheckBox" parent="HBox/ResourceEntrySettings/Grid"]
+[node name="ExportCheckBox" type="CheckBox" parent="HBox/MarginBox/ResourceEntrySettings/Grid"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 8
 
-[node name="Label2" type="Label" parent="HBox/ResourceEntrySettings/Grid"]
+[node name="Label2" type="Label" parent="HBox/MarginBox/ResourceEntrySettings/Grid"]
 layout_mode = 2
 text = "Name"
 
-[node name="NameLineEdit" type="LineEdit" parent="HBox/ResourceEntrySettings/Grid"]
+[node name="NameLineEdit" type="LineEdit" parent="HBox/MarginBox/ResourceEntrySettings/Grid"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 
-[node name="Label3" type="Label" parent="HBox/ResourceEntrySettings/Grid"]
+[node name="Label3" type="Label" parent="HBox/MarginBox/ResourceEntrySettings/Grid"]
 layout_mode = 2
 text = "Preload?"
 
-[node name="PreloadCheckBox" type="CheckBox" parent="HBox/ResourceEntrySettings/Grid"]
+[node name="PreloadCheckBox" type="CheckBox" parent="HBox/MarginBox/ResourceEntrySettings/Grid"]
 layout_mode = 2
 
-[node name="Label4" type="Label" parent="HBox/ResourceEntrySettings/Grid"]
+[node name="Label4" type="Label" parent="HBox/MarginBox/ResourceEntrySettings/Grid"]
 layout_mode = 2
 text = "Group"
 
-[node name="Button" type="Button" parent="HBox/ResourceEntrySettings/Grid"]
+[node name="Button" type="Button" parent="HBox/MarginBox/ResourceEntrySettings/Grid"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 text = " "
 
-[node name="GroupMenu" type="MenuButton" parent="HBox/ResourceEntrySettings/Grid/Button"]
+[node name="GroupMenu" type="MenuButton" parent="HBox/MarginBox/ResourceEntrySettings/Grid/Button"]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -104,23 +150,23 @@ popup/item_5/id = 5
 popup/item_6/text = "dasasdfasdf"
 popup/item_6/id = 6
 
-[node name="Label" type="Label" parent="HBox/ResourceEntrySettings"]
+[node name="Label" type="Label" parent="HBox/MarginBox/ResourceEntrySettings"]
 layout_mode = 2
 text = "Preview:"
 horizontal_alignment = 1
 
-[node name="Preview" type="LineEdit" parent="HBox/ResourceEntrySettings"]
+[node name="Preview" type="LineEdit" parent="HBox/MarginBox/ResourceEntrySettings"]
 layout_mode = 2
 alignment = 1
 editable = false
 
-[node name="AddButton" type="Button" parent="HBox/ResourceEntrySettings"]
+[node name="AddButton" type="Button" parent="HBox/MarginBox/ResourceEntrySettings"]
 custom_minimum_size = Vector2(400, 150)
 layout_mode = 2
 size_flags_horizontal = 4
 disabled = true
 text = "Add to Reference Book"
 
-[node name="Message" type="Label" parent="HBox/ResourceEntrySettings"]
+[node name="Message" type="Label" parent="HBox/MarginBox/ResourceEntrySettings"]
 layout_mode = 2
 horizontal_alignment = 1

@@ -61,6 +61,7 @@ func snake_to_title_case(snake_case_str: String) -> String:
 "
 
 [node name="Window" type="Window"]
+oversampling_override = 1.0
 title = "Plugin Restarter"
 position = Vector2i(0, 36)
 size = Vector2i(512, 256)
