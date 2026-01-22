@@ -1,0 +1,129 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxa1svc5qgg5b"]
+
+[ext_resource type="Script" uid="uid://dj61l2scwl7jk" path="res://shell_scenes/player_settings/player_settings.gd" id="1_gdq6l"]
+[ext_resource type="Script" uid="uid://bj5ye56nvni8h" path="res://shell_scenes/scene_switch_button.gd" id="1_h1a8k"]
+
+[node name="PlayerSettings" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_gdq6l")
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 26.0
+offset_right = 125.0
+offset_bottom = 75.0
+text = "Back"
+script = ExtResource("1_h1a8k")
+switch_to = "main_menu"
+
+[node name="TEMP" type="Label" parent="."]
+layout_mode = 0
+offset_left = 518.0
+offset_top = 112.0
+offset_right = 682.0
+offset_bottom = 161.0
+text = "Player Settings"
+horizontal_alignment = 1
+
+[node name="AddPlayerButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 412.0
+offset_top = 455.0
+offset_right = 584.0
+offset_bottom = 500.0
+text = " + Add Player + "
+
+[node name="MessageLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 498.0
+offset_top = 407.0
+offset_right = 703.0
+offset_bottom = 435.0
+horizontal_alignment = 1
+
+[node name="RemovePlayerButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 611.0
+offset_top = 454.0
+offset_right = 786.0
+offset_bottom = 497.0
+text = " - Remove Player - "
+
+[node name="PlayButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 419.0
+offset_top = 542.0
+offset_right = 779.0
+offset_bottom = 606.0
+text = "Play!"
+script = ExtResource("1_h1a8k")
+switch_to = "ready_up"
+
+[node name="PlayerGraphic1" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="PlayerGraphic1"]
+layout_mode = 0
+offset_left = 573.0
+offset_top = 271.0
+offset_right = 613.0
+offset_bottom = 311.0
+color = Color(1, 0, 0, 1)
+
+[node name="PlayerGraphic2" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="PlayerGraphic2"]
+layout_mode = 0
+offset_left = 771.0
+offset_top = 271.0
+offset_right = 811.0
+offset_bottom = 311.0
+color = Color(0, 1, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="PlayerGraphic2"]
+layout_mode = 0
+offset_left = 365.0
+offset_top = 275.0
+offset_right = 405.0
+offset_bottom = 315.0
+color = Color(1, 0, 0, 1)
+
+[node name="PlayerGraphic3" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="PlayerGraphic3"]
+layout_mode = 0
+offset_left = 945.0
+offset_top = 266.0
+offset_right = 985.0
+offset_bottom = 306.0
+color = Color(0, 0, 1, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="PlayerGraphic3"]
+layout_mode = 0
+offset_left = 574.0
+offset_top = 270.0
+offset_right = 614.0
+offset_bottom = 310.0
+color = Color(0, 1, 0, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="PlayerGraphic3"]
+layout_mode = 0
+offset_left = 168.0
+offset_top = 277.0
+offset_right = 208.0
+offset_bottom = 317.0
+color = Color(1, 0, 0, 1)

@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://d176ir76ayfrc"]
+
+[ext_resource type="Script" uid="uid://bj5ye56nvni8h" path="res://shell_scenes/scene_switch_button.gd" id="1_2aema"]
+
+[node name="StartupCutscene" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="CutSceneOverButton" type="Button" parent="."]
+offset_left = 517.0
+offset_top = 407.0
+offset_right = 645.0
+offset_bottom = 438.0
+text = "[CutSceneOver]"
+script = ExtResource("1_2aema")
+switch_to = "main_menu"
+quick_key = true
+
+[node name="THIS SCENE IS TEMP" type="Label" parent="."]
+offset_left = 503.0
+offset_top = 136.0
+offset_right = 725.0
+offset_bottom = 202.0
+text = "Pre Game Cut Scene"

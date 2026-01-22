@@ -1,0 +1,91 @@
+[gd_scene load_steps=4 format=3 uid="uid://bodgu2jrmx8ps"]
+
+[ext_resource type="PackedScene" uid="uid://c4p5w7pfj3smp" path="res://game/wall/wall.tscn" id="1_hri27"]
+[ext_resource type="Script" uid="uid://bciuldxspt6ul" path="res://game/grid/grid.gd" id="2_7lf0s"]
+[ext_resource type="Script" uid="uid://dm5taoqysx28v" path="res://game/grid/snap_to_grid.gd" id="4_ccxi4"]
+
+[node name="TestLevel1" type="Node"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Grid" type="Node" parent="."]
+script = ExtResource("2_7lf0s")
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="Border" type="Node2D" parent="Walls"]
+
+[node name="Bottom" parent="Walls/Border" node_paths=PackedStringArray("grid") instance=ExtResource("1_hri27")]
+position = Vector2(0, 320)
+horizontal = true
+length = 1171.0
+width = 51.0
+grid = NodePath("../../../Grid")
+grid_pos = Vector2(0, 8)
+grid_length = 28
+
+[node name="Right" parent="Walls/Border" node_paths=PackedStringArray("grid") instance=ExtResource("1_hri27")]
+position = Vector2(560, 0)
+length = 690.0
+width = 50.0
+grid = NodePath("../../../Grid")
+grid_pos = Vector2(14, 0)
+grid_length = 16
+
+[node name="Left" parent="Walls/Border" node_paths=PackedStringArray("grid") instance=ExtResource("1_hri27")]
+position = Vector2(-560, 0)
+length = 690.0
+width = 50.0
+grid = NodePath("../../../Grid")
+grid_pos = Vector2(-14, 0)
+grid_length = 16
+
+[node name="Top" parent="Walls/Border" node_paths=PackedStringArray("grid") instance=ExtResource("1_hri27")]
+position = Vector2(-20, -320)
+horizontal = true
+length = 1130.0
+width = 50.0
+grid = NodePath("../../../Grid")
+grid_pos = Vector2(-0.5, -8)
+grid_length = 27
+
+[node name="Wall" parent="Walls" node_paths=PackedStringArray("grid") instance=ExtResource("1_hri27")]
+position = Vector2(-20, 120)
+horizontal = true
+length = 368.0
+grid = NodePath("../../Grid")
+grid_pos = Vector2(-0.5, 3)
+grid_length = 9
+
+[node name="Wall2" parent="Walls" node_paths=PackedStringArray("grid") instance=ExtResource("1_hri27")]
+position = Vector2(-320, -180)
+length = 48.0
+grid = NodePath("../../Grid")
+grid_pos = Vector2(-8, -4.5)
+
+[node name="Wall3" parent="Walls" node_paths=PackedStringArray("grid") instance=ExtResource("1_hri27")]
+position = Vector2(240, -100)
+length = 48.0
+grid = NodePath("../../Grid")
+grid_pos = Vector2(6, -2.5)
+
+[node name="SpawnPoints" type="Node2D" parent="."]
+
+[node name="Node2D" type="Node2D" parent="SpawnPoints" node_paths=PackedStringArray("grid")]
+position = Vector2(-480, 0)
+script = ExtResource("4_ccxi4")
+grid = NodePath("../../Grid")
+grid_pos = Vector2(-12, 0)
+
+[node name="Node2D2" type="Node2D" parent="SpawnPoints" node_paths=PackedStringArray("grid")]
+position = Vector2(480, 0)
+rotation = 3.14159
+script = ExtResource("4_ccxi4")
+grid = NodePath("../../Grid")
+grid_pos = Vector2(12, 0)
+
+[node name="Node2D3" type="Node2D" parent="SpawnPoints"]
+position = Vector2(-2, 226)
+
+[node name="Node2D4" type="Node2D" parent="SpawnPoints"]
+position = Vector2(0, -224)

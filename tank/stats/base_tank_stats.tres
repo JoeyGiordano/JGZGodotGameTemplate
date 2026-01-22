@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="StatBoost" load_steps=2 format=3 uid="uid://c3hg6budcbmhm"]
+
+[ext_resource type="Script" uid="uid://8jp733sld27f" path="res://tank/stats/stat_boost.gd" id="1_mybnb"]
+
+[resource]
+script = ExtResource("1_mybnb")
+forward_speed = 100.0
+backward_speed = 70.0
+rotation_speed = 4.0
+linear_damp_factor = 0.2
+angular_damp_factor = 4.2
+bullet_count = 5
+bullet_lifetime = 7.0
+bullet_speed = 125.0
+func_names = Array[String]([])
+metadata/_custom_type_script = "uid://8jp733sld27f"

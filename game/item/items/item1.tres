@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=3 format=3 uid="uid://b8ve24bo453do"]
+
+[ext_resource type="Script" uid="uid://cl7ga7teyrqpf" path="res://game/item/item_resource.gd" id="1_21k6j"]
+[ext_resource type="Resource" uid="uid://75s0p38ju7ew" path="res://tank/stats/stat_boosts/boost1.tres" id="2_a4jme"]
+
+[resource]
+script = ExtResource("1_21k6j")
+name = "itemx1"
+description = "tttt"
+stat_boost = ExtResource("2_a4jme")
+color = Color(0.364706, 0.760784, 0.996078, 1)
+metadata/_custom_type_script = "uid://cl7ga7teyrqpf"

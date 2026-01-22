@@ -12,23 +12,33 @@ class_name _Reference
 ## Benefits:
 ##   1. Easy access
 ##   2. Reduces number of times each resource is loaded
-##   3. Independent of File System oranization (uses uids)
+##   3. Independent of File System oranization (uses exports instead of preload())
 
 ## Tip: If you have the string name of a property you can get its value using the get() function.
-##   For example, Ref.get("level_0") is the thing as Ref.level_0
-
-## Tip: To see what resource is associated with the UID, you can control click it or hover over it and choose open or show in file system
-
+##   For example, Ref.get("level_0") is the same thing as Ref.level_0
 
 @export_category("Scenes")
 @export_group("Shell Scenes")
-var fs : String = "uid://cby3remb66qik"
+@export var startup : PackedScene
+@export var main_menu : PackedScene
+@export var instructions : PackedScene
+@export var credits : PackedScene
+@export var player_settings : PackedScene
+@export var ready_up : PackedScene
+@export var loading : PackedScene
+@export var game_shell_scene : PackedScene
+@export var victory : PackedScene
 
+@export_group("Level Scenes")
+@export var test_level_0 : PackedScene
+@export var test_level_1 : PackedScene
+@export var test_level_2 : PackedScene
+@export var test_level_3 : PackedScene
 
+@export_group("Prefabs")
+@export var tank_scene : PackedScene
+@export var basic_bullet : PackedScene
 
-@export_group("Test")
-
-
-
-@export_group("Blarsh")
-var help : String = "uid://6mpdvaa2eqgm"
+@export_category("Other")
+@export_group("Tank Starting Stats")
+@export var base_tank_stats : StatBoost

@@ -1,0 +1,69 @@
+[gd_scene load_steps=2 format=3 uid="uid://dd71ltua8vpqj"]
+
+[ext_resource type="Script" uid="uid://bj5ye56nvni8h" path="res://shell_scenes/scene_switch_button.gd" id="1_u5tdt"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1152.0
+offset_top = 648.0
+offset_right = 1546.0
+offset_bottom = 671.0
+
+[node name="PlayButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 386.0
+offset_top = 320.0
+offset_right = 756.0
+offset_bottom = 395.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Play"
+script = ExtResource("1_u5tdt")
+switch_to = "player_settings"
+quick_key = true
+
+[node name="CreditsButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 388.0
+offset_top = 519.0
+offset_right = 758.0
+offset_bottom = 569.0
+text = "Credits"
+script = ExtResource("1_u5tdt")
+switch_to = "credits"
+
+[node name="InstructionsButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 386.0
+offset_top = 420.0
+offset_right = 756.0
+offset_bottom = 470.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Instructions"
+script = ExtResource("1_u5tdt")
+switch_to = "instructions"
+
+[node name="TEMP" type="Label" parent="."]
+layout_mode = 0
+offset_left = 482.0
+offset_top = 164.0
+offset_right = 646.0
+offset_bottom = 213.0
+text = "Game Title
+Main Menu"
+horizontal_alignment = 1
