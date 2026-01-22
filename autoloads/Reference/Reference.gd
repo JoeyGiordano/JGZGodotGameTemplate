@@ -23,22 +23,12 @@ class_name _Reference
 @export var main_menu : PackedScene
 @export var instructions : PackedScene
 @export var credits : PackedScene
-@export var player_settings : PackedScene
-@export var ready_up : PackedScene
 @export var loading : PackedScene
 @export var game_shell_scene : PackedScene
 @export var victory : PackedScene
 
-@export_group("Level Scenes")
-@export var test_level_0 : PackedScene
-@export var test_level_1 : PackedScene
-@export var test_level_2 : PackedScene
-@export var test_level_3 : PackedScene
-
 @export_group("Prefabs")
-@export var tank_scene : PackedScene
-@export var basic_bullet : PackedScene
+
 
 @export_category("Other")
 @export_group("Tank Starting Stats")
-@export var base_tank_stats : StatBoost

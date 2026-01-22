@@ -10,18 +10,6 @@ func _process(_delta):
 	#quit if DEBUG_QUIT key pressed - DEBUG
 	if Input.is_action_pressed("DEBUG_QUIT") : get_tree().quit()
 
-## Misc ##
-
-func print_all_tank_ids() :
-	if Input.is_action_just_pressed("DEBUG_COMMAND") :
-		var s : String = "Player Tank IDs: "
-		for t : Tank in TankManager.get_player_tanks() :
-			s = s + str(t.id) + " "
-		print(s)
-		s = "NPC Tank IDs: "
-		for t : Tank in TankManager.get_npc_tanks() :
-			s = s + str(t.id) + " "
-
 ## Signal viewing ##
 
 func print_node_signal_connections(node : Node, do_print : bool = true) -> String :

@@ -10,9 +10,9 @@ config_version=5
 
 [application]
 
-config/name="TankTrouble2"
+config/name="JGZGodotGameTemplate"
 run/main_scene="res://game_container/game_container.tscn"
-config/features=PackedStringArray("4.4", "GL Compatibility")
+config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
@@ -22,10 +22,7 @@ ShellSceneManager="*res://autoloads/ShellSceneManager.gd"
 Global="*res://autoloads/Global.gd"
 Utility="*res://autoloads/Utility.gd"
 Ref="*res://autoloads/Reference/Reference.tscn"
-LevelLoader="*res://autoloads/LevelLoader.gd"
 Debug="*res://autoloads/Debug.gd"
-PlayerManager="*res://autoloads/PlayerManager.gd"
-TankManager="*res://autoloads/TankManager.gd"
 GameInfo="*res://autoloads/GameInfo.gd"
 
 [display]

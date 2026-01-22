@@ -134,21 +134,15 @@ grow_vertical = 2
 text = "Select..."
 flat = false
 alignment = 0
-item_count = 7
+item_count = 4
 popup/item_0/text = "Shell Scenes"
 popup/item_0/id = 0
-popup/item_1/text = "Testq"
+popup/item_1/text = "Level Scenes"
 popup/item_1/id = 1
-popup/item_2/text = "Blasrh"
+popup/item_2/text = "Prefabs"
 popup/item_2/id = 2
-popup/item_3/text = "asdfa"
+popup/item_3/text = "Tank Starting Stats"
 popup/item_3/id = 3
-popup/item_4/text = "dfasdfas"
-popup/item_4/id = 4
-popup/item_5/text = "sdfasdf"
-popup/item_5/id = 5
-popup/item_6/text = "dasasdfasdf"
-popup/item_6/id = 6
 
 [node name="Label" type="Label" parent="HBox/MarginBox/ResourceEntrySettings"]
 layout_mode = 2
