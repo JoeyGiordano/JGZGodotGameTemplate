@@ -30,6 +30,10 @@ GameInfo="*res://autoloads/GameInfo.gd"
 window/size/mode=2
 window/stretch/mode="canvas_items"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/reference_book/plugin.cfg")
+
 [global_group]
 
 tank_hitbox=""
