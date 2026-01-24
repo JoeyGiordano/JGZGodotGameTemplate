@@ -1,0 +1,20 @@
+[gd_scene load_steps=9 format=3 uid="uid://dimsdmfqcpvlg"]
+
+[ext_resource type="Script" uid="uid://ciyveyuo2ihr0" path="res://autoloads/Reference/Reference.gd" id="1_pmmna"]
+[ext_resource type="PackedScene" uid="uid://d176ir76ayfrc" path="res://shell_scenes/startup.tscn" id="2_qlxkd"]
+[ext_resource type="PackedScene" uid="uid://dd71ltua8vpqj" path="res://shell_scenes/main_menu.tscn" id="3_lrfi7"]
+[ext_resource type="PackedScene" uid="uid://cltaghkxnswjy" path="res://shell_scenes/instructions.tscn" id="4_5tl84"]
+[ext_resource type="PackedScene" uid="uid://bhuom4ivjp0be" path="res://shell_scenes/credits.tscn" id="5_6y62y"]
+[ext_resource type="PackedScene" uid="uid://cjn6ovy0vud68" path="res://shell_scenes/loading.tscn" id="7_xedrw"]
+[ext_resource type="PackedScene" uid="uid://cyhkbbhd03a2w" path="res://shell_scenes/game_shell_scene.tscn" id="8_evbjy"]
+[ext_resource type="PackedScene" uid="uid://cby3remb66qik" path="res://shell_scenes/victory.tscn" id="8_tqnje"]
+
+[node name="Reference" type="Node"]
+script = ExtResource("1_pmmna")
+startup = ExtResource("2_qlxkd")
+main_menu = ExtResource("3_lrfi7")
+instructions = ExtResource("4_5tl84")
+credits = ExtResource("5_6y62y")
+loading = ExtResource("7_xedrw")
+game_shell_scene = ExtResource("8_evbjy")
+victory = ExtResource("8_tqnje")

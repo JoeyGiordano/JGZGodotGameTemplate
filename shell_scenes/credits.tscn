@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://bhuom4ivjp0be"]
+
+[ext_resource type="Script" uid="uid://bj5ye56nvni8h" path="res://shell_scenes/scene_switch_button.gd" id="1_lxpdn"]
+
+[node name="Credits" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 388.0
+offset_top = 520.0
+offset_right = 750.0
+offset_bottom = 567.0
+text = "Back"
+script = ExtResource("1_lxpdn")
+switch_to = "main_menu"
+allow_quick_key = true
+
+[node name="TEMP" type="Label" parent="."]
+layout_mode = 0
+offset_left = 534.0
+offset_top = 113.0
+offset_right = 698.0
+offset_bottom = 162.0
+text = "Credits"

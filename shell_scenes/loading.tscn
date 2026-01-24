@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cjn6ovy0vud68"]
+
+[node name="Loading" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1156.0
+offset_bottom = 652.0
+color = Color(0.458824, 0.764706, 0.976471, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 528.0
+offset_top = 260.0
+offset_right = 590.0
+offset_bottom = 283.0
+text = "Loading"
