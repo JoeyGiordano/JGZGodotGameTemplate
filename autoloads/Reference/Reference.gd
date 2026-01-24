@@ -4,7 +4,6 @@ class_name _Reference
 ### AUTOLOAD
 
 ### Ref ###
-
 ## This autoload is keeps all resources together in one place.
 ## Edit which resources are assigned to the exports in the reference autoload scene (res/autoloads/reference/Reference.tscn).
 ## The autoload name is Ref not Reference!!!! (For brevity)
@@ -15,7 +14,7 @@ class_name _Reference
 ##   3. Independent of File System oranization (uses exports instead of preload())
 
 ## Tip: If you have the string name of a property you can get its value using the get() function.
-##   For example, Ref.get("level_0") is the same thing as Ref.level_0
+## For example, Ref.get("level_0") is the same thing as Ref.level_0
 
 @export_category("Scenes")
 @export_group("Shell Scenes")
@@ -31,4 +30,4 @@ class_name _Reference
 
 
 @export_category("Other")
-@export_group("Tank Starting Stats")
+@export_group("Stats")

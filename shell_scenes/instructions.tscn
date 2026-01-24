@@ -7,6 +7,7 @@ layout_mode = 3
 anchors_preset = 0
 
 [node name="BackButton" type="Button" parent="."]
+layout_mode = 0
 offset_left = 439.0
 offset_top = 522.0
 offset_right = 747.0
@@ -14,8 +15,10 @@ offset_bottom = 574.0
 text = "Back"
 script = ExtResource("1_4nwng")
 switch_to = "main_menu"
+allow_quick_key = true
 
 [node name="TEMP" type="Label" parent="."]
+layout_mode = 0
 offset_left = 538.0
 offset_top = 142.0
 offset_right = 702.0

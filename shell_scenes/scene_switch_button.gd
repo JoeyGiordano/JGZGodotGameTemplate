@@ -1,7 +1,7 @@
 extends Button
 
 ## Add this script to a button to make it automagically switch shell scenes / overlay panels
-## Can do:
+## What it can do:
 ##  - Switch shell scenes
 ##  - Open overlay panel
 ##  - Switch overlay panels
@@ -9,21 +9,26 @@ extends Button
 ##  - Close overlay panel when switching shell scenes
 ##  - Simulate button press with keyboard input
 
-@export var just_close_overlay_panel : bool # when true, pressing the button will close the current overlay panel and do nothing else (ignoring all other export variables)
-@export var switch_to : String # name of the scene that this button will switch to (shell scene or overlay panel scene)
-@export var is_overlay_panel : bool # switch_to is a shell scene -> set this to false, switch_to is an overlay panel -> set this to true
-@export var also_close_overlay_panel : bool = true # when true, closes the current overlay panel when switching between shell scenes (if is_overlay_panel is set to true, this will do nothing) 
-@export var 	quick_key : bool #debug, allows faster skipping around, simulate pressing the button by pressing a "1", should only be on for one button per scene
+## When true, pressing the button will close the current overlay panel and do nothing else (it will ignore all other export variables).
+@export var just_close_overlay_panel : bool
+## Name of the shell scene or overlay panel scene that this button will switch to (use the var name in Ref).
+@export var switch_to : String
+## If switch_to is a shell scene, set this to false. If switch_to is an overlay panel, set this to true.
+@export var is_overlay_panel : bool
+## When true, closes the current overlay panel when switching between shell scenes (if is_overlay_panel is set to true, this will do nothing). 
+@export var also_close_overlay_panel : bool = true
+## Debug. Allows faster skipping around, simulate pressing the button by pressing DEBUG_SKIP. This should only be on for one button per scene.
+@export var allow_quick_key : bool
 
 func _ready() :
-	#connect the button's pressed signal to on_pressed()
-	connect("pressed", on_pressed)
+	# connect the button's pressed signal to on_pressed()
+	connect("pressed", _on_pressed)
 
 func _process(_delta):
-	if quick_key && Input.is_action_just_pressed("DEBUG_SKIP"):
-		on_pressed()
+	if Debug.IS_DEBUG_ON() && allow_quick_key && Input.is_action_just_pressed("DEBUG_SKIP"):
+		_on_pressed()
 
-func on_pressed() :
+func _on_pressed() :
 	if just_close_overlay_panel :
 		# pressed in a shell scene w/o overlay panel -> does nothing
 		# pressed in a shell scene w/ overlay panel -> closes the overlay panel

@@ -15,6 +15,7 @@ offset_bottom = 567.0
 text = "Back"
 script = ExtResource("1_lxpdn")
 switch_to = "main_menu"
+allow_quick_key = true
 
 [node name="TEMP" type="Label" parent="."]
 layout_mode = 0

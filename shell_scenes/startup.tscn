@@ -7,6 +7,7 @@ layout_mode = 3
 anchors_preset = 0
 
 [node name="CutSceneOverButton" type="Button" parent="."]
+layout_mode = 0
 offset_left = 517.0
 offset_top = 407.0
 offset_right = 645.0
@@ -14,9 +15,10 @@ offset_bottom = 438.0
 text = "[CutSceneOver]"
 script = ExtResource("1_2aema")
 switch_to = "main_menu"
-quick_key = true
+allow_quick_key = true
 
 [node name="THIS SCENE IS TEMP" type="Label" parent="."]
+layout_mode = 0
 offset_left = 503.0
 offset_top = 136.0
 offset_right = 725.0

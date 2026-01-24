@@ -5,5 +5,3 @@ class_name _GameInfo
 
 ### GameInfo ###
 ## Game state flags vars and funcs.
-
-var in_game : bool = false

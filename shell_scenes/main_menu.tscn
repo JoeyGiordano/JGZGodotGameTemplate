@@ -28,8 +28,8 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "Play"
 script = ExtResource("1_u5tdt")
-switch_to = "victory"
-quick_key = true
+switch_to = "game_shell_scene"
+allow_quick_key = true
 
 [node name="CreditsButton" type="Button" parent="."]
 layout_mode = 0
