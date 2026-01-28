@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2fhdtqtvq6fv"]
+
+[ext_resource type="Script" uid="uid://c503q2ov4usp0" path="res://hex_stuff/hexes/base_hex.gd" id="1_bnqpj"]
+[ext_resource type="Texture2D" uid="uid://dxe5rsvu84bgc" path="res://icon.svg" id="1_kg2gx"]
+
+[node name="BaseHex" type="Node2D"]
+script = ExtResource("1_bnqpj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("1_kg2gx")
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]

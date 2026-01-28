@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://pj26ct6e8ges"]
+
+[ext_resource type="Script" uid="uid://dfxpwr4oomh2h" path="res://hex_stuff/testing/test2/hextest2.gd" id="1_j50yv"]
+
+[node name="Hextest2" type="Node2D"]
+script = ExtResource("1_j50yv")
