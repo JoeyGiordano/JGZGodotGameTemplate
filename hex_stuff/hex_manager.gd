@@ -78,7 +78,7 @@ func get_associated_real_position(grid_coords: Vector2) -> Vector2:
 #region modify
 
 ## Creates a hex grid_coords. If there is already there, throws an error. 
-func create_hex(grid_coords: Vector2i) -> BaseHex:
+func create_hex(grid_coords: Vector2i, type: BaseHex.CREATE_TYPE = BaseHex.CREATE_TYPE.INSTANT) -> BaseHex:
 	if map.has_entryv(grid_coords) :
 		push_error("Tried to create a new hex at " + str(grid_coords) + " but a hex was already there.")
 		return
@@ -93,41 +93,40 @@ func create_hex(grid_coords: Vector2i) -> BaseHex:
 	# register
 	_register_hex_at(hex, grid_coords)
 	# call on_added_to_map for unique behavior
-	hex.on_added_to_map()
+	hex.on_added_to_map(type)
 	return hex
 
 ## See create_hex().
-func create_hex_(x:int,y:int) -> BaseHex:
-	return create_hex(Vector2i(x,y))
+func create_hex_(x:int,y:int, type: BaseHex.CREATE_TYPE) -> BaseHex:
+	return create_hex(Vector2i(x,y),type)
 
-#TODO type options
 ## Moves a hex from its current position to new_grid_coords.
-func move_hex(hex: BaseHex, new_grid_coords: Vector2i):
+func move_hex(hex: BaseHex, new_grid_coords: Vector2i, type: BaseHex.MOVE_TYPE = BaseHex.MOVE_TYPE.INSTANT):
 	if map.has_entryv(new_grid_coords) :
 		push_error("Tried to move a hex to " + str(new_grid_coords) + " but a hex was already there.")
 		return
 	_set_hex_position(hex, new_grid_coords)
-	hex.on_moved()
+	hex.on_moved(type)
 
 ## See move_hex().
-func move_hex_(hex: BaseHex, new_x: int, new_y: int) :
-	move_hex(hex,Vector2i(new_x,new_y))
+func move_hex_(hex: BaseHex, new_x: int, new_y: int, type: BaseHex.MOVE_TYPE = BaseHex.MOVE_TYPE.INSTANT) :
+	move_hex(hex,Vector2i(new_x,new_y),type)
 
 ## Moves the hex at old_grid_coords to new_grid_coords.
-func move_hex_from(old_grid_coords: Vector2i, new_grid_coords: Vector2i):
+func move_hex_from(old_grid_coords: Vector2i, new_grid_coords: Vector2i, type: BaseHex.MOVE_TYPE = BaseHex.MOVE_TYPE.INSTANT):
 	if map.has_entryv(old_grid_coords) :
 		push_error("Tried to move a hex from " + str(new_grid_coords) + " but there was no hex there.")
 		return
-	move_hex(get_hex(old_grid_coords),new_grid_coords)
+	move_hex(get_hex(old_grid_coords),new_grid_coords,type)
 
 ## See move_hex_from().
-func move_hex_from_(old_x:int,old_y:int,new_x:int,new_y:int):
-	move_hex_from(Vector2i(old_x,old_y),Vector2i(new_x,new_y))
+func move_hex_from_(old_x:int,old_y:int,new_x:int,new_y:int,type: BaseHex.MOVE_TYPE = BaseHex.MOVE_TYPE.INSTANT):
+	move_hex_from(Vector2i(old_x,old_y),Vector2i(new_x,new_y),type)
 
 ## Removes and deletes the hex.
-func remove_hex(hex: BaseHex):
+func remove_hex(hex: BaseHex, type: BaseHex.REMOVE_TYPE = BaseHex.REMOVE_TYPE.INSTANT):
 	_unregister_hex(hex)
-	hex.on_removed_from_map()
+	hex.on_removed_from_map(type)
 
 #endregion
 
@@ -139,8 +138,8 @@ func remove_hex(hex: BaseHex):
 func get_coords_in_hexagon(radius: int, center: Vector2i = Vector2i.ZERO, exclude_center: bool = false) -> Array[Vector2i]:
 	var a : Array[Vector2i] = []
 	for i in range(-radius, radius+1) :
-		for j in range(-radius, radius+1) :
-			if abs(i+j)>radius: # use this condition to get hexagon shape
+		for j in range(-radius, radius+1) : # these for loops cycle through to make a NE-SW pointing diamond
+			if abs(i+j)>radius: # use this condition to get hexagon shape (cutting off the ends of the diamond) 
 				continue #skip this cycle of the for loop
 			if i == 0 and j == 0 and exclude_center :
 				continue
@@ -149,39 +148,46 @@ func get_coords_in_hexagon(radius: int, center: Vector2i = Vector2i.ZERO, exclud
 
 ## Exactly like get_coords_in_hexagon() except returns a list of all hexes in those grid spots.
 func get_hexes_in_hexagon(radius: int, center: Vector2i = Vector2i.ZERO, exclude_center: bool = false) -> Array[BaseHex] :
-	var a : Array[BaseHex] = []
-	for i in range(-radius, radius+1) :
-		for j in range(-radius, radius+1) :
-			if abs(i+j)>radius: # use this condition to get hexagon shape
-				continue #skip this cycle of the for loop
-			if exclude_center and i == 0 and j == 0 :
-				continue
-			if !is_hex_at_(center.x+i,center.y+j) :
-				continue
-			a.append(get_hex_(i,j))
-	return a 
+	var a : Array[Vector2i] = get_coords_in_hexagon(radius, center, exclude_center)
+	var output : Array[BaseHex] = []
+	for c in a :
+		if !is_hex_at(c) : continue
+		output.append(get_hex(c))
+	return output
 
 ## Returns the grid coordinates of all nth nearest neighbors to center, ie the ring of hexes n hexes away from center.
 func get_nth_nearest_neighbors_coords(n: int, center: Vector2i = Vector2i.ZERO) -> Array[Vector2i]:
 	var a : Array[Vector2i] = []
 	for i in range(-n, n+1) :
-		for j in range(-n, n+1) :
-			if abs(i+j)==n: # use this condition to get hexagon shape
-				continue #skip this cycle of the for loop
+		for j in range(-n, n+1) : # these for loops cycle through to make a NE-SW pointing diamond
+			var k : int = HexManager.grid.axial_to_cube_(i,j).z
+			if max(abs(i),max(abs(j),abs(k))) != n : # use this condition to get hexagon ring shape
+				continue
 			a.append(Vector2i(center.x+i,center.y+j))
 	return a
 
 ## Exactly like get_nth_nearest_neighbor_coords() except returns a list of all hexes in those grid spots.
 func get_nth_nearest_neighbors_hexes(n: int, center: Vector2i = Vector2i.ZERO) -> Array[BaseHex]:
-	var a : Array[BaseHex] = []
-	for i in range(-n, n+1) :
-		for j in range(-n, n+1) :
-			if abs(i+j)==n: # use this condition to get hexagon shape
-				continue #skip this cycle of the for loop
-			if !is_hex_at_(center.x+i,center.y+j) :
-				continue
-			a.append(get_hex_(center.x+i,center.y+j))
-	return a
+	var a : Array[Vector2i] = get_nth_nearest_neighbors_coords(n, center)
+	var output : Array[BaseHex] = []
+	for c in a :
+		if !is_hex_at(c) : continue
+		output.append(get_hex(c))
+	return output
+
+## Returns the first nearest neighbor coords.
+func get_adjacent_coords(center: Vector2i = Vector2i.ZERO) -> Array[Vector2i]:
+	return get_nth_nearest_neighbors_coords(1,center)
+
+## Returns the first nearest neighbor hexes.
+func get_adjacent_hexes(center: Vector2i = Vector2i.ZERO) -> Array[BaseHex]:
+	return get_nth_nearest_neighbors_hexes(1,center)
+
+## Returns what level nearest neighbor these grid_coords are to each other.
+func nearest_neighbor_dist(grid_coords_1: Vector2i, grid_coords_2: Vector2i) -> int:
+	var rel = grid_coords_1 - grid_coords_2
+	var cube = grid.axial_to_cube(rel)
+	return max(abs(cube.x),max(abs(cube.y),abs(cube.z)))
 
 ## NOTE: HexManager does not provide a function to filter arrays of BaseHex on a condition, instead use Array.filter()
 
@@ -190,24 +196,27 @@ func get_adjacent_conditional(center: Vector2i, condition: Callable) -> Array[Ba
 	var adj : Array[BaseHex] = get_nth_nearest_neighbors_hexes(1,center)
 	var output : Array[BaseHex] = []
 	for hex in adj :
-		if condition.call(hex) :
+		var meets_condition = condition.call(hex)
+		if meets_condition :
 			output.append(hex)
 	return output
 
 ## Returns a list of hexes that meet condition and are connected to the hex at center through hexes that meet condition.
-func get_contiguous_conditional(center: Vector2i, condition: Callable, check_center:bool=true) -> Array[BaseHex]:
+func get_contiguous_conditional(center: Vector2i, condition: Callable, check_center:bool=true, search_limit:int=200) -> Array[BaseHex]:
 	var check_queue : Array[BaseHex]
 	if check_center : check_queue = [ get_hex(center) ]
-	else : check_queue = get_nth_nearest_neighbors_hexes(1,center)
+	else : check_queue = get_adjacent_hexes(center)
 	var acknowledged : Array[BaseHex] = check_queue.duplicate()
 	var output : Array[BaseHex] = []
 	var tries : int = 0
-	while tries < 150 :
+	while tries < search_limit :
 		tries += 1
+		if check_queue.is_empty() : break
 		var next_hex = check_queue.pop_front()
-		if condition.call(next_hex) : #if the hex meets the condition
+		var meets_condition = await condition.call(next_hex)
+		if meets_condition : #if the hex meets the condition
 			output.append(next_hex)
-			var neighbors = get_nth_nearest_neighbors_hexes(1,next_hex.grid_coords)
+			var neighbors = get_adjacent_hexes(next_hex.grid_coords)
 			for h in neighbors :
 				if !acknowledged.has(h) :
 					check_queue.append(h)

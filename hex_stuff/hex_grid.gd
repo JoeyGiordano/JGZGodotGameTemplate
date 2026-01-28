@@ -86,6 +86,12 @@ func real_to_grid_nearestv(real_coords : Vector2) -> Vector2i :
 
 	return hex_2d
 
+func axial_to_cube(axial: Vector2i) -> Vector3i :
+	return Vector3i(axial.x,axial.y,-axial.x-axial.y)
+
+func axial_to_cube_(axial_x:int, axial_y:int) -> Vector3i :
+	return axial_to_cube(Vector2i(axial_x,axial_y))
+
 #endregion
 
 #region Setters

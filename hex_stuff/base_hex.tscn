@@ -9,3 +9,9 @@ script = ExtResource("1_bnqpj")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1927785233]
 scale = Vector2(0.15, 0.15)
 texture = ExtResource("1_kg2gx")
+
+[node name="Label" type="Label" parent="." unique_id=1987564325]
+offset_left = -9.0
+offset_top = -8.0
+offset_right = 31.0
+offset_bottom = 15.0

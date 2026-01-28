@@ -12,6 +12,17 @@ const SE = Vector2(1,-1)
 const SOUTH = Vector2(0,-1)
 const SW = Vector2(-1,0)
 
+## Create/move/remove types (allows for different animations on create move and remove)
+enum CREATE_TYPE {
+	INSTANT,FADE_IN
+}
+enum MOVE_TYPE {
+	INSTANT,SLIDE
+}
+enum REMOVE_TYPE {
+	INSTANT,FADE_OUT
+}
+
 ## A unique id set by the HexManager when the hex is created
 var debug_id
 
@@ -24,32 +35,55 @@ func tick() :
 	pass
 
 ## This function is automatically called when the hex is created and added to the map.
-func on_added_to_map() :
-	position = real_pos() #could instead add some animation here (or in overriden version)
+func on_added_to_map(_type: CREATE_TYPE) :
+	$Label.text = str(debug_id)
+	#could add other animations here (or in overriden version)
+	match _type :
+		CREATE_TYPE.INSTANT :
+			position = real_pos()
+		CREATE_TYPE.FADE_IN :
+			modulate.a = 0
+			position = real_pos()
+			#fade in
+			var tween = create_tween()
+			tween.tween_property(self, "modulate:a", 1, 0.8)
 
 ## This function is automatically called when the hex is moved from one grid spot to another.
-func on_moved() :
-	position = real_pos() #could instead add some animation here (or in overriden version)
+func on_moved(_type: MOVE_TYPE) :
+	#could add other animations here (or in overriden version)
+	match _type :
+		MOVE_TYPE.INSTANT :
+			position = real_pos()
+		MOVE_TYPE.SLIDE :
+			var tween = create_tween()
+			tween.tween_property(self, "position", real_pos(), 0.8)
 
 ## This function is automatically called when the hex is about to be removed from the map and queue_freed.
 ## Although this hex will not hold the grid spot anymore, the hex's nodes can stay in the same real position to do disappear animations etc.
-func on_removed_from_map() :
-	queue_free() #could instead add some animation here (or in overriden version)
+func on_removed_from_map(_type: REMOVE_TYPE) :
+	#could add other animations here (or in overriden version)
 	#don't forget to queue free it tho
+	match _type :
+		REMOVE_TYPE.INSTANT :
+			queue_free()
+		REMOVE_TYPE.FADE_OUT :
+			var tween = create_tween()
+			tween.tween_property(self, "modulate:a", 0, 0.8)
+			queue_free()
 
 #region Utils
 ## Don't touch or override these functions.
 
 ## Do not override.
-func move(new_grid_coords: Vector2i) :
-	HexManager.move_hex(self,new_grid_coords)
+func move(new_grid_coords: Vector2i, type: MOVE_TYPE = MOVE_TYPE.INSTANT) :
+	HexManager.move_hex(self,new_grid_coords,type)
 
-func move_(x:int,y:int) :
-	move(Vector2i(x,y))
+func move_(new_x: int, new_y: int, type: MOVE_TYPE = MOVE_TYPE.INSTANT) :
+	move(Vector2i(new_x,new_y),type)
 
 ## Do not override.
-func remove_from_map() :
-	HexManager.remove_hex(self)
+func remove_from_map(type: REMOVE_TYPE = REMOVE_TYPE.INSTANT) :
+	HexManager.remove_hex(self,type)
 
 ## Do not override.
 func real_pos() -> Vector2:
@@ -75,6 +109,14 @@ func nth_nearest_neighbors_coords(n:int) -> Array[Vector2i]:
 func nth_nearest_neighbors(n:int) -> Array[BaseHex]:
 	return HexManager.get_nth_nearest_neighbors_hexes(n,grid_coords)
 
+## Do not override.
+func get_adjacent_coords() -> Array[Vector2i]:
+	return HexManager.get_adjacent_coords(grid_coords)
+
+## Do not override.
+func get_adjacent_hexes() -> Array[BaseHex]:
+	return HexManager.get_adjacent_hexes(grid_coords)
+
 ## Do not override. Returns true if target_grid_coords are up to or including n spaces away.
 func is_within(target_grid_coords: Vector2i, n:int) -> bool:
 	return nearest_neighbor_dist(target_grid_coords) <= n
@@ -85,8 +127,7 @@ func is_hex_within(target_hex:BaseHex, n:int) -> bool:
 
 ## Do not override. Returns what level of nearest neighbor the grid coords are (an adjacent tile returns 1).
 func nearest_neighbor_dist(target_grid_coords: Vector2i) -> int:
-	var rel = target_grid_coords - grid_coords
-	return abs(rel.x+rel.y)
+	return HexManager.nearest_neighbor_dist(grid_coords, target_grid_coords)
 
 ## Do not override.
 func nearest_neighbor_dist_(target_hex: BaseHex) -> int:
