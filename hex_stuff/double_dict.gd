@@ -17,15 +17,14 @@ func set_entryv(coords: Vector2i, obj: Variant):
 	set_entry(coords.x,coords.y,obj)
 
 ## Returns the value at (x,y). If there is no entry for (x,y), returns default. An error will be printed if default is left null and there is no entry.
-func get_entry(x: int, y: int, default: Variant = null) -> Variant:
-	var do_print = true if default == null else false
+func get_entry(x: int, y: int, do_print: bool = false) -> Variant:
 	if has_entry(x,y,do_print) :
 		return data[x][y]
-	return default
+	return null
 
 ## See get_entry().
-func get_entryv(coords: Vector2i, default: Variant = null) -> Variant:
-	return get_entry(coords.x,coords.y,default)
+func get_entryv(coords: Vector2i) -> Variant:
+	return get_entry(coords.x,coords.y)
 
 ## Deletes the entry at (x,y) and performs associated cleanup.
 func delete_entry(x: int, y: int, do_print: bool = false):

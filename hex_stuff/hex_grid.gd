@@ -37,10 +37,10 @@ func update_basis() :
 #  are possible, but becaues the basis of a hexagonal grid is not orthonormal, it would result in behavior that
 #  would seem unexpected to someone that doesn't understand basis transformations and whatnot.
 
-func grid_to_realv(grid_coords : Vector2i) -> Vector2 :
+func grid_to_realv(grid_coords : Vector2) -> Vector2 :
 	return grid_to_real(grid_coords.x, grid_coords.y)
 
-func grid_to_real(grid_x_coord : int, grid_y_coord : int) -> Vector2 :
+func grid_to_real(grid_x_coord : float, grid_y_coord : float) -> Vector2 :
 	return x_basis_vec*grid_x_coord + y_basis_vec*grid_y_coord
 
 func real_to_grid_nearest(real_x_coord : float, real_y_coord : float) -> Vector2i :
