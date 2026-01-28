@@ -54,36 +54,31 @@ func real_to_grid_nearestv(real_coords : Vector2) -> Vector2i :
 	# unrotate the real space point
 	real_coords = real_coords.rotated(deg_to_rad(-rotation))
 	# now that we have the untransformed real space point we can get the nearest grid point using cube fraction coords
-	# ---- world -> fractional axial ----
+	# world -> fractional axial
 	var _q = (2.0/3.0 * real_coords.x) / a
 	var _r = (-1.0/3.0 * real_coords.x + sqrt3/3.0 * real_coords.y) / a
-
-	# ---- axial -> cube (fractional) ----
+	#axial -> cube (fractional)
 	var _x = _q
 	var _z = _r
 	var _y = -_x - _z
-
-	# ---- cube rounding ----
+	# cube rounding
 	var rx = round(_x)
 	var ry = round(_y)
 	var rz = round(_z)
-
+	#
 	var dx = abs(rx - _x)
 	var dy = abs(ry - _y)
 	var dz = abs(rz - _z)
-
+	#
 	if dx > dy and dx > dz:
 		rx = -ry - rz
 	elif dy > dz:
 		ry = -rx - rz
 	else:
 		rz = -rx - ry
-
 	var cube = Vector3i(int(rx), int(ry), int(rz))
-
-	# ---- cube -> 2D hex coords ----
+	# cube -> 2D hex coords
 	var hex_2d = Vector2i(cube.x, cube.y)
-
 	return hex_2d
 
 func axial_to_cube(axial: Vector2i) -> Vector3i :
