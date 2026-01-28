@@ -32,7 +32,6 @@ HexManager="*res://hex_stuff/hex_manager.gd"
 
 [display]
 
-window/size/mode=2
 window/stretch/mode="canvas_items"
 
 [editor_plugins]

@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://pj26ct6e8ges"]
+[gd_scene format=3 uid="uid://pj26ct6e8ges"]
 
 [ext_resource type="Script" uid="uid://dfxpwr4oomh2h" path="res://hex_stuff/testing/test2/hextest2.gd" id="1_j50yv"]
 
-[node name="Hextest2" type="Node2D"]
+[node name="Hextest2" type="Node2D" unique_id=1410429489]
 script = ExtResource("1_j50yv")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1388409788]

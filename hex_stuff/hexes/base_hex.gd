@@ -32,12 +32,15 @@ func on_removed_from_map() :
 func move(new_grid_coords: Vector2i) :
 	HexManager.move_hex(self,new_grid_coords)
 
+func move_(x:int,y:int) :
+	move(Vector2i(x,y))
+
 ## Do not override.
 func remove_from_map() :
 	HexManager.remove_hex(self)
 
 ## Do not override.
-func real_pos() :
-	HexManager.get_associated_real_position(grid_coords)
+func real_pos() -> Vector2:
+	return HexManager.get_associated_real_position(grid_coords)
 
 #endregion

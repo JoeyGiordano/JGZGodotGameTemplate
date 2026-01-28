@@ -3,12 +3,12 @@ extends Node
 ### AUTOLOAD
 
 ### HexManager ###
-##
+## Manages the hexes and the hex map.
 
 var base_hex : PackedScene = preload("res://hex_stuff/hexes/base_hex.tscn")
 
-## The grid that 
-var grid = HexGrid.new(40)
+## Allows conversion between real and grid coordinates.
+var grid = HexGrid.new(20)
 
 ## An array of all hexes on the map for easy iteration (as opposed to having to do difficult iteration through the map double dictionary).
 var hex_list : Array[BaseHex] = []
@@ -18,6 +18,7 @@ var map : DoubleDict = DoubleDict.new()
 # Other
 var next_debug_id = 0
 
+#TODO why no work?
 enum DIRECTIONS {
 	N,NE,SE,S,SW,NW
 }
@@ -46,10 +47,12 @@ func get_associated_real_position(grid_coords: Vector2i) -> Vector2:
 
 #TODO directional stuff (maybe in base hex)
 
+#endregion
+
 #region modify
 
 ## Creates a hex grid_coords. If there is already there, throws an error. 
-func create_hex(grid_coords: Vector2i):
+func create_hex(grid_coords: Vector2i) -> BaseHex:
 	if map.has_entryv(grid_coords) :
 		push_error("Tried to create a new hex at " + str(grid_coords) + " but a hex was already there.")
 		return
@@ -57,10 +60,7 @@ func create_hex(grid_coords: Vector2i):
 	#TODO type options
 	var hex : BaseHex = base_hex.instantiate()
 	# set parent
-	if Global.IS_RUNNING_FROM_GAME_CONTAINER :
-		Global.Hexes.add_child(hex)
-	else :
-		get_tree().root.add_child(hex)
+	add_child(hex)
 	# set debug id
 	hex.debug_id = next_debug_id
 	next_debug_id += 1
@@ -68,6 +68,11 @@ func create_hex(grid_coords: Vector2i):
 	_register_hex_at(hex, grid_coords)
 	# call on_added_to_map for unique behavior
 	hex.on_added_to_map()
+	return hex
+
+## See create_hex().
+func create_hex_(x:int,y:int) -> BaseHex:
+	return create_hex(Vector2i(x,y))
 
 #TODO type options
 ## Moves a hex from its current position to new_grid_coords.
@@ -78,6 +83,10 @@ func move_hex(hex: BaseHex, new_grid_coords: Vector2i):
 	_set_hex_position(hex, new_grid_coords)
 	hex.on_moved()
 
+## See move_hex().
+func move_hex_(hex: BaseHex, new_x: int, new_y: int) :
+	move_hex(hex,Vector2i(new_x,new_y))
+
 ## Moves the hex at old_grid_coords to new_grid_coords.
 func move_hex_from(old_grid_coords: Vector2i, new_grid_coords: Vector2i):
 	if map.has_entryv(old_grid_coords) :
@@ -85,10 +94,16 @@ func move_hex_from(old_grid_coords: Vector2i, new_grid_coords: Vector2i):
 		return
 	move_hex(get_hex(old_grid_coords),new_grid_coords)
 
+## See move_hex_from().
+func move_hex_from_(old_x:int,old_y:int,new_x:int,new_y:int):
+	move_hex_from(Vector2i(old_x,old_y),Vector2i(new_x,new_y))
+
 ## Removes and deletes the hex.
 func remove_hex(hex: BaseHex):
 	_unregister_hex(hex)
 	hex.on_removed_from_map()
+
+#endregion
 
 #region private
 
@@ -109,3 +124,5 @@ func _set_hex_position(hex: BaseHex, grid_coords: Vector2i):
 func _unregister_hex(hex: BaseHex):
 	hex_list.erase(hex)
 	map.delete_entryv(hex.grid_coords)
+
+#endregion

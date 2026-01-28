@@ -34,7 +34,7 @@ func delete_entry(x: int, y: int, do_print: bool = false):
 		return
 	data[x].erase(y)
 	# If the subdict is now empty, delete it
-	if data[x].size == 0:
+	if data[x].size() == 0:
 		data.erase(x)
 
 ## See delete_entry().

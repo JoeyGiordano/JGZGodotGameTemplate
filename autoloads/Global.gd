@@ -18,8 +18,6 @@ var ShellSceneHolder : Node
 var OverlayPanelHolder : Node
 ## Holder for parts of the game.
 var Game : Node
-## Holds the hexes.
-var Hexes : Node
 
 func _ready() -> void:
 	if IS_RUNNING_FROM_GAME_CONTAINER : # check if the game is running from the GameContainer (as opposed to test running an individual scene)
@@ -28,7 +26,6 @@ func _ready() -> void:
 		ShellSceneHolder = GameContainer.get_node("ShellSceneHolder")
 		OverlayPanelHolder = GameContainer.get_node("OverlayPanelHolder")
 		Game = GameContainer.get_node("Game")
-		Hexes = Game.get_node("Hexes")
 
 func get_current_shell_scene() -> Node :
 	return ShellSceneHolder.get_child(0)

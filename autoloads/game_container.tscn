@@ -1,16 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://dajeyyd76x0vu"]
+[gd_scene format=3 uid="uid://dajeyyd76x0vu"]
 
 [ext_resource type="PackedScene" uid="uid://d176ir76ayfrc" path="res://shell_scenes/startup.tscn" id="1_xofiv"]
 
-[node name="GameContainer" type="Node"]
+[node name="GameContainer" type="Node" unique_id=525133435]
 
-[node name="Game" type="Node" parent="."]
+[node name="Game" type="Node" parent="." unique_id=868225508]
 
-[node name="Hexes" type="Node" parent="Game"]
+[node name="ShellSceneHolder" type="CanvasLayer" parent="." unique_id=1474468678]
 
-[node name="ShellSceneHolder" type="CanvasLayer" parent="."]
+[node name="StartupCutscene" parent="ShellSceneHolder" unique_id=412205843 instance=ExtResource("1_xofiv")]
 
-[node name="StartupCutscene" parent="ShellSceneHolder" instance=ExtResource("1_xofiv")]
-
-[node name="OverlayPanelHolder" type="CanvasLayer" parent="."]
+[node name="OverlayPanelHolder" type="CanvasLayer" parent="." unique_id=1672178746]
 layer = 2
