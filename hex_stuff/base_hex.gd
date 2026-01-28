@@ -40,10 +40,6 @@ func on_removed_from_map() :
 #region Utils
 ## Don't touch or override these functions.
 
-## Do not override. Gets the hex at the grid spot self.grid_coords + relative_grid_coords.
-func get_rel(relative_grid_coords: Vector2i) -> BaseHex:
-	return HexManager.get_hex_relative_to(grid_coords, relative_grid_coords)
-
 ## Do not override.
 func move(new_grid_coords: Vector2i) :
 	HexManager.move_hex(self,new_grid_coords)
@@ -58,5 +54,42 @@ func remove_from_map() :
 ## Do not override.
 func real_pos() -> Vector2:
 	return HexManager.get_associated_real_position(grid_coords)
+
+## Do not override. Gets the hex at the grid spot self.grid_coords + relative_grid_coords.
+func get_hex_rel(relative_grid_coords: Vector2i) -> BaseHex:
+	return HexManager.get_hex_relative_to(grid_coords, relative_grid_coords)
+
+## Do not override.
+func get_coords_within(radius:int) -> Array[Vector2i]:
+	return HexManager.get_coords_in_hexagon(radius,grid_coords)
+
+## Do not override.
+func get_hexes_within(radius:int) -> Array[BaseHex]:
+	return HexManager.get_hexes_in_hexagon(radius,grid_coords)
+
+## Do not override.
+func nth_nearest_neighbors_coords(n:int) -> Array[Vector2i]:
+	return HexManager.get_nth_nearest_neighbors_coords(n,grid_coords)
+
+## Do not override.
+func nth_nearest_neighbors(n:int) -> Array[BaseHex]:
+	return HexManager.get_nth_nearest_neighbors_hexes(n,grid_coords)
+
+## Do not override. Returns true if target_grid_coords are up to or including n spaces away.
+func is_within(target_grid_coords: Vector2i, n:int) -> bool:
+	return nearest_neighbor_dist(target_grid_coords) <= n
+
+## Do not override.
+func is_hex_within(target_hex:BaseHex, n:int) -> bool:
+	return is_within(target_hex.grid_coords,n)
+
+## Do not override. Returns what level of nearest neighbor the grid coords are (an adjacent tile returns 1).
+func nearest_neighbor_dist(target_grid_coords: Vector2i) -> int:
+	var rel = target_grid_coords - grid_coords
+	return abs(rel.x+rel.y)
+
+## Do not override.
+func nearest_neighbor_dist_(target_hex: BaseHex) -> int:
+	return nearest_neighbor_dist(target_hex.grid_coords)
 
 #endregion

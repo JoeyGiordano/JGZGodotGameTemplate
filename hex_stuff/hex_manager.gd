@@ -38,7 +38,7 @@ func manage_tick(_delta: float) :
 		time_since_last_tick -= tick_duration
 		tick()
 
-## We could break tick into more calls (eg generate_resources(), resolve_damage(), act_on_neighbors()) for more consistent behavior.
+## Could break tick into more calls (eg generate_resources(), resolve_damage(), act_on_neighbors()) for more consistent behavior.
 func tick() :
 	for hex in hex_list :
 		hex.tick()
@@ -131,11 +131,11 @@ func remove_hex(hex: BaseHex):
 
 #endregion
 
-#region advanced getters
+#region advanced
 
 ## Returns a list of coords of all of the grid points that are within a hexagon of radius radius around center.
 ## ie if radius = 3, this returns the first, second, and third nearest neighbors to center (optionally excluding center)
-## Ordered from bottom left to top right
+## List starts with the bottom spot of the leftmost column, proceeds up that column, then does the same for the next column to the right, and so on.
 func get_coords_in_hexagon(radius: int, center: Vector2i = Vector2i.ZERO, exclude_center: bool = false) -> Array[Vector2i]:
 	var a : Array[Vector2i] = []
 	for i in range(-radius, radius+1) :
@@ -162,7 +162,7 @@ func get_hexes_in_hexagon(radius: int, center: Vector2i = Vector2i.ZERO, exclude
 	return a 
 
 ## Returns the grid coordinates of all nth nearest neighbors to center, ie the ring of hexes n hexes away from center.
-func get_nth_nearest_neighbor_coords(n: int, center: Vector2i = Vector2i.ZERO) -> Array[Vector2i]:
+func get_nth_nearest_neighbors_coords(n: int, center: Vector2i = Vector2i.ZERO) -> Array[Vector2i]:
 	var a : Array[Vector2i] = []
 	for i in range(-n, n+1) :
 		for j in range(-n, n+1) :
@@ -172,7 +172,7 @@ func get_nth_nearest_neighbor_coords(n: int, center: Vector2i = Vector2i.ZERO) -
 	return a
 
 ## Exactly like get_nth_nearest_neighbor_coords() except returns a list of all hexes in those grid spots.
-func get_nth_nearest_neighbor_hexes(n: int, center: Vector2i = Vector2i.ZERO) -> Array[BaseHex]:
+func get_nth_nearest_neighbors_hexes(n: int, center: Vector2i = Vector2i.ZERO) -> Array[BaseHex]:
 	var a : Array[BaseHex] = []
 	for i in range(-n, n+1) :
 		for j in range(-n, n+1) :
@@ -185,9 +185,34 @@ func get_nth_nearest_neighbor_hexes(n: int, center: Vector2i = Vector2i.ZERO) ->
 
 ## NOTE: HexManager does not provide a function to filter arrays of BaseHex on a condition, instead use Array.filter()
 
-## TODO
-func get_contiguous():
-	pass
+## Returns a list of hexes that are adjacent to center and meet condition.
+func get_adjacent_conditional(center: Vector2i, condition: Callable) -> Array[BaseHex]:
+	var adj : Array[BaseHex] = get_nth_nearest_neighbors_hexes(1,center)
+	var output : Array[BaseHex] = []
+	for hex in adj :
+		if condition.call(hex) :
+			output.append(hex)
+	return output
+
+## Returns a list of hexes that meet condition and are connected to the hex at center through hexes that meet condition.
+func get_contiguous_conditional(center: Vector2i, condition: Callable, check_center:bool=true) -> Array[BaseHex]:
+	var check_queue : Array[BaseHex]
+	if check_center : check_queue = [ get_hex(center) ]
+	else : check_queue = get_nth_nearest_neighbors_hexes(1,center)
+	var acknowledged : Array[BaseHex] = check_queue.duplicate()
+	var output : Array[BaseHex] = []
+	var tries : int = 0
+	while tries < 150 :
+		tries += 1
+		var next_hex = check_queue.pop_front()
+		if condition.call(next_hex) : #if the hex meets the condition
+			output.append(next_hex)
+			var neighbors = get_nth_nearest_neighbors_hexes(1,next_hex.grid_coords)
+			for h in neighbors :
+				if !acknowledged.has(h) :
+					check_queue.append(h)
+					acknowledged.append(h)
+	return output
 
 #endregion
 
