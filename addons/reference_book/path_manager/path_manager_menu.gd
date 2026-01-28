@@ -3,7 +3,7 @@ extends Window
 
 var paths : Array[String] = []
 
-var toolbar
+var dock_content
 var path_option : OptionButton
 
 @onready var lineedit := $PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/LineEdit
@@ -16,7 +16,7 @@ func _ready() -> void:
 	lineedit.text_changed.connect(_on_text_changed)
 
 func init() :
-	path_option = toolbar.path_option
+	path_option = dock_content.path_option
 	
 	lineedit.text = "res://autoloads/Reference/Reference.gd"
 	_on_add_pressed()

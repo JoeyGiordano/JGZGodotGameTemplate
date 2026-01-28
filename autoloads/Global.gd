@@ -6,6 +6,9 @@ class_name _Global
 ### Global ###
 ## Stores nodes that are always present when the game is run from the GameContainer
 
+## Is the game is running from the GameContainer (as opposed to test running an individual scene)
+@onready var IS_RUNNING_IN_GAME_CONTAINER : bool = has_node("/root/GameContainer")
+
 # These nodes always exist when the game is running from GameContainer
 ## The only child of /root. Contains everything.
 var GameContainer : Node
@@ -25,7 +28,7 @@ var NPCs : Node
 var Entities : Node
 
 func _ready() -> void:
-	if has_node("/root/GameContainer") : # check if the game is running from the GameContainer (as opposed to test running an individual scene)
+	if IS_RUNNING_IN_GAME_CONTAINER :
 		# doing this here instead of @onready to prevent errors when running a scene not through the game container
 		GameContainer = get_node("/root/GameContainer")
 		ShellSceneHolder = GameContainer.get_node("ShellSceneHolder")

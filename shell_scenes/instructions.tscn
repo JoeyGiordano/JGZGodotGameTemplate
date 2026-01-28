@@ -1,12 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://cltaghkxnswjy"]
+[gd_scene format=3 uid="uid://cltaghkxnswjy"]
 
 [ext_resource type="Script" uid="uid://bj5ye56nvni8h" path="res://shell_scenes/scene_switch_button.gd" id="1_4nwng"]
 
-[node name="Instructions" type="Control"]
+[node name="Instructions" type="Control" unique_id=1446039745]
 layout_mode = 3
 anchors_preset = 0
 
-[node name="BackButton" type="Button" parent="."]
+[node name="BackButton" type="Button" parent="." unique_id=1637180074]
 layout_mode = 0
 offset_left = 439.0
 offset_top = 522.0
@@ -17,7 +17,7 @@ script = ExtResource("1_4nwng")
 switch_to = "main_menu"
 allow_quick_key = true
 
-[node name="TEMP" type="Label" parent="."]
+[node name="TEMP" type="Label" parent="." unique_id=174145487]
 layout_mode = 0
 offset_left = 538.0
 offset_top = 142.0

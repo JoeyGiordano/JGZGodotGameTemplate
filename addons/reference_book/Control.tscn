@@ -1,10 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://coej43ns660jy"]
+[gd_scene format=3 uid="uid://coej43ns660jy"]
 
 [ext_resource type="PackedScene" uid="uid://bdtnblxdje0fq" path="res://addons/reference_book/resource_loader/resource_loader_ui.tscn" id="1_7qxgl"]
 [ext_resource type="Script" uid="uid://bvhng1cypqtt5" path="res://addons/reference_book/reference_book_ui.gd" id="1_b1jp1"]
 [ext_resource type="Script" uid="uid://deo2r0nb7nbfs" path="res://addons/reference_book/res_entry_settings.gd" id="3_ne4bt"]
 
-[node name="ReferenceBookUI" type="Control"]
+[node name="ReferenceBookUI" type="Control" unique_id=145361013]
+custom_minimum_size = Vector2(0, 600)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,7 +14,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_b1jp1")
 
-[node name="HBox" type="HBoxContainer" parent="."]
+[node name="HBox" type="HBoxContainer" parent="." unique_id=1381347015]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,33 +22,33 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBox" type="VBoxContainer" parent="HBox"]
+[node name="VBox" type="VBoxContainer" parent="HBox" unique_id=119706073]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="HBox/VBox"]
+[node name="Label" type="Label" parent="HBox/VBox" unique_id=543191200]
 layout_mode = 2
 size_flags_vertical = 10
 text = "Choose a resource."
 
-[node name="MarginBox" type="MarginContainer" parent="HBox/VBox"]
+[node name="MarginBox" type="MarginContainer" parent="HBox/VBox" unique_id=1698711352]
 layout_mode = 2
 theme_override_constants/margin_left = 12
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 8
 
-[node name="ResourceLoaderUI" parent="HBox/VBox/MarginBox" instance=ExtResource("1_7qxgl")]
+[node name="ResourceLoaderUI" parent="HBox/VBox/MarginBox" unique_id=1496191664 instance=ExtResource("1_7qxgl")]
 layout_mode = 2
 size_flags_vertical = 6
 
-[node name="Label2" type="Label" parent="HBox/VBox"]
+[node name="Label2" type="Label" parent="HBox/VBox" unique_id=1943088217]
 layout_mode = 2
 size_flags_vertical = 10
 text = "Choose a reference book file.
 (To add paths, go to Project>Tools>ReferenceBook)"
 
-[node name="MarginBox2" type="MarginContainer" parent="HBox/VBox"]
+[node name="MarginBox2" type="MarginContainer" parent="HBox/VBox" unique_id=805267411]
 layout_mode = 2
 size_flags_vertical = 2
 theme_override_constants/margin_left = 12
@@ -55,17 +56,17 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 8
 
-[node name="OptionButton" type="OptionButton" parent="HBox/VBox/MarginBox2"]
+[node name="OptionButton" type="OptionButton" parent="HBox/VBox/MarginBox2" unique_id=1040885338]
 layout_mode = 2
 selected = 0
 item_count = 1
 popup/item_0/text = "res://autoloads/Reference/Reference.gd"
 popup/item_0/id = 0
 
-[node name="VSeparator" type="VSeparator" parent="HBox"]
+[node name="VSeparator" type="VSeparator" parent="HBox" unique_id=121424393]
 layout_mode = 2
 
-[node name="MarginBox" type="MarginContainer" parent="HBox"]
+[node name="MarginBox" type="MarginContainer" parent="HBox" unique_id=593216745]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 1.5
@@ -74,54 +75,54 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 8
 
-[node name="ResourceEntrySettings" type="VBoxContainer" parent="HBox/MarginBox"]
+[node name="ResourceEntrySettings" type="VBoxContainer" parent="HBox/MarginBox" unique_id=1009212141]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 1.5
 script = ExtResource("3_ne4bt")
 
-[node name="Grid" type="GridContainer" parent="HBox/MarginBox/ResourceEntrySettings"]
+[node name="Grid" type="GridContainer" parent="HBox/MarginBox/ResourceEntrySettings" unique_id=881478535]
 layout_mode = 2
 size_flags_horizontal = 3
 columns = 2
 
-[node name="Label" type="Label" parent="HBox/MarginBox/ResourceEntrySettings/Grid"]
+[node name="Label" type="Label" parent="HBox/MarginBox/ResourceEntrySettings/Grid" unique_id=1715911033]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 8
 text = "Export?"
 
-[node name="ExportCheckBox" type="CheckBox" parent="HBox/MarginBox/ResourceEntrySettings/Grid"]
+[node name="ExportCheckBox" type="CheckBox" parent="HBox/MarginBox/ResourceEntrySettings/Grid" unique_id=317427728]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 8
 
-[node name="Label2" type="Label" parent="HBox/MarginBox/ResourceEntrySettings/Grid"]
+[node name="Label2" type="Label" parent="HBox/MarginBox/ResourceEntrySettings/Grid" unique_id=1846764430]
 layout_mode = 2
 text = "Name"
 
-[node name="NameLineEdit" type="LineEdit" parent="HBox/MarginBox/ResourceEntrySettings/Grid"]
+[node name="NameLineEdit" type="LineEdit" parent="HBox/MarginBox/ResourceEntrySettings/Grid" unique_id=700071531]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 
-[node name="Label3" type="Label" parent="HBox/MarginBox/ResourceEntrySettings/Grid"]
+[node name="Label3" type="Label" parent="HBox/MarginBox/ResourceEntrySettings/Grid" unique_id=1163442424]
 layout_mode = 2
 text = "Preload?"
 
-[node name="PreloadCheckBox" type="CheckBox" parent="HBox/MarginBox/ResourceEntrySettings/Grid"]
+[node name="PreloadCheckBox" type="CheckBox" parent="HBox/MarginBox/ResourceEntrySettings/Grid" unique_id=879611056]
 layout_mode = 2
 
-[node name="Label4" type="Label" parent="HBox/MarginBox/ResourceEntrySettings/Grid"]
+[node name="Label4" type="Label" parent="HBox/MarginBox/ResourceEntrySettings/Grid" unique_id=653293461]
 layout_mode = 2
 text = "Group"
 
-[node name="Button" type="Button" parent="HBox/MarginBox/ResourceEntrySettings/Grid"]
+[node name="Button" type="Button" parent="HBox/MarginBox/ResourceEntrySettings/Grid" unique_id=135965193]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 text = " "
 
-[node name="GroupMenu" type="MenuButton" parent="HBox/MarginBox/ResourceEntrySettings/Grid/Button"]
+[node name="GroupMenu" type="MenuButton" parent="HBox/MarginBox/ResourceEntrySettings/Grid/Button" unique_id=426691282]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -134,33 +135,31 @@ grow_vertical = 2
 text = "Select..."
 flat = false
 alignment = 0
-item_count = 4
+item_count = 3
 popup/item_0/text = "Shell Scenes"
 popup/item_0/id = 0
-popup/item_1/text = "Level Scenes"
+popup/item_1/text = "Prefabs"
 popup/item_1/id = 1
-popup/item_2/text = "Prefabs"
+popup/item_2/text = "Stats"
 popup/item_2/id = 2
-popup/item_3/text = "Tank Starting Stats"
-popup/item_3/id = 3
 
-[node name="Label" type="Label" parent="HBox/MarginBox/ResourceEntrySettings"]
+[node name="Label" type="Label" parent="HBox/MarginBox/ResourceEntrySettings" unique_id=540080636]
 layout_mode = 2
 text = "Preview:"
 horizontal_alignment = 1
 
-[node name="Preview" type="LineEdit" parent="HBox/MarginBox/ResourceEntrySettings"]
+[node name="Preview" type="LineEdit" parent="HBox/MarginBox/ResourceEntrySettings" unique_id=1068952576]
 layout_mode = 2
 alignment = 1
 editable = false
 
-[node name="AddButton" type="Button" parent="HBox/MarginBox/ResourceEntrySettings"]
+[node name="AddButton" type="Button" parent="HBox/MarginBox/ResourceEntrySettings" unique_id=1216460108]
 custom_minimum_size = Vector2(400, 150)
 layout_mode = 2
 size_flags_horizontal = 4
 disabled = true
 text = "Add to Reference Book"
 
-[node name="Message" type="Label" parent="HBox/MarginBox/ResourceEntrySettings"]
+[node name="Message" type="Label" parent="HBox/MarginBox/ResourceEntrySettings" unique_id=1343728024]
 layout_mode = 2
 horizontal_alignment = 1
