@@ -15,6 +15,13 @@ var rotation : float = 0 # in degrees (0 to 360)
 var x_basis_vec : Vector2
 var y_basis_vec : Vector2
 
+enum EDGE {
+	NW,N,NE,SE,S,SW
+}
+enum CORNER {
+	NW,NE,E,SE,SW,W
+}
+
 func _init(_a : float) -> void:
 	set_a(_a)
 
@@ -42,6 +49,30 @@ func grid_to_realv(grid_coords : Vector2) -> Vector2 :
 
 func grid_to_real(grid_x_coord : float, grid_y_coord : float) -> Vector2 :
 	return x_basis_vec*grid_x_coord + y_basis_vec*grid_y_coord
+
+## Returns the real space position of the corner of the hexagon at grid_coords
+func get_hex_corner_real_space(corner: CORNER, grid_coords: Vector2i) -> Vector2 :
+	var displacement : Vector2
+	match corner:
+		CORNER.NW: displacement = 2*y_basis_vec - x_basis_vec
+		CORNER.NE: displacement = x_basis_vec + y_basis_vec
+		CORNER.E : displacement = 2*x_basis_vec - y_basis_vec
+		CORNER.SE: displacement = x_basis_vec - 2*y_basis_vec
+		CORNER.SW: displacement = -x_basis_vec - y_basis_vec
+		CORNER.W : displacement = y_basis_vec - 2*x_basis_vec
+	return Vector2(grid_coords) + displacement/3
+
+##Returns the real space position of the corner of the hexagon at grid_coords
+func get_hex_edge_midpoint_real_space(edge: EDGE, grid_coords: Vector2i) -> Vector2 :
+	var displacement : Vector2
+	match edge:
+		EDGE.NW: displacement = y_basis_vec - x_basis_vec
+		EDGE.N : displacement = y_basis_vec
+		EDGE.NE: displacement = x_basis_vec
+		EDGE.SE: displacement = x_basis_vec - y_basis_vec
+		EDGE.S : displacement = -y_basis_vec
+		EDGE.SW: displacement = -x_basis_vec
+	return Vector2(grid_coords) + displacement/2
 
 func real_to_grid_nearest(real_x_coord : float, real_y_coord : float) -> Vector2i :
 	return real_to_grid_nearestv(Vector2(real_x_coord, real_y_coord))

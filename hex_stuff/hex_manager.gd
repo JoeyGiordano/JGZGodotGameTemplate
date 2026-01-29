@@ -14,7 +14,7 @@ const SOUTH = Vector2(0,-1)
 const SW = Vector2(-1,0)
 
 ## Allows conversion between real and grid coordinates.
-var grid = HexGrid.new(20)
+var grid = HexGrid.new(70)
 
 ## An array of all hexes on the map for easy iteration (as opposed to having to do difficult iteration through the map double dictionary).
 var hex_list : Array[BaseHex] = []
@@ -72,6 +72,14 @@ func get_hex_relative_to(relative_to_coords: Vector2i, relative_grid_coords: Vec
 ## Returns the real position associated with grid_coords.
 func get_associated_real_position(grid_coords: Vector2) -> Vector2:
 	return grid.grid_to_realv(grid_coords)
+
+## Returns the real position of the corner of the hex tile at grid_coords.
+func get_corner_pos(grid_coords: Vector2i, corner: HexGrid.CORNER) -> Vector2:
+	return grid.get_hex_corner_real_space(corner, grid_coords)
+
+## Returns the real position of the midpoint of the edge of the hex tile at grid_coords.
+func get_edge_midpoint(grid_coords: Vector2i, edge: HexGrid.EDGE) -> Vector2:
+	return grid.get_hex_edge_midpoint_real_space(edge, grid_coords)
 
 #endregion
 

@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cpfrkl7kkp8sf"]
+
+[ext_resource type="Script" uid="uid://0mko7frcsvrn" path="res://hex_stuff/testing/test3/test3.gd" id="1_62bic"]
+
+[node name="Test3" type="Node2D" unique_id=1202670141]
+script = ExtResource("1_62bic")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=67908086]

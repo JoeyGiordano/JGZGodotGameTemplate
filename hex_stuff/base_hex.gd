@@ -36,7 +36,7 @@ func tick() :
 
 ## This function is automatically called when the hex is created and added to the map.
 func on_added_to_map(_type: CREATE_TYPE) :
-	$Label.text = str(debug_id)
+	#on_added_debug()
 	#could add other animations here (or in overriden version)
 	match _type :
 		CREATE_TYPE.INSTANT :
@@ -47,6 +47,11 @@ func on_added_to_map(_type: CREATE_TYPE) :
 			#fade in
 			var tween = create_tween()
 			tween.tween_property(self, "modulate:a", 1, 0.8)
+
+func on_added_debug() :
+	$Label.text = str(debug_id)
+	#$Label.text = str(grid_coords)
+	#$Label.text = str(HexManager.grid.axial_to_cube(grid_coords))
 
 ## This function is automatically called when the hex is moved from one grid spot to another.
 func on_moved(_type: MOVE_TYPE) :
@@ -132,5 +137,13 @@ func nearest_neighbor_dist(target_grid_coords: Vector2i) -> int:
 ## Do not override.
 func nearest_neighbor_dist_(target_hex: BaseHex) -> int:
 	return nearest_neighbor_dist(target_hex.grid_coords)
+
+## Do not override.
+func corner_pos(corner: HexGrid.CORNER) -> Vector2:
+	return HexManager.get_corner_pos(grid_coords, corner)
+
+## Do not override.
+func edge_midpoint(edge: HexGrid.EDGE) -> Vector2:
+	return HexManager.get_edge_midpoint(grid_coords, edge)
 
 #endregion
