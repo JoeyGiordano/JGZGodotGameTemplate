@@ -38,11 +38,13 @@ position = Vector2(-1, 1.732)
 position = Vector2(-2, 0)
 
 [node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1281072366]
+visible = false
 position = Vector2(-9.999999, -16.999998)
 scale = Vector2(0.03, 0.03)
 texture = ExtResource("1_kg2gx")
 
 [node name="Sprite2D3" type="Sprite2D" parent="." unique_id=1031892425]
+visible = false
 position = Vector2(-20, -1.9073486e-06)
 scale = Vector2(0.03, 0.03)
 texture = ExtResource("1_kg2gx")

@@ -1,7 +1,7 @@
 extends Node
 
 func _ready() -> void:
-	var speed = 10
+	var speed = 1
 	
 	var size = 7
 	for coord in HexManager.get_coords_in_hexagon(size) :

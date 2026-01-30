@@ -12,6 +12,8 @@ const SE = Vector2(1,-1)
 const SOUTH = Vector2(0,-1)
 const SW = Vector2(-1,0)
 
+### BASE_ON_MOVE
+
 ## Create/move/remove types (allows for different animations on create move and remove)
 enum CREATE_TYPE {
 	INSTANT,FADE_IN
@@ -29,15 +31,35 @@ var debug_id
 ## The coordinates of the spot on the map that this hex holds. The hex may not necessarily be at the associated real position.
 var grid_coords : Vector2i
 
+## Intended for overriding!
 ## This function is automatically called every HexManager.tick_duration seconds.
 ## We could break tick into more calls in HexManager (eg generate_resources(), resolve_damage(), act_on_neighbors()) for more consistent behavior.
 func tick() :
-	pass
+	tick_base()
 
+## Intended for overriding!
 ## This function is automatically called when the hex is created and added to the map.
 func on_added_to_map(_type: CREATE_TYPE) :
-	$Label.text = str(debug_id)
-	#could add other animations here (or in overriden version)
+	$Label.text = str(debug_id) #debug
+	on_added_to_map_base(_type)
+
+## Intended for overriding!
+## This function is automatically called when the hex is moved from one grid spot to another.
+func on_moved(_type: MOVE_TYPE) :
+	on_moved_base(_type)
+
+## Intended for overriding! (Don't forget to queue_free at the end though)
+## This function is automatically called when the hex is about to be removed from the map and queue_freed.
+## Although this hex will not hold the grid spot anymore, the hex's nodes can stay in the same real position to do disappear animations etc.
+func on_removed_from_map(_type: REMOVE_TYPE) :
+	on_removed_from_map_base(_type)
+
+#region Base Behaviors
+
+func tick_base() :
+	pass
+
+func on_added_to_map_base(_type: CREATE_TYPE) :
 	match _type :
 		CREATE_TYPE.INSTANT :
 			position = real_pos()
@@ -47,22 +69,20 @@ func on_added_to_map(_type: CREATE_TYPE) :
 			#fade in
 			var tween = create_tween()
 			tween.tween_property(self, "modulate:a", 1, 0.8)
+		_ : #default, do same as instant
+			position = real_pos()
 
-## This function is automatically called when the hex is moved from one grid spot to another.
-func on_moved(_type: MOVE_TYPE) :
-	#could add other animations here (or in overriden version)
+func on_moved_base(_type: MOVE_TYPE) :
 	match _type :
 		MOVE_TYPE.INSTANT :
 			position = real_pos()
 		MOVE_TYPE.SLIDE :
 			var tween = create_tween()
 			tween.tween_property(self, "position", real_pos(), 0.8)
+		_ : #default, do same as instant
+			position = real_pos()
 
-## This function is automatically called when the hex is about to be removed from the map and queue_freed.
-## Although this hex will not hold the grid spot anymore, the hex's nodes can stay in the same real position to do disappear animations etc.
-func on_removed_from_map(_type: REMOVE_TYPE) :
-	#could add other animations here (or in overriden version)
-	#don't forget to queue free it tho
+func on_removed_from_map_base(_type: REMOVE_TYPE) :
 	match _type :
 		REMOVE_TYPE.INSTANT :
 			queue_free()
@@ -70,14 +90,19 @@ func on_removed_from_map(_type: REMOVE_TYPE) :
 			var tween = create_tween()
 			tween.tween_property(self, "modulate:a", 0, 0.8)
 			queue_free()
+		_ : #default, do same as instant
+			queue_free()
+
+#endregion
 
 #region Utils
-## Don't touch or override these functions.
+## Don't change or override these functions.
 
 ## Do not override.
 func move(new_grid_coords: Vector2i, type: MOVE_TYPE = MOVE_TYPE.INSTANT) :
 	HexManager.move_hex(self,new_grid_coords,type)
 
+## Do not override.
 func move_(new_x: int, new_y: int, type: MOVE_TYPE = MOVE_TYPE.INSTANT) :
 	move(Vector2i(new_x,new_y),type)
 

@@ -21,29 +21,17 @@ var hex_list : Array[BaseHex] = []
 ## Stores the hexes based on their grid coordinates for easy access by coords.
 var map : DoubleDict = DoubleDict.new()
 
-## Tick timing
-const tick_duration : float = 0.1 #in seconds
-var time_since_last_tick : float = 0
-
 # Other
 var next_debug_id = 0
 var base_hex : PackedScene = preload("res://hex_stuff/base_hex.tscn")
 
-func _physics_process(_delta: float) -> void:
-	manage_tick(_delta)
-
-func manage_tick(_delta: float) :
-	time_since_last_tick += _delta
-	if time_since_last_tick > tick_duration :
-		time_since_last_tick -= tick_duration
-		tick()
-
+## Called by GameManager
 ## Could break tick into more calls (eg generate_resources(), resolve_damage(), act_on_neighbors()) for more consistent behavior.
 func tick() :
 	for hex in hex_list :
 		hex.tick()
 
-#region access
+#region Access
 
 ## Returns true if there is a hex at grid_coords.
 func is_hex_at(grid_coords: Vector2i) -> bool:
@@ -75,7 +63,7 @@ func get_associated_real_position(grid_coords: Vector2) -> Vector2:
 
 #endregion
 
-#region modify
+#region Modify
 
 ## Creates a hex grid_coords. If there is already there, throws an error. 
 func create_hex(grid_coords: Vector2i, type: BaseHex.CREATE_TYPE = BaseHex.CREATE_TYPE.INSTANT) -> BaseHex:
@@ -130,7 +118,7 @@ func remove_hex(hex: BaseHex, type: BaseHex.REMOVE_TYPE = BaseHex.REMOVE_TYPE.IN
 
 #endregion
 
-#region advanced
+#region Advanced
 
 ## Returns a list of coords of all of the grid points that are within a hexagon of radius radius around center.
 ## ie if radius = 3, this returns the first, second, and third nearest neighbors to center (optionally excluding center)
@@ -225,7 +213,7 @@ func get_contiguous_conditional(center: Vector2i, condition: Callable, check_cen
 
 #endregion
 
-#region private
+#region Private
 
 ## INTERNAL USE ONLY. You might be looking for create_hex().
 ## Adds a new hex to hex_list and map and sets its position.
