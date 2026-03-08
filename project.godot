@@ -28,6 +28,7 @@ Utility="*res://autoloads/Utility.gd"
 Ref="*res://autoloads/Reference/Reference.tscn"
 Debug="*res://autoloads/Debug.gd"
 GameInfo="*res://autoloads/GameInfo.gd"
+SignalBus="*uid://7pd2n4c8m4qs"
 
 [display]
 
