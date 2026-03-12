@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://cwpqsodevcxu0"]
+
+[ext_resource type="Texture2D" uid="uid://dxe5rsvu84bgc" path="res://icon.svg" id="1_oh0x4"]
+[ext_resource type="Script" uid="uid://brpc5bwemm30i" path="res://torus stuff/torus_math.gd" id="2_c05ly"]
+[ext_resource type="PackedScene" uid="uid://bonvosm05kh5" path="res://torus stuff/marker.tscn" id="3_y0cnq"]
+
+[node name="Test1" type="Node2D" unique_id=2112308832]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=88469053]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_oh0x4")
+script = ExtResource("2_c05ly")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1527693933]
+
+[node name="Label" type="Label" parent="." unique_id=1040029460]
+offset_left = -528.0
+offset_top = -294.0
+offset_right = -488.0
+offset_bottom = -271.0
+
+[node name="Phi" type="ProgressBar" parent="." unique_id=1788570772]
+offset_left = -514.0
+offset_top = -269.0
+offset_right = -235.0
+offset_bottom = -253.0
+min_value = -180.0
+max_value = 180.0
+step = 0.001
+show_percentage = false
+
+[node name="Label" type="Label" parent="Phi" unique_id=715351766]
+layout_mode = 0
+offset_left = -45.0
+offset_top = -3.0
+offset_right = -5.0
+offset_bottom = 20.0
+text = "Phi"
+
+[node name="Theta" type="ProgressBar" parent="." unique_id=751474837]
+offset_left = -512.0
+offset_top = -229.0
+offset_right = -232.0
+offset_bottom = -204.0
+min_value = -180.0
+max_value = 180.0
+step = 0.001
+show_percentage = false
+
+[node name="Label" type="Label" parent="Theta" unique_id=833696960]
+layout_mode = 0
+offset_left = -50.0
+offset_right = -5.0
+offset_bottom = 23.0
+text = "Theta"
+
+[node name="Marker" parent="." unique_id=1966185146 instance=ExtResource("3_y0cnq")]
+
+[node name="Label2" type="Label" parent="." unique_id=1575847364]
+offset_left = -540.0
+offset_top = -168.0
+offset_right = -500.0
+offset_bottom = -145.0
