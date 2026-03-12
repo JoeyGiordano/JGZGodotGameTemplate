@@ -1,19 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://dd71ltua8vpqj"]
+[gd_scene format=3 uid="uid://dd71ltua8vpqj"]
 
-[ext_resource type="Script" uid="uid://bj5ye56nvni8h" path="res://shell_scenes/scene_switch_button.gd" id="1_u5tdt"]
+[ext_resource type="Script" uid="uid://bpvrse88csi6y" path="res://shell_scenes/shell_scene_button.gd" id="1_gqxyi"]
 
-[node name="MainMenu" type="Control"]
+[node name="MainMenu" type="Control" unique_id=285872383]
 layout_mode = 3
 anchors_preset = 0
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=1936201366]
 layout_mode = 0
 offset_left = 1152.0
 offset_top = 648.0
 offset_right = 1546.0
 offset_bottom = 671.0
 
-[node name="PlayButton" type="Button" parent="."]
+[node name="PlayButton" type="Button" parent="." unique_id=1539814660]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -27,21 +27,23 @@ offset_bottom = 395.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "Play"
-script = ExtResource("1_u5tdt")
-switch_to = "game_shell_scene"
+script = ExtResource("1_gqxyi")
+switch_scene = true
 allow_quick_key = true
+switch_to = "game_shell_scene"
 
-[node name="CreditsButton" type="Button" parent="."]
+[node name="CreditsButton" type="Button" parent="." unique_id=1988990784]
 layout_mode = 0
 offset_left = 388.0
 offset_top = 519.0
 offset_right = 758.0
 offset_bottom = 569.0
 text = "Credits"
-script = ExtResource("1_u5tdt")
+script = ExtResource("1_gqxyi")
+switch_scene = true
 switch_to = "credits"
 
-[node name="InstructionsButton" type="Button" parent="."]
+[node name="InstructionsButton" type="Button" parent="." unique_id=699114003]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -55,10 +57,11 @@ offset_bottom = 470.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "Instructions"
-script = ExtResource("1_u5tdt")
+script = ExtResource("1_gqxyi")
+switch_scene = true
 switch_to = "instructions"
 
-[node name="TEMP" type="Label" parent="."]
+[node name="TEMP" type="Label" parent="." unique_id=973712865]
 layout_mode = 0
 offset_left = 482.0
 offset_top = 164.0

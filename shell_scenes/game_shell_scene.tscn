@@ -1,23 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://cyhkbbhd03a2w"]
+[gd_scene format=3 uid="uid://cyhkbbhd03a2w"]
 
-[ext_resource type="Script" uid="uid://bj5ye56nvni8h" path="res://shell_scenes/scene_switch_button.gd" id="1_txtef"]
+[ext_resource type="Script" uid="uid://bpvrse88csi6y" path="res://shell_scenes/shell_scene_button.gd" id="1_txtef"]
 
-[node name="GameShellScene" type="Control"]
+[node name="GameShellScene" type="Control" unique_id=1580173813]
 layout_mode = 3
 anchors_preset = 0
 
-[node name="Button" type="Button" parent="."]
+[node name="Button" type="Button" parent="." unique_id=551784627]
 layout_mode = 0
-offset_left = 554.0
-offset_top = 276.0
-offset_right = 656.0
-offset_bottom = 307.0
+offset_left = 16.0
+offset_top = 504.0
+offset_right = 286.0
+offset_bottom = 609.0
 text = "Press to win"
 script = ExtResource("1_txtef")
-switch_to = "victory"
+switch_scene = true
 allow_quick_key = true
+switch_to = "victory"
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=386017384]
 modulate = Color(0.839216, 0.388235, 0.85098, 1)
 layout_mode = 0
 offset_left = 533.0
