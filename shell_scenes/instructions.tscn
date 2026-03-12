@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cltaghkxnswjy"]
 
-[ext_resource type="Script" uid="uid://bj5ye56nvni8h" path="res://shell_scenes/scene_switch_button.gd" id="1_4nwng"]
+[ext_resource type="Script" uid="uid://bpvrse88csi6y" path="res://shell_scenes/shell_scene_button.gd" id="1_yclkf"]
 
 [node name="Instructions" type="Control" unique_id=1446039745]
 layout_mode = 3
@@ -13,9 +13,10 @@ offset_top = 522.0
 offset_right = 747.0
 offset_bottom = 574.0
 text = "Back"
-script = ExtResource("1_4nwng")
-switch_to = "main_menu"
+script = ExtResource("1_yclkf")
+switch_scene = true
 allow_quick_key = true
+switch_to = "main_menu"
 
 [node name="TEMP" type="Label" parent="." unique_id=174145487]
 layout_mode = 0
